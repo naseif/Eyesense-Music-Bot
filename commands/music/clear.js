@@ -10,11 +10,6 @@ module.exports = {
     const queue = client.player.getQueue(interaction.guild);
     await interaction.deferReply();
 
-    const embed = {
-      color: "#9dcc37",
-      description: `✅ Queue Cleared! [<@${interaction.user.id}>]`,
-    };
-
     if (!queue) {
       return await interaction.followUp({
         embeds: [

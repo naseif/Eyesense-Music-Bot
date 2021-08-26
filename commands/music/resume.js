@@ -12,7 +12,7 @@ module.exports = {
 
     if (!queue || !queue.playing)
       return await interaction.followUp({
-        embed: [
+        embeds: [
           await embedMessage(
             "#9dcc37",
             `❌ | There is nothing playing to resume!`
