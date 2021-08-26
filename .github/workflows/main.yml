@@ -18,12 +18,12 @@ jobs:
 
     steps:
       # ...
-      - name: Set Release Version
-        run: echo "RELEASE_VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
-        
+      - name: "Build & test"
+        run: |
+          echo "done!"
       - uses: "marvinpinto/action-automatic-releases@latest"
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: v${{ env.RELEASE_VERSION }}
+          automatic_release_tag: "latest"
           prerelease: false
