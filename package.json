@@ -1,0 +1,30 @@
+{
+  "name": "eyesense-music-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "music",
+    "bot",
+    "yotutbe-bot",
+    "discord-bot"
+  ],
+  "author": "naseif",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^0.6.0",
+    "@discordjs/rest": "0.1.0-canary.0",
+    "@discordjs/voice": "^0.6.0",
+    "bufferutil": "^4.0.3",
+    "discord-api-types": "^0.22.0",
+    "discord-player": "^5.1.0",
+    "discord.js": "^13.1.0",
+    "ffmpeg-static": "^4.4.0",
+    "libsodium-wrappers": "^0.7.9",
+    "opusscript": "^0.0.8",
+    "utf-8-validate": "^5.0.5"
+  }
+}
