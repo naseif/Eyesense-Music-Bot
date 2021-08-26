@@ -9,12 +9,11 @@ module.exports = {
     const queue = client.player.getQueue(interaction.guild);
     await interaction.deferReply();
 
-    if (!queue || !queue.playing) {
+    if (!queue) {
       return await interaction.followUp({
-        content: `${usermention}, ❌ | No Queue has been created for this guild. <Queue is empty>`,
+        content: `❌ | No Queue has been created for this guild. <Queue is empty>`,
       });
     }
-    //
 
     const embed = {
       color: "#9dcc37",
