@@ -8,10 +8,18 @@ module.exports = {
     const queue = client.player.getQueue(interaction.guild);
     await interaction.deferReply();
 
+    const embed = {
+      color: "#9dcc37",
+      description: `Playing Previous Track **${queue.previousTracks[0].title}**, [<@${interaction.user.id}>]`,
+    };
+
+    const embedError = {
+      color: "#9dcc37",
+      description: `❌ | No Queue has been created for this guild. <Queue is empty>`,
+    };
+
     if (!queue || !queue.playing) {
-      return await interaction.followUp(
-        `❌ | No Queue has been created for this guild. <Queue is empty>`
-      );
+      return await interaction.followUp({ embeds: [embedError] });
     }
 
     if (Array.isArray(queue.tracks) && queue.tracks.length < 1) {
@@ -20,10 +28,6 @@ module.exports = {
       );
     }
 
-    const embed = {
-      color: "#9dcc37",
-      description: `Playing Previous Track **${queue.previousTracks[0].title}**, [<@${interaction.user.id}>]`,
-    };
     await queue.back();
     await interaction.followUp({ embeds: [embed] });
   },
