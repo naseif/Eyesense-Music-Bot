@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { MessageEmbed } = require("discord.js");
+const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -8,18 +8,19 @@ module.exports = {
 
   async execute(interaction, client) {
     const queue = client.player.getQueue(interaction.guild);
-
     await interaction.deferReply();
 
     if (!queue) {
       return await interaction.followUp({
-        content: `❌ | Nothing to list, Queue is empty `,
+        embeds: [
+          await embedMessage("#9dcc37", `❌ | Nothing to list, Queue is empty`),
+        ],
       });
     }
+
     const tracks = queue?.tracks?.map(
       (track) => `<@${track.requestedBy.id}>, ${track.title}`
     );
-
     const queueEmbed = {
       color: "#21c6cf",
       title: `Current Queue`,
