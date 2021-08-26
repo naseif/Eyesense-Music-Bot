@@ -25,7 +25,11 @@ module.exports = {
       color: "#9dcc37",
       description: `✅ **${queue.current.title}** has been seeked to ${seekNumber} [<@${interaction.user.id}>]`,
     };
-    await queue.seek(Number(seekNumber));
-    await interaction.followUp({ embeds: [embed] });
+    try {
+      await queue.seek(Number(seekNumber));
+      await interaction.followUp({ embeds: [embed] });
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
