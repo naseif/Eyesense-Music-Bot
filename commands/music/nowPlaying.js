@@ -13,6 +13,14 @@ module.exports = {
         content: `<@${interaction.user.id}>, ❌ | Nothing playing at the moment`,
       });
     }
-    await interaction.followUp(` 🎵 | Playing now **${queue.nowPlaying()}**`);
+
+    const embed = {
+      color: "#9dcc37",
+      description: `🎵 | **${queue.nowPlaying()}** in [<#${
+        interaction.member.voice.channelId
+      }>]`,
+    };
+
+    await interaction.followUp({ embeds: [embed] });
   },
 };

@@ -26,14 +26,5 @@ module.exports = {
     };
     await queue.back();
     await interaction.followUp({ embeds: [embed] });
-
-    // if (queue.tracks.length >= 1) {
-    //   const embed = {
-    //     color: "#9dcc37",
-    //     description: `Playing Previous Track **${queue.previousTracks[0].title}**, [<@${interaction.user.id}>]`,
-    //   };
-    //   await queue.back();
-    //   await interaction.followUp({ embeds: [embed] });
-    // }
   },
 };

@@ -9,8 +9,8 @@ module.exports = {
     const queue = client.player.getQueue(interaction.guild);
 
     if (!queue)
-      return await interaction.reply({
-        content: `${usermention}, ❌ | There is no queue to shuffle!`,
+      return await interaction.followUp({
+        content: `❌ | There is no queue to shuffle!`,
       });
 
     const embed = {

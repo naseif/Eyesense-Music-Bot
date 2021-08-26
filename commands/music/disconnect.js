@@ -11,12 +11,13 @@ module.exports = {
 
     const embedError = {
       color: "#9dcc37",
-      description: `✅ I am not connected to a voice channel!`,
+      description: `❌ I am not connected to a voice channel!`,
     };
 
     if (!queue) {
       return await interaction.followUp({ embeds: [embedError] });
     }
+
     const embed = {
       color: "#9dcc37",
       description: `✅ **${interaction.client.user.username}** disconnected from [<#${interaction.member.voice.channelId}>]`,
