@@ -4,7 +4,7 @@ on:
       - '*.*.*'
 
 jobs:
-  test:
+  generateChanegeLog:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,14 +14,10 @@ jobs:
         run: |
           echo $RELEASE_VERSION
           echo ${{ env.RELEASE_VERSION }}
-          
-      - name: "tagged build!"
-        run: |
-          echo "done!"
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: true   
+          prerelease: false
           automatic_release_tag: ${{ env.RELEASE_VERSION }}
           title: ${{ env.RELEASE_VERSION }}
