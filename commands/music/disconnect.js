@@ -9,6 +9,11 @@ module.exports = {
     const queue = client.player.getQueue(interaction.guild);
     await interaction.deferReply();
 
+    const embed = {
+      color: "#9dcc37",
+      description: `✅ **${interaction.client.user.username}** disconnected from [<#${interaction.member.voice.channelId}>]`,
+    };
+
     const embedError = {
       color: "#9dcc37",
       description: `❌ I am not connected to a voice channel!`,
@@ -17,11 +22,6 @@ module.exports = {
     if (!queue) {
       return await interaction.followUp({ embeds: [embedError] });
     }
-
-    const embed = {
-      color: "#9dcc37",
-      description: `✅ **${interaction.client.user.username}** disconnected from [<#${interaction.member.voice.channelId}>]`,
-    };
 
     if (queue) {
       await queue.destroy(true);
