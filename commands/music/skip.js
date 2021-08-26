@@ -1,4 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { embedMessage } = require("../../modules/embedSimple");
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("skip")
@@ -9,21 +11,25 @@ module.exports = {
     const usermention = `<@${interaction.member.id}>`;
     const queue = client.player.getQueue(interaction.guild);
 
-    const embedError = {
-      color: "#9dcc37",
-      description: `❌ | No music is being played! [${usermention}]`,
-    };
-
-    const embed = {
-      color: "#9dcc37",
-      description: `Skipped **${currnetSong.title}**, [<@${interaction.user.id}>]`,
-    };
-
     if (!queue || !queue.playing)
-      return await interaction.followUp({ embeds: [embedError] });
+      return await interaction.followUp({
+        embeds: [
+          await embedMessage(
+            "#9dcc37",
+            `❌ | No music is being played! [${usermention}]`
+          ),
+        ],
+      });
 
     const currnetSong = queue.current;
     await queue.skip();
-    return await interaction.followUp({ embeds: [embed] });
+    return await interaction.followUp({
+      embeds: [
+        await embedMessage(
+          "#9dcc37",
+          `Skipped **${currnetSong.title}**, [<@${interaction.user.id}>]`
+        ),
+      ],
+    });
   },
 };

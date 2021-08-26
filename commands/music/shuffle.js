@@ -1,4 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { embedMessage } = require("../../modules/embedSimple");
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("shuffle")
@@ -10,17 +12,21 @@ module.exports = {
 
     if (!queue)
       return await interaction.followUp({
-        content: `❌ | There is no queue to shuffle!`,
+        embeds: [
+          await embedMessage("#9dcc37", `❌ | There is no queue to shuffle!`),
+        ],
       });
-
-    const embed = {
-      color: "#9dcc37",
-      description: `✅ Queue has been shuffled [<@${interaction.user.id}>]`,
-    };
 
     if (queue) {
       await queue.shuffle();
-      await interaction.followUp({ embeds: [embed] });
+      await interaction.followUp({
+        embeds: [
+          await embedMessage(
+            "#9dcc37",
+            `✅ Queue has been shuffled [<@${interaction.user.id}>]`
+          ),
+        ],
+      });
     }
   },
 };

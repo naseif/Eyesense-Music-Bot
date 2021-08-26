@@ -1,4 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { embedMessage } = require("../../modules/embedSimple");
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("stop")
@@ -9,19 +11,26 @@ module.exports = {
     await interaction.deferReply();
 
     if (!queue || !queue.playing) {
-      return await interaction.followUp(
-        `<@${interaction.user.id}>, Nothing is playing to stop!`
-      );
+      return await interaction.followUp({
+        embeds: [
+          await embedMessage(
+            "#9dcc37",
+            `<@${interaction.user.id}>, Nothing is playing to stop!`
+          ),
+        ],
+      });
     }
-
-    const embed = {
-      color: "#9dcc37",
-      description: `✅ Stopped **${queue.current.title}** in [<#${interaction.member.voice.channelId}>]`,
-    };
 
     if (queue && queue.playing) {
       await queue.stop();
-      await interaction.followUp({ embeds: [embed] });
+      await interaction.followUp({
+        embeds: [
+          await embedMessage(
+            "#9dcc37",
+            `✅ Stopped **${queue.current.title}** in [<#${interaction.member.voice.channelId}>]`
+          ),
+        ],
+      });
     }
   },
 };

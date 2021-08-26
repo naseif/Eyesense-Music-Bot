@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -23,30 +24,58 @@ module.exports = {
 
     if (!queue || !queue.playing) {
       return await interaction.followUp({
-        content: `${usermention}, ❌ | No music is being played!`,
+        embeds: [
+          await embedMessage(
+            "#9dcc37",
+            `${usermention}, ❌ | No music is being played!`
+          ),
+        ],
       });
     }
 
     switch (mode) {
       case "0":
         await queue.setRepeatMode(Number(mode));
-        await interaction.followUp(`✅ | Repeat Mode has been disabled`);
+        await interaction.followUp({
+          embeds: [
+            await embedMessage("#9dcc37", `✅ | Repeat Mode has been disabled`),
+          ],
+        });
         break;
       case "1":
         await queue.setRepeatMode(Number(mode));
-        await interaction.followUp(
-          `✅ | Repeat Mode has been enabled for **${queue.current}**`
-        );
+        await interaction.followUp({
+          embeds: [
+            await embedMessage(
+              "#9dcc37",
+              `✅ | Repeat Mode has been enabled for **${queue.current}**`
+            ),
+          ],
+        });
+
         break;
       case "2":
         await queue.setRepeatMode(Number(mode));
-        await interaction.followUp(
-          `✅ | Repeat Mode has been enabled for the current queue!`
-        );
+        await interaction.followUp({
+          embeds: [
+            await embedMessage(
+              "#9dcc37",
+              `✅ | Repeat Mode has been enabled for the current queue!`
+            ),
+          ],
+        });
+
         break;
       case "3":
         await queue.setRepeatMode(Number(mode));
-        await interaction.followUp(`✅ | Autoplay mode has been enabled `);
+        await interaction.followUp({
+          embeds: [
+            await embedMessage(
+              "#9dcc37",
+              `✅ | Autoplay mode has been enabled `
+            ),
+          ],
+        });
         break;
     }
   },

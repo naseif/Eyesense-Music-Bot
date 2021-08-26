@@ -1,4 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { embedMessage } = require("../../modules/embedSimple");
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("playingnow")
@@ -10,17 +12,24 @@ module.exports = {
 
     if (!queue || !queue.playing) {
       return await interaction.followUp({
-        content: `<@${interaction.user.id}>, ❌ | Nothing playing at the moment`,
+        embeds: [
+          await embedMessage(
+            "#9dcc37",
+            `<@${interaction.user.id}>, ❌ | Nothing playing at the moment`
+          ),
+        ],
       });
     }
 
-    const embed = {
-      color: "#9dcc37",
-      description: `🎵 | **${queue.nowPlaying()}** in [<#${
-        interaction.member.voice.channelId
-      }>]`,
-    };
-
-    await interaction.followUp({ embeds: [embed] });
+    await interaction.followUp({
+      embeds: [
+        await embedMessage(
+          "#9dcc37",
+          `🎵 | **${queue.nowPlaying()}** in [<#${
+            interaction.member.voice.channelId
+          }>]`
+        ),
+      ],
+    });
   },
 };

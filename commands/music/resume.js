@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -10,17 +11,25 @@ module.exports = {
     await interaction.deferReply();
 
     if (!queue || !queue.playing)
-      return await interaction.followUp(
-        `❌ | There is nothing playing to resume!`
-      );
-    const embed = {
-      color: "#9dcc37",
-      description: `✅ **${queue.current.title}** resumed [<@${interaction.user.id}>]`,
-    };
+      return await interaction.followUp({
+        embed: [
+          await embedMessage(
+            "#9dcc37",
+            `❌ | There is nothing playing to resume!`
+          ),
+        ],
+      });
 
     if (queue) {
       await queue.setPaused(false);
-      await interaction.followUp({ embeds: [embed] });
+      await interaction.followUp({
+        embeds: [
+          await embedMessage(
+            "#9dcc37",
+            `✅ **${queue.current.title}** resumed [<@${interaction.user.id}>]`
+          ),
+        ],
+      });
     }
   },
 };

@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -9,23 +10,27 @@ module.exports = {
     const queue = client.player.getQueue(interaction.guild);
     await interaction.deferReply();
 
-    const embed = {
-      color: "#9dcc37",
-      description: `✅ **${interaction.client.user.username}** disconnected from [<#${interaction.member.voice.channelId}>]`,
-    };
-
-    const embedError = {
-      color: "#9dcc37",
-      description: `❌ I am not connected to a voice channel!`,
-    };
-
     if (!queue) {
-      return await interaction.followUp({ embeds: [embedError] });
+      return await interaction.followUp({
+        embeds: [
+          await embedMessage(
+            "#9dcc37",
+            `❌ I am not connected to a voice channel!`
+          ),
+        ],
+      });
     }
 
     if (queue) {
       await queue.destroy(true);
-      await interaction.followUp({ embeds: [embed] });
+      await interaction.followUp({
+        embeds: [
+          await embedMessage(
+            "#9dcc37",
+            `✅ **${interaction.client.user.username}** disconnected from [<#${interaction.member.voice.channelId}>]`
+          ),
+        ],
+      });
     }
   },
 };
