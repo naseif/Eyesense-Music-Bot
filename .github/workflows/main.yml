@@ -1,30 +1,22 @@
-name: CI
+name: "tagged-release"
 
 on:
   push:
     tags:
       - '*.*.*'
 
-  workflow_dispatch:
-
 jobs:
-  pre-release:
-    name: "Pre Release"
+  tagged-release:
+    name: "Tagged Release"
     runs-on: "ubuntu-latest"
 
     steps:
       # ...
-      - uses: actions/checkout@v2
-      - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - name: "get tag"
+      - name: "test"
         run: |
-          echo $RELEASE_VERSION
-          echo ${{ env.RELEASE_VERSION }}
-          
+          echo "done!"
+
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: $RELEASE_VERSION
           prerelease: false
-          title: $RELEASE_VERSION
