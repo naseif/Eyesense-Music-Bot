@@ -1,9 +1,11 @@
 name: "tagged-release"
 
 on:
+  release:
+    types: [ created ]
   push:
     tags:
-      - '*.*.*'
+      - '*.*.*'  
 
 jobs:
   tagged-release:
