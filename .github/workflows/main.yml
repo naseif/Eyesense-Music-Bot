@@ -2,11 +2,8 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  release:
-    types: [ created ]    
+    tags:
+      - '*.*.*'
 
   workflow_dispatch:
 
@@ -17,12 +14,17 @@ jobs:
 
     steps:
       # ...
-      - name: "Build & test"
+      - uses: actions/checkout@v2
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: "get tag"
         run: |
-          echo "done!"
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
+          
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          automatic_release_tag: $RELEASE_VERSION
           prerelease: false
-          title: ${{ env.RELEASE_VERSION }}
+          title: $RELEASE_VERSION
