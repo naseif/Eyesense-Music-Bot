@@ -3,9 +3,6 @@ name: "tagged-release"
 on:
   release:
     types: [ created ]
-  push:
-    tags:
-      - '*.*.*'  
 
 jobs:
   tagged-release:
@@ -21,4 +18,4 @@ jobs:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: true
+          prerelease: false
