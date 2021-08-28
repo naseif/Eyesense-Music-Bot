@@ -11,9 +11,14 @@ module.exports = {
     await interaction.deferReply();
 
     if (!interaction.member.voice.channelId)
-      return await interaction.followUp(
-        "You must be in a Voice Channel to play music!"
-      );
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | You must be in a voice channel to play music!`
+          ),
+        ],
+      });
 
     if (
       interaction.guild.me.voice.channelId &&
