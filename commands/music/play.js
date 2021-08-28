@@ -20,7 +20,14 @@ module.exports = {
       interaction.member.voice.channelId !==
         interaction.guild.me.voice.channelId
     )
-      return await interaction.followUp("You must be in my voice channel!");
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | You must be in my voice channel! [<#${interaction.member.voice.channelId}>]`
+          ),
+        ],
+      });
 
     const guild = client.guilds.cache.get(interaction.guildId);
     const channel = guild.channels.cache.get(interaction.channelId);
@@ -32,7 +39,9 @@ module.exports = {
     });
 
     if (!searchSong.tracks.length || !searchSong)
-      return interaction.followUp("No Songs were found");
+      return interaction.followUp({
+        embeds: [embedMessage("#9dcc37", `❌ | Song not found`)],
+      });
 
     const queue = client.player.createQueue(guild, {
       leaveOnEnd: false,
@@ -46,7 +55,7 @@ module.exports = {
       bufferingTimeout: 200,
       leaveOnEmpty: true,
     });
-    console.log(queue.options);
+
     try {
       if (!queue.connection)
         await queue.connect(interaction.member.voice.channel);
