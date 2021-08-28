@@ -2,11 +2,9 @@
 name: CI
 
 on:
-  pull_request:
-    branches: [ main ]
-  release:
-    types: [ created ]    
-
+  push:
+    tags:
+      - "v*"
 
 
   workflow_dispatch:
@@ -26,11 +24,6 @@ jobs:
           
       - name: Automatic Pre-Release
         uses: "marvinpinto/action-automatic-releases@latest"
-        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "3.0.0"
           prerelease: false
-          title: "Hier gibt's die neuste PDF"
-          files: |
-            CHANGELOG.md
