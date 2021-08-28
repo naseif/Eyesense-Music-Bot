@@ -38,8 +38,15 @@ module.exports = {
       leaveOnEnd: false,
       leaveOnStop: false,
       initialVolume: 50,
+      ytdlOptions: {
+        highWaterMark: 1 << 25,
+        filter: "audioonly",
+        quality: "highestaudio",
+      },
+      bufferingTimeout: 200,
+      leaveOnEmpty: true,
     });
-
+    console.log(queue.options);
     try {
       if (!queue.connection)
         await queue.connect(interaction.member.voice.channel);
