@@ -4,8 +4,8 @@ const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("addrole")
-    .setDescription("adds a role for a user")
+    .setName("removerole")
+    .setDescription("removes a role for a user")
     .addUserOption((option) =>
       option.setName("user").setDescription("Select a user").setRequired(true)
     )
@@ -26,18 +26,18 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `❌ | Only server admins can add roles to users!`
+            `❌ | Only server admins can remove roles from users!`
           ),
         ],
       });
 
     try {
-      await user.roles.add(roleToGive);
+      await user.roles.remove(roleToGive);
       await interaction.followUp({
         embeds: [
           embedMessage(
             "#9dcc37",
-            `✅ | ${user} has been given ${roleToGive} Role!`
+            `✅ | ${roleToGive} has been removed from ${user}`
           ),
         ],
       });
@@ -58,7 +58,7 @@ module.exports = {
           embeds: [
             embedMessage(
               "#9dcc37",
-              `❌ I can not add this role to the user since its above me!`
+              `❌ I can not remove this role from user since the role is above me!`
             ),
           ],
         });
