@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, time } = require("@discordjs/builders");
+const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -27,10 +28,7 @@ module.exports = {
     )
       return await interaction.followUp({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | You must be in my voice channel! [<#${interaction.member.voice.channelId}>]`
-          ),
+          embedMessage("#9dcc37", `❌ | You must be in my voice channel!`),
         ],
       });
 
