@@ -33,7 +33,7 @@ module.exports = {
       timestamp: new Date(),
       footer: {
         text: "Created by naseif",
-        icon_url: "https://i.imgur.com/yeuStLw.png",
+        icon_url: "https://i.imgur.com/KrAvM8U.jpg",
       },
     };
 
