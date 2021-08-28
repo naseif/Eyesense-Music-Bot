@@ -78,7 +78,6 @@ module.exports = {
       author: {
         name: `${interaction.user.username}`,
         icon_url: `${interaction.user.avatarURL()}`,
-        url: "https://github.com/naseif/",
       },
       description: `Song: **${searchSong.tracks[0].title}**`,
       thumbnail: {
