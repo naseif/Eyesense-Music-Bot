@@ -5,10 +5,14 @@ const { Lyrics } = require("@discord-player/extractor");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("lyrics")
-    .setDescription("gets the lyrics of the current song"),
+    .setDescription("gets the lyrics of the current song")
+    .addStringOption((option) =>
+      option.setName("song").setDescription("song name")
+    ),
 
   async execute(interaction, client) {
     await interaction.deferReply();
+    const songString = interaction.options.getString("song");
     const lyricsClient = Lyrics.init();
     const queue = client.player.getQueue(interaction.guild);
 
@@ -22,8 +26,23 @@ module.exports = {
         ],
       });
 
+    let songTitle;
+
+    if (songString) {
+      songTitle = songString;
+    } else {
+      songTitle = queue.current.title;
+    }
+
+    const filterName = queue.current.title.indexOf("(");
+
+    if (filterName !== -1) {
+      songTitle = songTitle.slice(0, filterName);
+    }
+
     try {
-      const lyrics = await lyricsClient.search(queue.current.title);
+      const lyrics = await lyricsClient.search(songTitle);
+      console.log(songTitle);
 
       if (!lyrics)
         return await interaction.followUp({
