@@ -13,7 +13,7 @@ module.exports = {
     if (!queue || !queue.playing) {
       return await interaction.followUp({
         embeds: [
-          await embedMessage(
+          embedMessage(
             "#9dcc37",
             `<@${interaction.user.id}>, Nothing is playing to stop!`
           ),
@@ -25,7 +25,7 @@ module.exports = {
       await queue.stop();
       await interaction.followUp({
         embeds: [
-          await embedMessage(
+          embedMessage(
             "#9dcc37",
             `✅ Stopped **${queue.current.title}** in [<#${interaction.member.voice.channelId}>]`
           ),

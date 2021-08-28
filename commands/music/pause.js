@@ -13,7 +13,7 @@ module.exports = {
     if (!queue || !queue.playing)
       return await interaction.followUp({
         embeds: [
-          await embedMessage(
+          embedMessage(
             "#9dcc37",
             `❌ | There is nothing playing to pause!`
           ),
@@ -24,7 +24,7 @@ module.exports = {
       await queue.setPaused(true);
       await interaction.followUp({
         embeds: [
-          await embedMessage(
+          embedMessage(
             "#9dcc37",
             `✅ **${queue.current.title}** paused [<@${interaction.user.id}>]`
           ),

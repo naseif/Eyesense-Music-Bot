@@ -14,7 +14,7 @@ module.exports = {
     if (!queue || !queue.playing)
       return await interaction.followUp({
         embeds: [
-          await embedMessage(
+          embedMessage(
             "#9dcc37",
             `❌ | No music is being played! [${usermention}]`
           ),
@@ -25,7 +25,7 @@ module.exports = {
     await queue.skip();
     return await interaction.followUp({
       embeds: [
-        await embedMessage(
+        embedMessage(
           "#9dcc37",
           `Skipped **${currnetSong.title}**, [<@${interaction.user.id}>]`
         ),

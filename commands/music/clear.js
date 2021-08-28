@@ -13,7 +13,7 @@ module.exports = {
     if (!queue) {
       return await interaction.followUp({
         embeds: [
-          await embedMessage(
+          embedMessage(
             "#9dcc37",
             `❌ | No Queue has been created for this guild. <Queue is empty>`
           ),
@@ -25,7 +25,7 @@ module.exports = {
       await queue.clear();
       await interaction.followUp({
         embeds: [
-          await embedMessage(
+          embedMessage(
             "#9dcc37",
             `✅ Queue Cleared! [<@${interaction.user.id}>]`
           ),

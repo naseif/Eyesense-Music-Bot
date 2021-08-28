@@ -25,7 +25,7 @@ module.exports = {
     if (!queue || !queue.playing) {
       return await interaction.followUp({
         embeds: [
-          await embedMessage(
+          embedMessage(
             "#9dcc37",
             `${usermention}, ❌ | No music is being played!`
           ),
@@ -38,7 +38,7 @@ module.exports = {
         await queue.setRepeatMode(Number(mode));
         await interaction.followUp({
           embeds: [
-            await embedMessage("#9dcc37", `✅ | Repeat Mode has been disabled`),
+            embedMessage("#9dcc37", `✅ | Repeat Mode has been disabled`),
           ],
         });
         break;
@@ -46,7 +46,7 @@ module.exports = {
         await queue.setRepeatMode(Number(mode));
         await interaction.followUp({
           embeds: [
-            await embedMessage(
+            embedMessage(
               "#9dcc37",
               `✅ | Repeat Mode has been enabled for **${queue.current}**`
             ),
@@ -58,7 +58,7 @@ module.exports = {
         await queue.setRepeatMode(Number(mode));
         await interaction.followUp({
           embeds: [
-            await embedMessage(
+            embedMessage(
               "#9dcc37",
               `✅ | Repeat Mode has been enabled for the current queue!`
             ),
@@ -70,7 +70,7 @@ module.exports = {
         await queue.setRepeatMode(Number(mode));
         await interaction.followUp({
           embeds: [
-            await embedMessage(
+            embedMessage(
               "#9dcc37",
               `✅ | Autoplay mode has been enabled `
             ),

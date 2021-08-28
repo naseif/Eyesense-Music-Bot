@@ -34,10 +34,6 @@ module.exports = {
     if (!searchSong.tracks.length || !searchSong)
       return interaction.followUp("No Songs were found");
 
-    // Take first song index from the array
-
-    // let songTrack = searchSong.tracks[0];
-
     const queue = client.player.createQueue(guild, {
       leaveOnEnd: false,
       leaveOnStop: false,

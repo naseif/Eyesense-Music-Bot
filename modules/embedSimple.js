@@ -1,4 +1,4 @@
-async function embedMessage(color, description) {
+function embedMessage(color, description) {
   const embed = {
     color: color,
     description: description,

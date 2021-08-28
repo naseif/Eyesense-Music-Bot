@@ -13,7 +13,7 @@ module.exports = {
     if (!queue || !queue.playing) {
       return await interaction.followUp({
         embeds: [
-          await embedMessage(
+          embedMessage(
             "#9dcc37",
             `<@${interaction.user.id}>, ❌ | Nothing playing at the moment`
           ),
@@ -23,7 +23,7 @@ module.exports = {
 
     await interaction.followUp({
       embeds: [
-        await embedMessage(
+        embedMessage(
           "#9dcc37",
           `🎵 | **${queue.nowPlaying()}** in [<#${
             interaction.member.voice.channelId

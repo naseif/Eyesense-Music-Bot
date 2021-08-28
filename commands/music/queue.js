@@ -13,7 +13,7 @@ module.exports = {
     if (!queue) {
       return await interaction.followUp({
         embeds: [
-          await embedMessage("#9dcc37", `❌ | Nothing to list, Queue is empty`),
+          embedMessage("#9dcc37", `❌ | Nothing to list, Queue is empty`),
         ],
       });
     }

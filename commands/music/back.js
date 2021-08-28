@@ -13,7 +13,7 @@ module.exports = {
     if (!queue || !queue.playing) {
       return await interaction.followUp({
         embeds: [
-          await embedMessage(
+          embedMessage(
             `#9dcc37`,
             `❌ | No Queue has been created for this guild. <Queue is empty>`
           ),
@@ -30,7 +30,7 @@ module.exports = {
     await queue.back();
     await interaction.followUp({
       embeds: [
-        await embedMessage(
+        embedMessage(
           "#9dcc37",
           `Playing Previous Track **${queue.previousTracks[0].title}**, [<@${interaction.user.id}>]`
         ),

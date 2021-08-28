@@ -13,7 +13,7 @@ module.exports = {
     if (!queue) {
       return await interaction.followUp({
         embeds: [
-          await embedMessage(
+          embedMessage(
             "#9dcc37",
             `❌ I am not connected to a voice channel!`
           ),
@@ -25,7 +25,7 @@ module.exports = {
       await queue.destroy(true);
       await interaction.followUp({
         embeds: [
-          await embedMessage(
+          embedMessage(
             "#9dcc37",
             `✅ **${interaction.client.user.username}** disconnected from [<#${interaction.member.voice.channelId}>]`
           ),
