@@ -3,7 +3,7 @@ const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("playingnow")
+    .setName("nowplaying")
     .setDescription("shows the current music name"),
 
   async execute(interaction, client) {
