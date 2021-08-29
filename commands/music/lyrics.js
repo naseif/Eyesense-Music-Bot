@@ -16,28 +16,18 @@ module.exports = {
     const lyricsClient = Lyrics.init();
     const queue = client.player.getQueue(interaction.guild);
 
-    if (!queue || !queue.playing)
-      return await interaction.followUp({
-        embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | Nothing is playing to get the lyrics for!`
-          ),
-        ],
-      });
-
     let songTitle;
 
     if (songString) {
       songTitle = songString;
     } else {
       songTitle = queue.current.title;
-    }
 
-    const filterName = queue.current.title.indexOf("(");
+      const filterName = queue.current.title.indexOf("(");
 
-    if (filterName !== -1) {
-      songTitle = songTitle.slice(0, filterName);
+      if (filterName !== -1) {
+        songTitle = songTitle.slice(0, filterName);
+      }
     }
 
     try {
