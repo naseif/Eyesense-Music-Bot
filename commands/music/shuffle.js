@@ -12,9 +12,7 @@ module.exports = {
 
     if (!queue)
       return await interaction.followUp({
-        embeds: [
-          embedMessage("#9dcc37", `❌ | There is no queue to shuffle!`),
-        ],
+        embeds: [embedMessage("#9dcc37", `❌ | There is no queue to shuffle!`)],
       });
 
     if (queue) {

@@ -13,23 +13,24 @@ module.exports = {
     if (!queue || !queue.playing)
       return await interaction.followUp({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | There is nothing playing to resume!`
-          ),
+          embedMessage("#9dcc37", `❌ | There is nothing playing to resume!`),
         ],
       });
 
-    if (queue) {
-      await queue.setPaused(false);
-      await interaction.followUp({
-        embeds: [
-          embedMessage(
-            "#9dcc37",
-            `✅ **${queue.current.title}** resumed [<@${interaction.user.id}>]`
-          ),
-        ],
-      });
+    try {
+      if (queue) {
+        await queue.setPaused(false);
+        await interaction.followUp({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `✅ **${queue.current.title}** resumed [<@${interaction.user.id}>]`
+            ),
+          ],
+        });
+      }
+    } catch (err) {
+      console.error(err);
     }
   },
 };

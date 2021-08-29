@@ -20,17 +20,20 @@ module.exports = {
         ],
       });
     }
-
-    if (queue) {
-      await queue.clear();
-      await interaction.followUp({
-        embeds: [
-          embedMessage(
-            "#9dcc37",
-            `✅ Queue Cleared! [<@${interaction.user.id}>]`
-          ),
-        ],
-      });
+    try {
+      if (queue) {
+        await queue.clear();
+        await interaction.followUp({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `✅ Queue Cleared! [<@${interaction.user.id}>]`
+            ),
+          ],
+        });
+      }
+    } catch (err) {
+      console.error(err);
     }
   },
 };

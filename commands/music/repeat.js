@@ -70,10 +70,7 @@ module.exports = {
         await queue.setRepeatMode(Number(mode));
         await interaction.followUp({
           embeds: [
-            embedMessage(
-              "#9dcc37",
-              `✅ | Autoplay mode has been enabled `
-            ),
+            embedMessage("#9dcc37", `✅ | Autoplay mode has been enabled `),
           ],
         });
         break;

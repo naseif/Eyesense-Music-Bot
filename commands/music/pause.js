@@ -13,23 +13,24 @@ module.exports = {
     if (!queue || !queue.playing)
       return await interaction.followUp({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | There is nothing playing to pause!`
-          ),
+          embedMessage("#9dcc37", `❌ | There is nothing playing to pause!`),
         ],
       });
 
-    if (queue) {
-      await queue.setPaused(true);
-      await interaction.followUp({
-        embeds: [
-          embedMessage(
-            "#9dcc37",
-            `✅ **${queue.current.title}** paused [<@${interaction.user.id}>]`
-          ),
-        ],
-      });
+    try {
+      if (queue) {
+        await queue.setPaused(true);
+        await interaction.followUp({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `✅ **${queue.current.title}** paused [<@${interaction.user.id}>]`
+            ),
+          ],
+        });
+      }
+    } catch (err) {
+      console.error(err);
     }
   },
 };

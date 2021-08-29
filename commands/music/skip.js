@@ -21,15 +21,19 @@ module.exports = {
         ],
       });
 
-    const currnetSong = queue.current;
-    await queue.skip();
-    return await interaction.followUp({
-      embeds: [
-        embedMessage(
-          "#9dcc37",
-          `Skipped **${currnetSong.title}**, [<@${interaction.user.id}>]`
-        ),
-      ],
-    });
+    try {
+      const currnetSong = queue.current;
+      await queue.skip();
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `Skipped **${currnetSong.title}**, [<@${interaction.user.id}>]`
+          ),
+        ],
+      });
+    } catch (err) {
+      console.error(err);
+    }
   },
 };

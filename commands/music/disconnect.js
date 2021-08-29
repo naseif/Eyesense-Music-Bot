@@ -13,24 +13,25 @@ module.exports = {
     if (!queue) {
       return await interaction.followUp({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ I am not connected to a voice channel!`
-          ),
+          embedMessage("#9dcc37", `❌ I am not connected to a voice channel!`),
         ],
       });
     }
 
-    if (queue) {
-      await queue.destroy(true);
-      await interaction.followUp({
-        embeds: [
-          embedMessage(
-            "#9dcc37",
-            `✅ **${interaction.client.user.username}** disconnected from [<#${interaction.member.voice.channelId}>]`
-          ),
-        ],
-      });
+    try {
+      if (queue) {
+        await queue.destroy(true);
+        await interaction.followUp({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `✅ **${interaction.client.user.username}** disconnected from [<#${interaction.member.voice.channelId}>]`
+            ),
+          ],
+        });
+      }
+    } catch (err) {
+      console.error(err);
     }
   },
 };
