@@ -7,7 +7,9 @@ const client = new Client({
     Intents.FLAGS.GUILD_MESSAGES,
     Intents.FLAGS.GUILD_VOICE_STATES,
   ],
+  restRequestTimeout: 30000,
 });
+
 client.commands = new Collection();
 const { Player } = require("discord-player");
 const player = new Player(client);
