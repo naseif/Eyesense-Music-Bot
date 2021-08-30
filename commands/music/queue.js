@@ -22,7 +22,7 @@ module.exports = {
       (track) => `<@${track.requestedBy.id}>, ${track.title}`
     );
     const queueEmbed = {
-      color: "#21c6cf",
+      color: "#9dcc37",
       title: `Current Queue`,
       author: {
         name: `${interaction.user.username}`,
