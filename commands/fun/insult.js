@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { embedMessage } = require("../../modules/embedSimple");
 const fetch = require("node-fetch");
 
 module.exports = {

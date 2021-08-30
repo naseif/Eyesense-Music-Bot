@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -10,6 +9,8 @@ module.exports = {
     ),
   async execute(interaction, client) {
     await interaction.deferReply();
+    const question = interaction.options.getString("ques");
+
     const answers = [
       "Aboslutely 👌",
       "I am not sure, but maybe? 🤐",
@@ -22,13 +23,17 @@ module.exports = {
       "That's a bit lewd 🤤",
     ];
 
+    const embed = {
+      color: "#9dcc37",
+      title: `${question}`,
+      author: {
+        name: `${interaction.user.username}`,
+        icon_url: `${interaction.user.avatarURL()}`,
+      },
+      description: `${answers[Math.floor(Math.random() * answers.length)]}`,
+    };
     await interaction.followUp({
-      embeds: [
-        embedMessage(
-          "#9dcc37",
-          `${answers[Math.floor(Math.random() * answers.length)]}`
-        ),
-      ],
+      embeds: [embed],
     });
   },
 };
