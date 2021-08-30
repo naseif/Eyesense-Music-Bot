@@ -1,6 +1,6 @@
 # Eyesense-Music-Bot
 ![](https://img.shields.io/github/license/naseif/Eyesense-Music-Bot?style=flat-square) ![](https://img.shields.io/github/issues/naseif/Eyesense-Music-Bot?style=flat-square)
-![](https://img.shields.io/github/issues-pr/naseif/vultrDiscordBot?style=flat-square)
+![](https://img.shields.io/github/issues-pr/naseif/Eyesense-Music-Bot?style=flat-square)
 
 Eyesense is a feature-rich discord bot that plays music from various platforms and more. <br>
 The bot is still in the development phase You can check the release page for the stable releases
