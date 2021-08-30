@@ -7,7 +7,7 @@ module.exports = {
     .setName("deletemessages")
     .setDescription("deletes x number of messages")
     .addIntegerOption((option) =>
-      option.setName("int").setDescription("Enter an integer")
+      option.setName("int").setDescription("Enter an integer").setRequired(true)
     ),
   async execute(interaction, client) {
     const integer = interaction.options.getInteger("int");
