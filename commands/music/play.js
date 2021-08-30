@@ -33,7 +33,6 @@ module.exports = {
       });
 
     const guild = client.guilds.cache.get(interaction.guildId);
-    const channel = guild.channels.cache.get(interaction.channelId);
 
     const songString = interaction.options.getString("song");
 
@@ -106,13 +105,26 @@ module.exports = {
       },
     };
 
+    let playlistEmbed = {
+      color: "#9dcc37",
+      description: `✅ | Queued ${queue.tracks.length} Songs`,
+    };
+
     if (!queue.playing) {
-      await interaction.followUp({ embeds: [musicEmbed] });
+      searchSong.playlist
+        ? await interaction.followUp({
+            embeds: [playlistEmbed, musicEmbed],
+          })
+        : await interaction.followUp({
+            embeds: [musicEmbed],
+          });
       await queue.play();
     }
 
     if (queue.playing) {
-      await interaction.followUp({ embeds: [musicEmbed] });
+      searchSong.playlist
+        ? await interaction.followUp({ embeds: [playlistEmbed, musicEmbed] })
+        : await interaction.followUp({ embeds: [musicEmbed] });
     }
   },
 };
