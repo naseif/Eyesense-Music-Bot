@@ -6,7 +6,6 @@ module.exports = {
   execute(client) {
     client.guilds.cache.map(async (guild) => {
       try {
-        await guild.commands.set([]);
         await registerSlashCommands(client.user.id, guild.id);
       } catch (err) {
         console.error(
