@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Permissions } = require("discord.js");
+const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -17,6 +18,10 @@ module.exports = {
     await interaction.deferReply();
 
     const embed = {
+      author: {
+        name: `${interaction.user.username}`,
+        icon_url: `${interaction.user.avatarURL()}`,
+      },
       color: "#9dcc37",
       title: `A user has been kicked!`,
       fields: [
@@ -33,14 +38,26 @@ module.exports = {
       timestamp: new Date(),
     };
 
-    if (interaction.member.permissions.has([Permissions.FLAGS.KICK_MEMBERS])) {
-      try {
-        await interaction.guild.members.kick(user, { reason });
-        await interaction.followUp({ embeds: [embed] });
-      } catch (error) {
-        await interaction.followUp(`Couldn't kick ${user}, ${error.message}`);
-        console.log(error);
-      }
+    if (!interaction.member.permissions.has([Permissions.FLAGS.KICK_MEMBERS]))
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | You do not have permission to kick members!`
+          ),
+        ],
+      });
+
+    try {
+      await interaction.guild.members.kick(user, { reason });
+      await interaction.followUp({ embeds: [embed] });
+    } catch (error) {
+      await interaction.followUp({
+        embeds: [
+          embedMessage("#9dcc37", `Couldn't kick ${user}, ${error.message}`),
+        ],
+      });
+      console.log(error);
     }
   },
 };
