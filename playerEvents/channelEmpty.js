@@ -16,7 +16,7 @@ module.exports = {
           });
           queue.connection.disconnect();
         }
-      }, 5000);
+      }, 60 * 1000 * 3);
     } catch (err) {
       console.error(err.message);
     }
