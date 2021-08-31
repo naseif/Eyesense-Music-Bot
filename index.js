@@ -1,9 +1,10 @@
 const fs = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
 const { token } = require("./config.json");
+const playDL = require("play-dl");
 const client = new Client({
   intents: [
-    Intents.FLAGS.GUILD_MEMBERS,
+    // Intents.FLAGS.GUILD_MEMBERS,
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES,
     Intents.FLAGS.GUILD_VOICE_STATES,
@@ -52,7 +53,6 @@ for (const file of botEvents) {
 
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
-
   const command = client.commands.get(interaction.commandName);
   if (!command) return;
 

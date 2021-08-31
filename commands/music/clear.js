@@ -15,7 +15,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `❌ | No Queue has been created for this guild. <Queue is empty>`
+            `❌ | No Queue has been created for this guild`
           ),
         ],
       });
