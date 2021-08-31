@@ -1,7 +1,6 @@
 const fs = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
 const { token } = require("./config.json");
-const playDL = require("play-dl");
 const client = new Client({
   intents: [
     // Intents.FLAGS.GUILD_MEMBERS,
