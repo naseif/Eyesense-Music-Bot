@@ -46,16 +46,17 @@ module.exports = {
       });
 
     const queue = client.player.createQueue(guild, {
+      metadata: interaction,
       leaveOnEnd: false,
       leaveOnStop: false,
-      initialVolume: 50,
+      initialVolume: 80,
       ytdlOptions: {
         highWaterMark: 1 << 25,
         filter: "audioonly",
         quality: "highestaudio",
       },
-      bufferingTimeout: 200,
-      leaveOnEmpty: true,
+      bufferingTimeout: 250,
+      leaveOnEmpty: false,
     });
 
     try {
@@ -63,7 +64,7 @@ module.exports = {
         await queue.connect(interaction.member.voice.channel);
     } catch {
       client.player.deleteQueue(interaction.guildId);
-      queue.destroy();
+      queue.destroy(true);
       return await interaction.followUp({
         content: "Could not join your voice channel!",
         empheral: true,
