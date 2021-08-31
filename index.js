@@ -41,6 +41,15 @@ for (const file of eventFiles) {
   }
 }
 
+const botEvents = fs
+  .readdirSync("./playerEvents")
+  .filter((file) => file.endsWith(".js"));
+
+for (const file of botEvents) {
+  const event = require(`./playerEvents/${file}`);
+  player.on(event.name, event.execute);
+}
+
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
 
