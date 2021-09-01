@@ -27,7 +27,7 @@ module.exports = {
       user &&
       !interaction.member.permissions.has(Permissions.FLAGS.MANAGE_NICKNAMES)
     ) {
-      await interaction.followUp({
+      return await interaction.followUp({
         embeds: [
           embedMessage(
             "#9dcc37",
