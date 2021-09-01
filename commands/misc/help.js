@@ -17,7 +17,7 @@ module.exports = {
     const embed = {
       color: "#9dcc37",
       title: `${client.user.username}'s Commands!`,
-      description: `${commands.join("")}`,
+      description: `${commands.join("\n")}`,
       author: {
         name: `${interaction.user.username}`,
         icon_url: `${interaction.user.avatarURL()}`,
