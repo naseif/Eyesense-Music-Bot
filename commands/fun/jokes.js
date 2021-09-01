@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const fetch = require("node-fetch");
+const { requestAPI } = require("../../modules/requestAPI");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -7,20 +7,11 @@ module.exports = {
     .setDescription("gets a random joke!"),
   async execute(interaction, client) {
     await interaction.deferReply();
-    async function getJoke() {
-      try {
-        const requestInsult = await fetch(
-          "https://v2.jokeapi.dev/joke/Miscellaneous,Dark,Pun,Spooky,Christmas"
-        );
-        const responseToJson = await requestInsult.json();
-        return responseToJson;
-      } catch (err) {
-        throw err;
-      }
-    }
 
     try {
-      const joke = await getJoke();
+      const joke = await requestAPI(
+        "https://v2.jokeapi.dev/joke/Miscellaneous,Dark,Pun,Spooky,Christmas"
+      );
 
       const embed = {
         color: "#9dcc37",
