@@ -13,6 +13,7 @@ module.exports = {
         .setName("region")
         .setDescription("select the region you wish to set")
         .setRequired(true)
+        .addChoice("Automatic", "null")
         .addChoice("Brazil", "brazil")
         .addChoice("Europe", "europe")
         .addChoice("Hong Kong", "hongkong")
@@ -56,7 +57,7 @@ module.exports = {
         ],
       });
     }
-    let currentRtc = voiceChannel.rtcRegion;
+
     try {
       await voiceChannel.setRTCRegion(region);
       await interaction.followUp({

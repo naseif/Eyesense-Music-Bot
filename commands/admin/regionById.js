@@ -17,6 +17,7 @@ module.exports = {
         .setName("region")
         .setDescription("select the region you wish to set")
         .setRequired(true)
+        .addChoice("Automatic", "null")
         .addChoice("Brazil", "brazil")
         .addChoice("Europe", "europe")
         .addChoice("Hong Kong", "hongkong")
@@ -36,7 +37,18 @@ module.exports = {
     const vcId = interaction.options.getString("id");
     const region = interaction.options.getString("region");
     const voiceChannel = await interaction.guild.channels.cache.get(vcId);
-    let currentRtc = voiceChannel.rtcRegion;
+    let currentRtc = voiceChannel.rtcRegion || "Default";
+
+    if (!voiceChannel) {
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `A voice channel with this id does not exist!`
+          ),
+        ],
+      });
+    }
 
     if (
       !interaction.member.permissions.has([Permissions.FLAGS.ADMINISTRATOR]) ||
