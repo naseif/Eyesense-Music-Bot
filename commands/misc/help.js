@@ -32,4 +32,3 @@ module.exports = {
     await interaction.followUp({ embeds: [embed] });
   },
 };
-// .addField(`:calendar: Created:`, '```' + `${serverinfo.created} \n ${serverinfo.ago}` + '```', true)

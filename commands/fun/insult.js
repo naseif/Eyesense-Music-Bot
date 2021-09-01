@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const fetch = require("node-fetch");
-
+const { requestAPI } = require("../../modules/requestAPI");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("insult")
@@ -11,23 +10,14 @@ module.exports = {
   async execute(interaction, client) {
     const user = interaction.options.getUser("user");
     await interaction.deferReply();
-
-    async function getInsult() {
-      try {
-        const requestInsult = await fetch(
-          "https://evilinsult.com/generate_insult.php?lang=en&type=json"
-        );
-        const responseToJson = await requestInsult.json();
-        return responseToJson;
-      } catch (err) {
-        throw err;
-      }
-    }
-
     try {
-      const insult = await getInsult();
+      const insult = await requestAPI(
+        "https://evilinsult.com/generate_insult.php?lang=en&type=json"
+      );
 
-      await interaction.followUp(`${user}, ${insult.insult}`);
+      await interaction.followUp(
+        `${user ? user : `${interaction.member.toString()}`}, ${insult.insult}`
+      );
     } catch (error) {
       await interaction.followUp(
         `Couldn't retrieve Insult, I blame <@503264757785165851>`
