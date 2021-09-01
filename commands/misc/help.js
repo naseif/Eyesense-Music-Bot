@@ -7,12 +7,17 @@ module.exports = {
   async execute(interaction, client) {
     await interaction.deferReply();
     const commands = client.commands.map(
-      (command) => `**${command.data.name}** - ${command.data.description}`
+      (command) =>
+        "```" +
+        `/${command.data.name}` +
+        "```" +
+        "- " +
+        `**${command.data.description}**`
     );
     const embed = {
       color: "#9dcc37",
       title: `${client.user.username}'s Commands!`,
-      description: `${commands.join("\n")}`,
+      description: `${commands.join("")}`,
       author: {
         name: `${interaction.user.username}`,
         icon_url: `${interaction.user.avatarURL()}`,
@@ -27,3 +32,4 @@ module.exports = {
     await interaction.followUp({ embeds: [embed] });
   },
 };
+// .addField(`:calendar: Created:`, '```' + `${serverinfo.created} \n ${serverinfo.ago}` + '```', true)
