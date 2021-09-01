@@ -6,7 +6,6 @@ module.exports = {
     .setDescription("ping the bot connection to the server"),
   async execute(interaction, client) {
     await interaction.deferReply();
-
     const embed = {
       title: "Ping Pong!",
       description: `📡 **Ping:** ${client.ws.ping}
