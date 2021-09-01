@@ -56,14 +56,14 @@ module.exports = {
         ],
       });
     }
-
+    let currentRtc = voiceChannel.rtcRegion;
     try {
       await voiceChannel.setRTCRegion(region);
       await interaction.followUp({
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Region of ${voiceChannel.toString()} has been changed to ${
+            `Region of ${voiceChannel.toString()} has been changed from ${currentRtc} to ${
               voiceChannel.rtcRegion
             }`
           ),
