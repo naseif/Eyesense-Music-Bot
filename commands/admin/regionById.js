@@ -17,7 +17,6 @@ module.exports = {
         .setName("region")
         .setDescription("select the region you wish to set")
         .setRequired(true)
-        .addChoice("Automatic", "null")
         .addChoice("Brazil", "brazil")
         .addChoice("Europe", "europe")
         .addChoice("Hong Kong", "hongkong")
