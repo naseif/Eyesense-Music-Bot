@@ -58,7 +58,7 @@ module.exports = {
           embeds: [
             embedMessage(
               "#9dcc37",
-              `❌ I can not add this role to the user since its above me!`
+              `❌ I can not add this role to the user!\nEtiher its above me or I have no right to assign it to other users!`
             ),
           ],
         });

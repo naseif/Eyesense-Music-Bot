@@ -20,11 +20,11 @@ module.exports = {
     function printHelpByCollection(collection) {
       const commands = collection.map(
         (command) =>
-          "```" +
+          "`" +
           `/${command.data.name}` +
-          "```" +
-          "- " +
-          `**${command.data.description}**`
+          "`" +
+          " - " +
+          `${command.data.description}`
       );
       return commands;
     }

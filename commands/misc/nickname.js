@@ -31,7 +31,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `You do not have permission to change ${user.toString()} nickname!`
+            `❌ You do not have permission to change ${user.toString()} nickname!`
           ),
         ],
       });
@@ -76,7 +76,7 @@ module.exports = {
             embeds: [
               embedMessage(
                 "#9dcc37",
-                ` ❌ I do not have permission to change your Nickname, maybe your role is higher than mine or perhaps you are the owner ?`
+                ` ❌ I do not have permission to change your nickname!\n maybe your role is higher than mine or perhaps you are the owner ?`
               ),
             ],
           });
