@@ -10,15 +10,32 @@ const client = new Client({
   ],
   restRequestTimeout: 30000,
 });
-
-client.commands = new Collection();
+const { findAndRequire } = require("./modules/loopAndRequireCommands");
 const { Player } = require("discord-player");
 const player = new Player(client);
 client.player = player;
+client.commands = new Collection();
+const admin = (client.commands.admin = new Collection());
+const fun = (client.commands.fun = new Collection());
+const music = (client.commands.music = new Collection());
+const misc = (client.commands.misc = new Collection());
+// Admin Commands
+findAndRequire("commands/admin", ".js", admin);
 
-const commandFolders = fs.readdirSync("./commands");
+// Fun Commands
+findAndRequire("commands/fun", ".js", fun);
 
-for (const folder of commandFolders) {
+// Music Commands
+findAndRequire("commands/music", ".js", music);
+
+// Misc Commands
+findAndRequire("commands/misc", ".js", misc);
+
+// All commands!
+
+const allCommandsFolders = fs.readdirSync("./commands");
+
+for (const folder of allCommandsFolders) {
   const commandFiles = fs
     .readdirSync(`./commands/${folder}`)
     .filter((file) => file.endsWith(".js"));
@@ -28,6 +45,7 @@ for (const folder of commandFolders) {
   }
 }
 
+// Loop through the events and require them
 const eventFiles = fs
   .readdirSync("./events")
   .filter((file) => file.endsWith(".js"));
@@ -41,6 +59,7 @@ for (const file of eventFiles) {
   }
 }
 
+// Loop through the discord-player events and require them
 const botEvents = fs
   .readdirSync("./playerEvents")
   .filter((file) => file.endsWith(".js"));
@@ -50,6 +69,7 @@ for (const file of botEvents) {
   player.on(event.name, event.execute);
 }
 
+// Initialize the client on interaction
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
   const command = client.commands.get(interaction.commandName);
@@ -65,4 +85,5 @@ client.on("interactionCreate", async (interaction) => {
     });
   }
 });
+
 client.login(token);
