@@ -21,9 +21,9 @@ module.exports = {
       const commands = collection.map(
         (command) =>
           "`" +
-          `/${command.data.name}` +
+          `/${command.data.name} :` +
           "`" +
-          " - " +
+          " " +
           `${command.data.description}`
       );
       return commands;
