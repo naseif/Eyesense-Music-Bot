@@ -29,16 +29,12 @@ module.exports = {
       title: `Roles list for ${
         user ? user.user.username : interaction.user.username
       }`,
-      author: {
-        name: `${interaction.user.username}`,
-        icon_url: `${interaction.user.avatarURL()}`,
-      },
       description: `${userRoles.join("\n")}`,
 
       timestamp: new Date(),
       footer: {
-        text: "Created by naseif",
-        icon_url: "https://i.imgur.com/KrAvM8U.jpg",
+        text: `Requested by ${interaction.user.username}`,
+        icon_url: `${interaction.user.avatarURL()}`,
       },
     };
     try {
