@@ -25,6 +25,10 @@ The bot is still in the development phase You can check the release page for the
 |   **/regionbyid**   |           changes a voice channel region by channel id           |
 |   **/removerole**   |                    removes a role for a user                     |
 |     **/unban**      |                      unbans a user with id                       |
+|    **/highfive**    |                       sends a highfive gif                       |
+|      **/hug**       |                         sends a hug gif                          |
+|     **/waifu**      |                        gets waifu pic :P                         |
+|   **/whatanime**    |     Scans an Image to get the anime name! <whatanime 'link'>     |
 |     **/8ball**      |                  ask the magic ball a question!                  |
 |     **/insult**     |                     insult your fav user <3                      |
 |      **/joke**      |                       gets a random joke!                        |
