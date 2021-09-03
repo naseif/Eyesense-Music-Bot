@@ -20,17 +20,12 @@ const admin = (client.commands.admin = new Collection());
 const fun = (client.commands.fun = new Collection());
 const music = (client.commands.music = new Collection());
 const misc = (client.commands.misc = new Collection());
+const anime = (client.commands.anime = new Collection());
 
-// Admin Commands
 findAndRequire("commands/admin", ".js", admin);
-
-// Fun Commands
+findAndRequire("commands/anime", ".js", anime);
 findAndRequire("commands/fun", ".js", fun);
-
-// Music Commands
 findAndRequire("commands/music", ".js", music);
-
-// Misc Commands
 findAndRequire("commands/misc", ".js", misc);
 
 // All commands!
