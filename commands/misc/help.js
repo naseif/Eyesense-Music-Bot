@@ -9,6 +9,7 @@ module.exports = {
         .setName("category")
         .setDescription("show help by category")
         .addChoice("Admin", "admin")
+        .addChoice("Anime", "anime")
         .addChoice("Fun", "fun")
         .addChoice("Music", "music")
         .addChoice("Misc", "misc")
@@ -37,6 +38,9 @@ module.exports = {
       case "fun":
         help = printHelpByCollection(client.commands.fun);
         break;
+      case "anime":
+        help = printHelpByCollection(client.commands.anime);
+        break;
       case "music":
         help = printHelpByCollection(client.commands.music);
         break;
@@ -51,14 +55,10 @@ module.exports = {
       color: "#9dcc37",
       title: `${client.user.username}'s Commands!`,
       description: `${help.join("\n")}`,
-      author: {
-        name: `${interaction.user.username}`,
-        icon_url: `${interaction.user.avatarURL()}`,
-      },
       timestamp: new Date(),
       footer: {
-        text: "Created by naseif",
-        icon_url: "https://i.imgur.com/KrAvM8U.jpg",
+        text: `Requested by ${interaction.user.username}`,
+        icon_url: `${interaction.user.avatarURL()}`,
       },
     };
 
