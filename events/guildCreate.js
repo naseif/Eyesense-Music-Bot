@@ -5,7 +5,7 @@ module.exports = {
   async execute(guild) {
     if (guild.systemChannel) {
       guild.systemChannel.send({
-        content: "**Thanks for adding me to your server!**",
+        content: `**Thanks for adding me to your server!**\n- I am programmed with discord's latest slash commands feature!\n- to use me just type / and select a command to get started!`,
         files: ["https://nekos.best/api/v1/cuddle/017.gif"],
       });
     } else {
