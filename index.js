@@ -11,6 +11,7 @@ const client = new Client({
   ],
   restRequestTimeout: 30000,
 });
+const { commandsReadMe } = require("./modules/commandsReadMe");
 const { findAndRequire } = require("./modules/loopAndRequireCommands");
 const { Player } = require("discord-player");
 const player = new Player(client);
@@ -20,6 +21,8 @@ const admin = (client.commands.admin = new Collection());
 const fun = (client.commands.fun = new Collection());
 const music = (client.commands.music = new Collection());
 const misc = (client.commands.misc = new Collection());
+
+
 // Admin Commands
 findAndRequire("commands/admin", ".js", admin);
 

@@ -28,5 +28,8 @@
     "node-fetch": "^2.6.1",
     "utf-8-validate": "^5.0.5",
     "zlib-sync": "^0.1.7"
+  },
+  "devDependencies": {
+    "mdtable": "^0.3.1"
   }
 }

@@ -12,6 +12,44 @@ The bot is still in the development phase You can check the release page for the
 - Moderation Commands 🔨
 - and more ⌛️ 
 
+
+## Commands 
+
+|        Name         |                           Description                            |
+|:--------------------|:----------------------------------------------------------------:|
+|    **/addrole**     |                      adds a role for a user                      |
+|      **/ban**       |                   Bans a user from the server                    |
+| **/deletemessages** |                   deletes x number of messages                   |
+|      **/kick**      |                   kicks a user from the server                   |
+|     **/region**     | changes the region of the voice channel the user is connected to |
+|   **/regionbyid**   |           changes a voice channel region by channel id           |
+|   **/removerole**   |                    removes a role for a user                     |
+|     **/unban**      |                      unbans a user with id                       |
+|     **/8ball**      |                  ask the magic ball a question!                  |
+|     **/insult**     |                     insult your fav user <3                      |
+|      **/joke**      |                       gets a random joke!                        |
+|   **/useravatar**   |                     Sends the user's avatar                      |
+|      **/help**      |            Shows all available commands for this bot!            |
+|    **/nickname**    |            Changes your own nickname or other user's             |
+|     **/perms**      |       Shows the permission for another member or your own        |
+|      **/ping**      |              ping the bot connection to the server               |
+|  **/serverstats**   |                Shows some stats about the server                 |
+|     **/summon**     |              ping the bot connection to the server               |
+|      **/back**      |               plays previous track from the queue                |
+|     **/clear**      |                      clears the music queue                      |
+|   **/disconnect**   |                   disconnects from the channel                   |
+|     **/lyrics**     |               gets the lyrics of the current song                |
+|   **/nowplaying**   |                   shows the current music name                   |
+|     **/pause**      |                         pauses the song                          |
+|      **/play**      |                     plays music from Youtube                     |
+|   **/listqueue**    |                     Shows the current queue                      |
+|      **/loop**      |                     repeats the current song                     |
+|     **/resume**     |                         resumes the song                         |
+|      **/seek**      |           seeks the current song to the given position           |
+|    **/shuffle**     |                     shuffles the music queue                     |
+|      **/skip**      |                   skips a song from the queue                    |
+|      **/stop**      |                  stops the current song playing                  |
+
 ## Requirements
 
 - Node.js (v16.6 or higher)
