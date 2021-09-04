@@ -16,17 +16,6 @@ const { Player } = require("discord-player");
 const player = new Player(client);
 client.player = player;
 client.commands = new Collection();
-const admin = (client.commands.admin = new Collection());
-const fun = (client.commands.fun = new Collection());
-const music = (client.commands.music = new Collection());
-const misc = (client.commands.misc = new Collection());
-const anime = (client.commands.anime = new Collection());
-
-findAndRequire("commands/admin", ".js", admin);
-findAndRequire("commands/anime", ".js", anime);
-findAndRequire("commands/fun", ".js", fun);
-findAndRequire("commands/music", ".js", music);
-findAndRequire("commands/misc", ".js", misc);
 
 // All commands!
 const allCommandsFolders = fs.readdirSync("./commands");
@@ -37,6 +26,7 @@ for (const folder of allCommandsFolders) {
     .filter((file) => file.endsWith(".js"));
   for (const file of commandFiles) {
     const command = require(`./commands/${folder}/${file}`);
+    command.category = folder;
     client.commands.set(command.data.name, command);
   }
 }

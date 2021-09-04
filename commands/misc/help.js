@@ -18,38 +18,22 @@ module.exports = {
     await interaction.deferReply();
     const category = interaction.options.getString("category");
 
-    function printHelpByCollection(collection) {
-      const commands = collection.map(
-        (command) =>
-          "`" +
-          `/${command.data.name} :` +
-          "`" +
-          " " +
-          `${command.data.description}`
-      );
+    function printHelpByCollection(collection, category) {
+      const commands = collection
+        .filter((item) => item.category === category || category === null)
+        .map((command) => {
+          return (
+            "`" +
+            `/${command.data.name} :` +
+            "`" +
+            " " +
+            `${command.data.description}`
+          );
+        });
       return commands;
     }
-
     let help;
-    switch (category) {
-      case "admin":
-        help = printHelpByCollection(client.commands.admin);
-        break;
-      case "fun":
-        help = printHelpByCollection(client.commands.fun);
-        break;
-      case "anime":
-        help = printHelpByCollection(client.commands.anime);
-        break;
-      case "music":
-        help = printHelpByCollection(client.commands.music);
-        break;
-      case "misc":
-        help = printHelpByCollection(client.commands.misc);
-        break;
-      default:
-        help = printHelpByCollection(client.commands);
-    }
+    help = printHelpByCollection(client.commands, category);
 
     const embed = {
       color: "#9dcc37",
