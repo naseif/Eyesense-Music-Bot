@@ -48,15 +48,16 @@ module.exports = {
     const queue = client.player.createQueue(guild, {
       metadata: interaction,
       leaveOnEnd: false,
-      leaveOnStop: false,
+      leaveOnStop: true,
       initialVolume: 80,
+      leaveOnEmptyCooldown: 60 * 1000 * 3,
       ytdlOptions: {
         highWaterMark: 1 << 25,
         filter: "audioonly",
         quality: "highestaudio",
       },
-      bufferingTimeout: 250,
-      leaveOnEmpty: false,
+      bufferingTimeout: 200,
+      leaveOnEmpty: true,
     });
 
     try {
@@ -112,14 +113,20 @@ module.exports = {
     };
 
     if (!queue.playing) {
-      searchSong.playlist
-        ? await interaction.followUp({
-            embeds: [playlistEmbed, musicEmbed],
-          })
-        : await interaction.followUp({
-            embeds: [musicEmbed],
-          });
-      await queue.play();
+      try {
+        await queue.play();
+        searchSong.playlist
+          ? await interaction.followUp({
+              embeds: [playlistEmbed, musicEmbed],
+            })
+          : await interaction.followUp({
+              embeds: [musicEmbed],
+            });
+      } catch (err) {
+        await interaction.followUp(
+          "There was an error playing this song, please try again"
+        );
+      }
     }
 
     if (queue.playing) {
@@ -127,5 +134,6 @@ module.exports = {
         ? await interaction.followUp({ embeds: [playlistEmbed, musicEmbed] })
         : await interaction.followUp({ embeds: [musicEmbed] });
     }
+    console.log(queue.options);
   },
 };
