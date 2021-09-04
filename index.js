@@ -57,11 +57,11 @@ for (const file of eventFiles) {
 
 // Loop through the discord-player events and require them
 
-const botEvents = fs
+const playerEvents = fs
   .readdirSync("./playerEvents")
   .filter((file) => file.endsWith(".js"));
 
-for (const file of botEvents) {
+for (const file of playerEvents) {
   const event = require(`./playerEvents/${file}`);
   player.on(event.name, event.execute);
 }
