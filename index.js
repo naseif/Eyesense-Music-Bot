@@ -11,7 +11,6 @@ const client = new Client({
   ],
   restRequestTimeout: 30000,
 });
-const { findAndRequire } = require("./modules/loopAndRequireCommands");
 const { Player } = require("discord-player");
 const player = new Player(client);
 client.player = player;
