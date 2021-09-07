@@ -101,10 +101,6 @@ module.exports = {
       ],
 
       timestamp: new Date(),
-      footer: {
-        text: "Created by naseif",
-        icon_url: "https://i.imgur.com/KrAvM8U.jpg",
-      },
     };
 
     let playlistEmbed = {
@@ -134,6 +130,5 @@ module.exports = {
         ? await interaction.followUp({ embeds: [playlistEmbed, musicEmbed] })
         : await interaction.followUp({ embeds: [musicEmbed] });
     }
-    console.log(queue.options);
   },
 };

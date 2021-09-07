@@ -31,10 +31,6 @@ module.exports = {
       },
       description: `${tracks.join("\n")}`,
       timestamp: new Date(),
-      footer: {
-        text: "Created by naseif",
-        icon_url: "https://i.imgur.com/KrAvM8U.jpg",
-      },
     };
 
     await interaction.followUp({ embeds: [queueEmbed] });
