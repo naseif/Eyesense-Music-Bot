@@ -70,7 +70,7 @@ git clone https://github.com/naseif/Eyesense-Music-Bot.git
 cd Eyesense-Music-Bot
 npm i
 ```
-if you are having problems installing soduim, make sure to install the following packages `apt-get install autoconf automake g++ libtool`
+if you are having problems installing sodium, make sure to install the following packages `apt-get install autoconf automake g++ libtool`
 
 ## Configuration
 
