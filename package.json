@@ -24,8 +24,8 @@
     "discord-player": "^5.1.0",
     "discord.js": "^13.1.0",
     "ffmpeg-static": "^4.4.0",
-    "libsodium-wrappers": "^0.7.9",
     "node-fetch": "^2.6.1",
+    "sodium": "^3.0.2",
     "utf-8-validate": "^5.0.5",
     "zlib-sync": "^0.1.7"
   },
