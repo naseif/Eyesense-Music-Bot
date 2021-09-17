@@ -24,6 +24,7 @@ The bot is still in the development phase You can check the release page for the
 |     **/region**     | changes the region of the voice channel the user is connected to |
 |   **/regionbyid**   |           changes a voice channel region by channel id           |
 |   **/removerole**   |                    removes a role for a user                     |
+|   **/servericon**   |                     chnages the server icon!                     |
 |     **/unban**      |                      unbans a user with id                       |
 |    **/highfive**    |                       sends a highfive gif                       |
 |      **/hug**       |                         sends a hug gif                          |
@@ -39,6 +40,7 @@ The bot is still in the development phase You can check the release page for the
 |      **/ping**      |              ping the bot connection to the server               |
 |  **/serverstats**   |                Shows some stats about the server                 |
 |     **/summon**     |              ping the bot connection to the server               |
+|     **/uptime**     |                 Since how long the bot is online                 |
 |      **/back**      |               plays previous track from the queue                |
 |     **/clear**      |                      clears the music queue                      |
 |   **/disconnect**   |                   disconnects from the channel                   |
@@ -68,6 +70,7 @@ git clone https://github.com/naseif/Eyesense-Music-Bot.git
 cd Eyesense-Music-Bot
 npm i
 ```
+if you are having problems installing soduim, make sure to install the following packages `apt-get install autoconf automake g++ libtool`
 
 ## Configuration
 
