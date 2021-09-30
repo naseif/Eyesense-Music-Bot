@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("useravatar")
+    .setName("avatar")
     .setDescription("Sends the user's avatar")
     .addUserOption((option) =>
       option.setName("user").setDescription("Select a user").setRequired(true)
