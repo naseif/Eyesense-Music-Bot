@@ -39,11 +39,6 @@ module.exports = {
       leaveOnStop: true,
       initialVolume: 80,
       leaveOnEmptyCooldown: 60 * 1000 * 3,
-      ytdlOptions: {
-        highWaterMark: 1 << 25,
-        filter: "audioonly",
-        quality: "highestaudio",
-      },
       bufferingTimeout: 200,
       leaveOnEmpty: true,
       async onBeforeCreateStream(track, source, _queue) {
