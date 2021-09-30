@@ -12,12 +12,13 @@ const client = new Client({
   ],
   restRequestTimeout: 30000,
 });
-
+const { playerEvents } = require("./playerEvents/player");
 const { Player } = require("discord-player");
 const player = new Player(client);
 client.player = player;
 client.commands = new Collection();
 client.logger = logger;
+playerEvents(client.player);
 
 // All commands!
 const allCommandsFolders = fs.readdirSync("./commands");
@@ -45,17 +46,6 @@ for (const file of eventFiles) {
   } else {
     client.on(event.name, (...args) => event.execute(...args));
   }
-}
-
-// Loop through the discord-player events and require them
-
-const playerEvents = fs
-  .readdirSync("./playerEvents")
-  .filter((file) => file.endsWith(".js"));
-
-for (const file of playerEvents) {
-  const event = require(`./playerEvents/${file}`);
-  player.on(event.name, event.execute);
 }
 
 // Initialize the client on interaction
