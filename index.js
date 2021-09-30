@@ -1,5 +1,6 @@
 const fs = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
+const { logger } = require("./modules/logger.js");
 const { token } = require("./config.json");
 const client = new Client({
   intents: [
@@ -11,10 +12,12 @@ const client = new Client({
   ],
   restRequestTimeout: 30000,
 });
+
 const { Player } = require("discord-player");
 const player = new Player(client);
 client.player = player;
 client.commands = new Collection();
+client.logger = logger;
 
 // All commands!
 const allCommandsFolders = fs.readdirSync("./commands");
