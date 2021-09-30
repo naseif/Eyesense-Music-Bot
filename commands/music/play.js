@@ -1,5 +1,6 @@
-const { SlashCommandBuilder, time } = require("@discordjs/builders");
+const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
+const playdl = require("play-dl");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -32,20 +33,7 @@ module.exports = {
         ],
       });
 
-    const guild = client.guilds.cache.get(interaction.guildId);
-
-    const songString = interaction.options.getString("song");
-
-    const searchSong = await client.player.search(songString, {
-      requestedBy: interaction.user,
-    });
-
-    if (!searchSong.tracks.length || !searchSong)
-      return interaction.followUp({
-        embeds: [embedMessage("#9dcc37", `❌ | Song not found`)],
-      });
-
-    const queue = client.player.createQueue(guild, {
+    const queue = client.player.createQueue(interaction.guildId, {
       metadata: interaction,
       leaveOnEnd: false,
       leaveOnStop: true,
@@ -58,7 +46,22 @@ module.exports = {
       },
       bufferingTimeout: 200,
       leaveOnEmpty: true,
+      async onBeforeCreateStream(track, source, _queue) {
+        if (source === "youtube") {
+          return (await playdl.stream(track.url)).stream;
+        }
+      },
     });
+
+    const songString = interaction.options.getString("song");
+    const searchSong = await client.player.search(songString, {
+      requestedBy: interaction.user,
+    });
+
+    if (!searchSong.tracks.length || !searchSong)
+      return interaction.followUp({
+        embeds: [embedMessage("#9dcc37", `❌ | Song not found`)],
+      });
 
     try {
       if (!queue.connection)
@@ -119,6 +122,7 @@ module.exports = {
               embeds: [musicEmbed],
             });
       } catch (err) {
+        console.log(err);
         await interaction.followUp(
           "There was an error playing this song, please try again"
         );
