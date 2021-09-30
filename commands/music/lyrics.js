@@ -32,8 +32,6 @@ module.exports = {
 
     try {
       const lyrics = await lyricsClient.search(songTitle);
-      console.log(songTitle);
-
       if (!lyrics)
         return await interaction.followUp({
           embeds: [
