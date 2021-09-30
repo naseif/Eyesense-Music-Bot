@@ -1,7 +1,12 @@
 const mdtable = require("mdtable");
-const {  writeFileSync } = require("fs");
-module.exports.commandsReadMe = (commands) => {
+const { writeFileSync } = require("fs");
 
+/**
+ *
+ * @param {array} commands
+ */
+
+module.exports.commandsReadMe = (commands) => {
   const tableData = {
     header: ["Name", "Description"],
     alignment: ["L", "C"],
@@ -12,11 +17,14 @@ module.exports.commandsReadMe = (commands) => {
     padding: 1,
   };
 
-  commands.map(command => {
-    tableData.rows.push([`**/${command.data.name}**`, command.data.description])
-  })
+  commands.map((command) => {
+    tableData.rows.push([
+      `**/${command.data.name}**`,
+      command.data.description,
+    ]);
+  });
 
-  const commandsTable = mdtable(tableData, tableSettings)
+  const commandsTable = mdtable(tableData, tableSettings);
 
   writeFileSync("./Commands.md", commandsTable, "utf-8");
 };
