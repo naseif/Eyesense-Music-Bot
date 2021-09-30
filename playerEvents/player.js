@@ -8,7 +8,9 @@ module.exports.playerEvents = (player) => {
     logger(`${queue.guild.name} Disconnected from Channel`);
   });
   player.on("channelEmpty", (queue) => {
-    logger(`${queue.guild.name}: Voice channel is empty right now!`);
+    logger(
+      `${queue.guild.name}: Voice channel is empty right now!, leaving the Channel`
+    );
   });
   player.on("connectionCreate", (queue, connection) => {
     logger(
