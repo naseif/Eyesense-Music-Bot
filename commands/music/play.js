@@ -33,6 +33,16 @@ module.exports = {
         ],
       });
 
+    const songString = interaction.options.getString("song");
+    const searchSong = await client.player.search(songString, {
+      requestedBy: interaction.user,
+    });
+
+    if (!searchSong.tracks.length || !searchSong)
+      return interaction.followUp({
+        embeds: [embedMessage("#9dcc37", `❌ | Song not found`)],
+      });
+
     const queue = client.player.createQueue(interaction.guildId, {
       metadata: interaction,
       leaveOnEnd: false,
@@ -47,16 +57,6 @@ module.exports = {
         }
       },
     });
-
-    const songString = interaction.options.getString("song");
-    const searchSong = await client.player.search(songString, {
-      requestedBy: interaction.user,
-    });
-
-    if (!searchSong.tracks.length || !searchSong)
-      return interaction.followUp({
-        embeds: [embedMessage("#9dcc37", `❌ | Song not found`)],
-      });
 
     try {
       if (!queue.connection)
