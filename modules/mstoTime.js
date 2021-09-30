@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {number} duration
+ * @returns
+ */
 module.exports.msToTime = (duration) => {
   let milliseconds = parseInt((duration % 1000) / 100),
     seconds = parseInt((duration / 1000) % 60),

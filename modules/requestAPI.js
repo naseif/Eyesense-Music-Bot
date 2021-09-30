@@ -1,5 +1,11 @@
 const fetch = require("node-fetch");
 
+/**
+ *
+ * @param {string} url
+ * @returns
+ */
+
 module.exports.requestAPI = async (url) => {
   try {
     const request = await fetch(url);

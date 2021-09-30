@@ -1,4 +1,9 @@
 const fetch = require("node-fetch");
+/**
+ *
+ * @param {string} imageLink
+ * @returns
+ */
 
 module.exports.getAnimeByImage = async (imageLink) => {
   try {
