@@ -7,8 +7,8 @@ module.exports = {
     .setDescription("clears the music queue"),
 
   async execute(interaction, client) {
-    const queue = client.player.getQueue(interaction.guild);
     await interaction.deferReply();
+    const queue = client.player.getQueue(interaction.guild);
 
     if (!queue) {
       return await interaction.followUp({
@@ -20,6 +20,7 @@ module.exports = {
         ],
       });
     }
+
     try {
       if (queue) {
         await queue.clear();
@@ -33,7 +34,15 @@ module.exports = {
         });
       }
     } catch (err) {
-      console.error(err);
+      client.logger(err.message, "error");
+      await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            "Could not clear the queue, maybe there is no queue"
+          ),
+        ],
+      });
     }
   },
 };

@@ -69,7 +69,7 @@ module.exports = {
           ),
         ],
       });
-      console.error(error);
+      client.logger(error.message, "error");
     }
   },
 };

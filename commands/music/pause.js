@@ -7,8 +7,8 @@ module.exports = {
     .setDescription("pauses the song"),
 
   async execute(interaction, client) {
-    const queue = client.player.getQueue(interaction.guild);
     await interaction.deferReply();
+    const queue = client.player.getQueue(interaction.guild);
 
     if (!queue || !queue.playing)
       return await interaction.followUp({
@@ -30,7 +30,10 @@ module.exports = {
         });
       }
     } catch (err) {
-      console.error(err);
+      client.logger(err.message, "error");
+      await interaction.followUp({
+        embeds: [embedMessage("#9dcc37", "Could not pause the song")],
+      });
     }
   },
 };

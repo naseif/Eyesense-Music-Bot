@@ -7,8 +7,8 @@ module.exports = {
     .setDescription("plays previous track from the queue"),
 
   async execute(interaction, client) {
-    const queue = client.player.getQueue(interaction.guild);
     await interaction.deferReply();
+    const queue = client.player.getQueue(interaction.guild);
 
     if (!queue || !queue.playing) {
       return await interaction.followUp({
@@ -27,14 +27,21 @@ module.exports = {
       );
     }
 
-    await queue.back();
-    await interaction.followUp({
-      embeds: [
-        embedMessage(
-          "#9dcc37",
-          `Playing Previous Track **${queue.previousTracks[0].title}**, [<@${interaction.user.id}>]`
-        ),
-      ],
-    });
+    try {
+      await queue.back();
+      await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `Playing Previous Track **${queue.previousTracks[0].title}**, [<@${interaction.user.id}>]`
+          ),
+        ],
+      });
+    } catch (error) {
+      client.logger(error.message, "error");
+      await interaction.followUp({
+        embeds: [embedMessage("#9dcc37", "Could not play the previous track")],
+      });
+    }
   },
 };

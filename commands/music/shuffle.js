@@ -15,15 +15,22 @@ module.exports = {
         embeds: [embedMessage("#9dcc37", `❌ | There is no queue to shuffle!`)],
       });
 
-    if (queue) {
-      await queue.shuffle();
+    try {
+      if (queue) {
+        await queue.shuffle();
+        await interaction.followUp({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `✅ Queue has been shuffled [<@${interaction.user.id}>]`
+            ),
+          ],
+        });
+      }
+    } catch (error) {
+      client.logger(error.message, "error");
       await interaction.followUp({
-        embeds: [
-          embedMessage(
-            "#9dcc37",
-            `✅ Queue has been shuffled [<@${interaction.user.id}>]`
-          ),
-        ],
+        embeds: [embedMessage("#9dcc37", "Could not shuffle the queue")],
       });
     }
   },

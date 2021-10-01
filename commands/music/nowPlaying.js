@@ -7,8 +7,8 @@ module.exports = {
     .setDescription("shows the current music name"),
 
   async execute(interaction, client) {
-    const queue = client.player.getQueue(interaction.guild);
     await interaction.deferReply();
+    const queue = client.player.getQueue(interaction.guild);
 
     if (!queue || !queue.playing) {
       return await interaction.followUp({

@@ -44,7 +44,6 @@ module.exports = {
       });
 
     const queue = client.player.createQueue(interaction.guildId, {
-      metadata: interaction,
       leaveOnEnd: false,
       leaveOnStop: true,
       initialVolume: 80,
@@ -117,7 +116,7 @@ module.exports = {
               embeds: [musicEmbed],
             });
       } catch (err) {
-        console.log(err);
+        client.logger(err.message, "error");
         await interaction.followUp(
           "There was an error playing this song, please try again"
         );
