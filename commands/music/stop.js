@@ -23,7 +23,6 @@ module.exports = {
 
     try {
       if (queue && queue.playing) {
-        await queue.stop();
         await interaction.followUp({
           embeds: [
             embedMessage(
@@ -32,6 +31,7 @@ module.exports = {
             ),
           ],
         });
+        await queue.stop();
       }
     } catch (err) {
       client.logger(err.message, "error");
