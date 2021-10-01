@@ -3,12 +3,12 @@ const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("listqueue")
+    .setName("queue")
     .setDescription("Shows the current queue"),
 
   async execute(interaction, client) {
-    const queue = client.player.getQueue(interaction.guild);
     await interaction.deferReply();
+    const queue = client.player.getQueue(interaction.guild);
 
     if (!queue) {
       return await interaction.followUp({
@@ -27,7 +27,6 @@ module.exports = {
       author: {
         name: `${interaction.user.username}`,
         icon_url: `${interaction.user.avatarURL()}`,
-        url: "https://github.com/naseif/",
       },
       description: `${tracks.join("\n")}`,
       timestamp: new Date(),
