@@ -43,19 +43,22 @@ module.exports = {
         embeds: [embedMessage("#9dcc37", `❌ | Song not found`)],
       });
 
-    const queue = client.player.createQueue(interaction.guildId, {
-      leaveOnEnd: false,
-      leaveOnStop: true,
-      initialVolume: 80,
-      leaveOnEmptyCooldown: 60 * 1000 * 3,
-      bufferingTimeout: 200,
-      leaveOnEmpty: true,
-      async onBeforeCreateStream(track, source, _queue) {
-        if (source === "youtube") {
-          return (await playdl.stream(track.url)).stream;
-        }
-      },
-    });
+    let queue;
+    client.player.getQueue(interaction.guild)
+      ? (queue = client.player.getQueue(interaction.guild))
+      : (queue = client.player.createQueue(interaction.guildId, {
+          leaveOnEnd: false,
+          leaveOnStop: true,
+          initialVolume: 80,
+          leaveOnEmptyCooldown: 60 * 1000 * 3,
+          bufferingTimeout: 200,
+          leaveOnEmpty: true,
+          async onBeforeCreateStream(track, source, _queue) {
+            if (source === "youtube") {
+              return (await playdl.stream(track.url)).stream;
+            }
+          },
+        }));
 
     try {
       if (!queue.connection)
