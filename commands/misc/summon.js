@@ -36,6 +36,7 @@ module.exports = {
       });
 
     try {
+      await user.voice.setChannel(interaction.member.voice.channelId);
       await interaction.followUp({
         embeds: [
           embedMessage(
@@ -46,8 +47,8 @@ module.exports = {
           ),
         ],
       });
-      await user.voice.setChannel(interaction.member.voice.channelId);
     } catch (err) {
+      client.logger(err.message, "error");
       return await interaction.followUp(
         `Something went wrong, I could not summon this user!`
       );

@@ -42,7 +42,7 @@ module.exports = {
         ],
       });
     } catch (err) {
-      console.error(err);
+      client.logger(err.message, "error");
       if (err.message === "Missing Access") {
         return await interaction.followUp({
           embeds: [

@@ -9,8 +9,8 @@ module.exports = {
       option.setName("user").setDescription("Select a user")
     ),
   async execute(interaction, client) {
-    const user = interaction.options.getMember("user");
     await interaction.deferReply();
+    const user = interaction.options.getMember("user");
 
     let userRoles;
 
@@ -42,6 +42,7 @@ module.exports = {
         embeds: [permsEmbed],
       });
     } catch (err) {
+      client.logger(err.message, "error");
       await interaction.followUp({
         embeds: [
           embedMessage(

@@ -41,6 +41,7 @@ module.exports = {
 
       await interaction.followUp({ embeds: [embed] });
     } catch (err) {
+      client.logger(err.message, "error");
       await interaction.followUp(
         `Could not retrieve a Joke, I blame <@503264757785165851>`
       );

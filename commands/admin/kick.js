@@ -13,9 +13,9 @@ module.exports = {
       option.setName("reason").setDescription("kick reason").setRequired(true)
     ),
   async execute(interaction, client) {
+    await interaction.deferReply();
     const user = interaction.options.getUser("user");
     const reason = interaction.options.getString("reason");
-    await interaction.deferReply();
 
     const embed = {
       author: {
@@ -52,12 +52,12 @@ module.exports = {
       await interaction.guild.members.kick(user, { reason });
       await interaction.followUp({ embeds: [embed] });
     } catch (error) {
+      client.logger(error.message, "error");
       await interaction.followUp({
         embeds: [
           embedMessage("#9dcc37", `Couldn't kick ${user}, ${error.message}`),
         ],
       });
-      console.log(error);
     }
   },
 };

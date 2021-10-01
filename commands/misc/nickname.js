@@ -71,6 +71,7 @@ module.exports = {
           ],
         });
       } catch (err) {
+        client.logger(err.message, "error");
         if (err.message === "Missing Permissions") {
           return await interaction.followUp({
             embeds: [

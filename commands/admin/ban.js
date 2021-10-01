@@ -52,6 +52,7 @@ module.exports = {
       await interaction.guild.members.ban(user, { reason });
       await interaction.followUp({ embeds: [embed] });
     } catch (error) {
+      client.logger(error.message, "error");
       await interaction.followUp({
         embeds: [
           embedMessage("#9dcc37", `Couldn't ban ${user}, ${error.message}`),

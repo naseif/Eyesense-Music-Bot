@@ -37,6 +37,7 @@ module.exports = {
         ],
       });
     } catch (error) {
+      client.logger(error.message, "error");
       await interaction.followUp({
         embeds: [
           embedMessage(

@@ -41,6 +41,7 @@ module.exports = {
     try {
       await interaction.followUp({ embeds: [statssEmbed] });
     } catch (err) {
+      client.logger(err.message, "error");
       await interaction.followUp(
         `I was not able to fetch the server info, do I have permission ?`
       );

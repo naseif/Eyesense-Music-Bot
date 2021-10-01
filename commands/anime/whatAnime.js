@@ -43,6 +43,7 @@ module.exports = {
       };
       await interaction.followUp({ embeds: [infoEmbed] });
     } catch (error) {
+      client.logger(error.message, "error");
       await interaction.followUp(
         `${interaction.user.toString()}, There was an error processing this image!`
       );

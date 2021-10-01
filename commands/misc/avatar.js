@@ -8,8 +8,9 @@ module.exports = {
       option.setName("user").setDescription("Select a user").setRequired(true)
     ),
   async execute(interaction, client) {
-    const user = interaction.options.getUser("user");
     await interaction.deferReply();
+    const user = interaction.options.getUser("user");
+
     const embed = {
       color: "#9dcc37",
       fields: [

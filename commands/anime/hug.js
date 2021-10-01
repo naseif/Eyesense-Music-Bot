@@ -22,6 +22,7 @@ module.exports = {
       };
       await interaction.followUp({ embeds: [hugEmbed] });
     } catch (error) {
+      client.logger(error.message, "error");
       await interaction.followUp(`Couldn't retrieve a hug gif, Sorry!`);
     }
   },

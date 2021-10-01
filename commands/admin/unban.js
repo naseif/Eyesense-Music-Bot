@@ -55,6 +55,7 @@ module.exports = {
       await interaction.guild.members.unban(userID, { reason });
       await interaction.followUp({ embeds: [embed] });
     } catch (error) {
+      client.logger(error.message, "error");
       await interaction.followUp({
         embeds: [
           embedMessage(

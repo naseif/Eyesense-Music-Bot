@@ -10,8 +10,8 @@ module.exports = {
       option.setName("int").setDescription("Enter an integer").setRequired(true)
     ),
   async execute(interaction, client) {
-    const integer = interaction.options.getInteger("int");
     await interaction.deferReply();
+    const integer = interaction.options.getInteger("int");
 
     if (
       !interaction.member.permissions.has([Permissions.FLAGS.MANAGE_MESSAGES])
@@ -31,6 +31,7 @@ module.exports = {
       });
       await interaction.channel.bulkDelete(integer);
     } catch (error) {
+      client.logger(error.message, "error");
       const errorEmbed = {
         color: "#9dcc37",
         description: `💥 ${error.message}`,
