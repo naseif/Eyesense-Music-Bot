@@ -1,9 +1,9 @@
 const fetch = require("node-fetch");
 
 /**
- *
+ * Performs a simple GET request
  * @param {string} url
- * @returns
+ * @returns Response from the API as JSON
  */
 
 module.exports.requestAPI = async (url) => {

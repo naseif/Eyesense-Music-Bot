@@ -2,10 +2,10 @@ const moment = require("moment");
 const chalk = require("chalk");
 
 /**
- *
+ * Logger for debugging purposes
  * @param {string} message
  * @param {string} type
- * @returns
+ * @returns ""
  */
 
 module.exports.logger = (message, type = "log") => {

@@ -2,8 +2,9 @@ const mdtable = require("mdtable");
 const { writeFileSync } = require("fs");
 
 /**
- *
+ * Creats a MD Table for github
  * @param {array} commands
+ * @returns New File containng the commands table
  */
 
 module.exports.commandsReadMe = (commands) => {

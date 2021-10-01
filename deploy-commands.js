@@ -17,7 +17,7 @@ for (const folder of commandFolders) {
   }
 }
 
-async function registerSlashCommands(clientId, guildId) {
+module.exports.registerSlashCommands = async (clientId, guildId) => {
   try {
     await rest.put(Routes.applicationGuildCommands(clientId, guildId), {
       body: commands,
@@ -27,6 +27,4 @@ async function registerSlashCommands(clientId, guildId) {
   } catch (error) {
     console.error(error);
   }
-}
-
-module.exports = { registerSlashCommands };
+};

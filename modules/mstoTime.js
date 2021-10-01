@@ -1,7 +1,7 @@
 /**
- *
+ * Converts MS to HMS Format
  * @param {number} duration
- * @returns
+ * @returns Time in HMS Format
  */
 module.exports.msToTime = (duration) => {
   let milliseconds = parseInt((duration % 1000) / 100),
