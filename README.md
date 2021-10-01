@@ -1,9 +1,23 @@
-# Eyesense-Music-Bot
-![](https://img.shields.io/github/license/naseif/Eyesense-Music-Bot?style=flat-square) ![](https://img.shields.io/github/issues/naseif/Eyesense-Music-Bot?style=flat-square)
-![](https://img.shields.io/github/issues-pr/naseif/Eyesense-Music-Bot?style=flat-square)
+<p align="center">
+  <b>Eyesense-Music-Bot </b><br>
+  <a href="https://discord.com/oauth2/authorize?client_id=881856452157898842&scope=applications.commands%20bot&permissions=536079414">Invite</a> |
+  <a href="https://discord.gg/JCdpeeNP9N">Support</a> 
+  <br><br>
+  <img src="https://cdn.discordapp.com/attachments/893187466805272577/893423839319560192/c8e3bbbc07dc4680bea5b355f2c708.png">
+</p>
 
-Eyesense is a feature-rich discord bot that plays music from various platforms and more. <br>
-The bot is still in the development phase You can check the release page for the stable releases
+<p align="center">
+<img src="https://img.shields.io/github/license/naseif/Eyesense-Music-Bot?style=flat-square">
+  <img src="https://img.shields.io/github/issues/naseif/Eyesense-Music-Bot?style=flat-square">
+  <img src="https://img.shields.io/github/issues-pr/naseif/Eyesense-Music-Bot?style=flat-square">
+</p>
+
+<p align="center">
+<b>Eyesense is a feature-rich discord bot that plays music from various platforms and more. <br>
+  The bot is still in the development phase You can check the release page for the stable releases</b>
+  
+</p>
+
 ## Features
 
 - Support for slash commands 💯
@@ -33,24 +47,29 @@ The bot is still in the development phase You can check the release page for the
 |     **/8ball**      |                  ask the magic ball a question!                  |
 |     **/insult**     |                     insult your fav user <3                      |
 |      **/joke**      |                       gets a random joke!                        |
-|   **/useravatar**   |                     Sends the user's avatar                      |
+|     **/avatar**     |                     Sends the user's avatar                      |
 |      **/help**      |            Shows all available commands for this bot!            |
+|     **/invite**     |            Get my link to invite me to other servers!            |
 |    **/nickname**    |            Changes your own nickname or other user's             |
 |     **/perms**      |       Shows the permission for another member or your own        |
 |      **/ping**      |              ping the bot connection to the server               |
 |  **/serverstats**   |                Shows some stats about the server                 |
 |     **/summon**     |              ping the bot connection to the server               |
 |     **/uptime**     |                 Since how long the bot is online                 |
+|      **/247**       |                      24/7 Mode for the bot                       |
+|       **/8d**       |                         8D Audio Filter                          |
 |      **/back**      |               plays previous track from the queue                |
+|   **/bassboost**    |                      bassboost Audio Filter                      |
 |     **/clear**      |                      clears the music queue                      |
 |   **/disconnect**   |                   disconnects from the channel                   |
 |     **/lyrics**     |               gets the lyrics of the current song                |
 |   **/nowplaying**   |                   shows the current music name                   |
 |     **/pause**      |                         pauses the song                          |
 |      **/play**      |                     plays music from Youtube                     |
-|   **/listqueue**    |                     Shows the current queue                      |
+|     **/queue**      |                     Shows the current queue                      |
 |      **/loop**      |                     repeats the current song                     |
 |     **/resume**     |                         resumes the song                         |
+|    **/reverse**     |                       Reverse Audio Filter                       |
 |      **/seek**      |           seeks the current song to the given position           |
 |    **/shuffle**     |                     shuffles the music queue                     |
 |      **/skip**      |                   skips a song from the queue                    |
@@ -83,7 +102,7 @@ Once you are done, you can now start the bot by running the follwoing:
 
 Use pm2 to run the bot in the background and restart it on internet issues, or in case the bot crashed
 
-Simply install the pm2 package globally using ```npm i pm2 -g``` and then instead ```node index.js``` run ```pm2 start index.js```
+Simply install the pm2 package globally using ```npm i pm2 -g``` and then instead of ```node index.js``` run ```pm2 start index.js```
 
 
 ## Contributions
