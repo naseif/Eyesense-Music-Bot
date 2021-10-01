@@ -15,18 +15,28 @@ module.exports = {
     const songString = interaction.options.getString("song");
     const lyricsClient = Lyrics.init();
     const queue = client.player.getQueue(interaction.guild);
-
     let songTitle;
 
     if (songString) {
       songTitle = songString;
     } else {
-      songTitle = queue.current.title;
+      if (!queue)
+        return await interaction.followUp({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              "❌ There is no music playing to search for lyrics!"
+            ),
+          ],
+        });
+      if (queue.current.title) {
+        songTitle = queue.current.title;
 
-      const filterName = queue.current.title.indexOf("(");
+        const filterName = queue.current.title.indexOf("(");
 
-      if (filterName !== -1) {
-        songTitle = songTitle.slice(0, filterName);
+        if (filterName !== -1) {
+          songTitle = songTitle.slice(0, filterName);
+        }
       }
     }
 
