@@ -21,8 +21,8 @@ client.commands = new Collection();
 client.logger = logger;
 
 // Register everything...
-commandsHelper.registerAllCommands("./commands", client);
-commandsHelper.registerAllEvents("./events", client);
+commandsHelper.registerAllCommands(__dirname + "/commands", client);
+commandsHelper.registerAllEvents(__dirname + "/events", client);
 playerEvents(client.player);
 
 // ... and go!

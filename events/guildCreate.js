@@ -1,4 +1,4 @@
-const { registerSlashCommands } = require("../deploy-commands");
+const { registerSlashCommands } = require("../modules/deploy-commands");
 
 module.exports = {
   name: "guildCreate",
