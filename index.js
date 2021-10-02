@@ -17,7 +17,6 @@ const { Player } = require("discord-player");
 const player = new Player(client);
 client.player = player;
 client.commands = new Collection();
-client.precommands = new Collection();
 client.logger = logger;
 
 // All commands!
@@ -31,7 +30,6 @@ for (const folder of allCommandsFolders) {
     const command = require(`./commands/${folder}/${file}`);
     command.category = folder;
     client.commands.set(command.data.name, command);
-    client.precommands.set(command.name, command);
   }
 }
 
@@ -76,8 +74,8 @@ client.on("messageCreate", async (message) => {
   const commandName = args.shift().toLowerCase();
 
   const command =
-    client.precommands.get(commandName) ||
-    client.precommands.find(
+    client.commands.get(commandName) ||
+    client.commands.find(
       (cmd) => cmd.aliases && cmd.aliases.includes(commandName)
     );
 
