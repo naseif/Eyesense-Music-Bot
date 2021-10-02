@@ -2,7 +2,7 @@ const { prefix } = require("../config.json");
 
 module.exports = {
   name: "messageCreate",
-  async run(message) {
+  async run(message, client) {
     if (message.author.bot) return;
     if (!message.guild) return;
 
