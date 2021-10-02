@@ -3,22 +3,12 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const { token } = require("../config.json");
 const rest = new REST({ version: "9" }).setToken(token);
-
-const commands = [];
-const commandFolders = fs.readdirSync("../commands");
-
-for (const folder of commandFolders) {
-  const commandFiles = fs
-    .readdirSync(`../commands/${folder}`)
-    .filter((file) => file.endsWith(".js"));
-  for (const file of commandFiles) {
-    const command = require(`../commands/${folder}/${file}`);
-    commands.push(command.data.toJSON());
-  }
-}
+const { commandsHelper } = require("./commandsHelper");
 
 module.exports.registerSlashCommands = async (clientId, guildId) => {
   try {
+    let commands = commandsHelper.getAllCommandsAsJson(__dirname + "/../commands");
+    
     await rest.put(Routes.applicationGuildCommands(clientId, guildId), {
       body: commands,
     });
