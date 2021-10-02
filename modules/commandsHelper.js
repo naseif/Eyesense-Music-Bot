@@ -78,18 +78,18 @@ let commandsHelper = function () {
       const event = require(`${eventFolder}/${file}`);
       if (event.run) {
         if (event.once) {
-          client.once(event.name, (...args) => event.run(...args));
+          client.once(event.name, (...args) => event.run.bind(...args, client));
           console.log(`Registered Run Once: ${event.name}`);
         } else {
-          client.on(event.name, (...args) => event.run(...args));
+          client.on(event.name, (...args) => event.run.bind(...args, client));
           console.log(`Registered Run On: ${event.name}`);
         }
       } else {
         if (event.once) {
-          client.once(event.name, (...args) => event.execute(...args));
+          client.once(event.name, (...args) => event.execute.bind(...args, client));
           console.log(`Registered Once: ${event.name}`);
         } else {
-          client.on(event.name, (...args) => event.execute(...args));
+          client.on(event.name, (...args) => event.execute.bind(...args, client));
           console.log(`Registered On: ${event.name}`);
         }
       }
