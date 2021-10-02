@@ -14,7 +14,7 @@
 
 <p align="center">
 <b>Eyesense is a feature-rich discord bot that plays music from various platforms and more. <br>
-  The bot is still in the development phase You can check the release page for the stable releases</b>
+  The bot is still in the development phase. You can check the release page for the stable releases.</b>
   
 </p>
 
@@ -95,19 +95,19 @@ if you are having problems installing sodium, make sure to install the following
 
 First you need to create a new application in the [Discord Developer Portal](https://discord.com/developers/applications) and then create a bot to get your own discord Token and invite the bot to your server. Once you got your key, rename `config.example.json` to `config.json`. Now open the `config.json` file and add your discord bot tokens.
 
-Once you are done, you can now start the bot by running the follwoing: 
+Once you are done, you can now start the bot by running the following: 
 ```node index.js```
 
 ### Recommendation
 
-Use pm2 to run the bot in the background and restart it on internet issues, or in case the bot crashed
+Use pm2 to run the bot in the background and automatically restart it when e.g. your server has internet issues:
 
 Simply install the pm2 package globally using ```npm i pm2 -g``` and then instead of ```node index.js``` run ```pm2 start index.js```
 
 
 ## Contributions
 
-Software contributions are welcome. If you are not a dev, testing and reproting bugs can also be very helpful!
+Software contributions are welcome. If you are not a dev, testing and reporting bugs can also be very helpful!
 
 ## Questions?
 
