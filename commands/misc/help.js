@@ -1,6 +1,13 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
+  name: "help",
+  category: "Information",
+  aliases: ["h"],
+  description: "Return all commands, or one specific command",
+  async run(message, args, client, prefix) {
+    console.log(args);
+  },
   data: new SlashCommandBuilder()
     .setName("help")
     .setDescription("Shows all available commands for this bot!")

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
 const { logger } = require("./modules/logger.js");
-const { token } = require("./config.json");
+const { token, prefix } = require("./config.json");
 const client = new Client({
   intents: [
     Intents.FLAGS.GUILD_MEMBERS,
@@ -17,8 +17,8 @@ const { Player } = require("discord-player");
 const player = new Player(client);
 client.player = player;
 client.commands = new Collection();
+client.precommands = new Collection();
 client.logger = logger;
-playerEvents(client.player);
 
 // All commands!
 const allCommandsFolders = fs.readdirSync("./commands");
@@ -31,6 +31,7 @@ for (const folder of allCommandsFolders) {
     const command = require(`./commands/${folder}/${file}`);
     command.category = folder;
     client.commands.set(command.data.name, command);
+    client.precommands.set(command.name, command);
   }
 }
 
@@ -48,6 +49,8 @@ for (const file of eventFiles) {
   }
 }
 
+playerEvents(client.player);
+
 // Initialize the client on interaction
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
@@ -62,6 +65,32 @@ client.on("interactionCreate", async (interaction) => {
       content: "There was an error while executing this command!",
       ephemeral: true,
     });
+  }
+});
+
+client.on("messageCreate", async (message) => {
+  if (message.author.bot) return;
+  if (!message.guild) return;
+
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
+  const commandName = args.shift().toLowerCase();
+
+  const command =
+    client.precommands.get(commandName) ||
+    client.precommands.find(
+      (cmd) => cmd.aliases && cmd.aliases.includes(commandName)
+    );
+
+  if (!command) return;
+
+  try {
+    command.run(message, args, client, prefix);
+  } catch (error) {
+    client.logger(error.message, "error");
+    embed.setDescription(
+      "There was an error executing that command.\nI have contacted the owner of the bot to fix it immediately."
+    );
+    return message.channel.send({ embeds: [embed] });
   }
 });
 
