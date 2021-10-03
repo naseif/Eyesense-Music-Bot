@@ -3,6 +3,13 @@ const { embedMessage } = require("../../modules/embedSimple");
 const playdl = require("play-dl");
 
 module.exports = {
+  name: "play",
+  aliases: ["p"],
+  description: "Plays music from Youtube",
+  async run(message, args, client, prefix) {
+    if (!args[0])
+      return message.channel.send("You did not provide a song name!");
+  },
   data: new SlashCommandBuilder()
     .setName("play")
     .setDescription("plays music from Youtube")

@@ -26,8 +26,10 @@
     "discord.js": "^13.1.0",
     "ffmpeg-static": "^4.4.0",
     "moment": "^2.29.1",
+    "mongoose": "^6.0.8",
     "node-fetch": "^2.6.1",
     "play-dl": "^1.0.3",
+    "quickmongo": "^4.0.0",
     "sodium": "^3.0.2",
     "utf-8-validate": "^5.0.5",
     "zlib-sync": "^0.1.7"
