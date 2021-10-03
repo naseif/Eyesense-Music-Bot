@@ -1,6 +1,7 @@
 const { Client, Collection, Intents } = require("discord.js");
 const { logger } = require("./modules/logger.js");
-const { token, prefix } = require("./config.json");
+const { token, mongourl } = require("./config.json");
+const { connectDatabase } = require("./modules/DatabaseConnection");
 const { commandsHelper } = require("./modules/commandsHelper");
 
 const client = new Client({
@@ -25,5 +26,7 @@ commandsHelper.registerAllCommands(__dirname + "/commands", client);
 commandsHelper.registerAllEvents(__dirname + "/events", client);
 playerEvents(client.player);
 
+// Connect to DATABASE
+connectDatabase(mongourl, client);
 // ... and go!
 client.login(token);
