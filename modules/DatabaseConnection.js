@@ -1,5 +1,11 @@
+const { Client } = require("discord.js");
 const mongoose = require("mongoose");
 
+/**
+ * Connects with the given DATABASE
+ * @param {string} mongourl
+ * @param {Client} client
+ */
 module.exports.connectDatabase = (mongourl, client) => {
   const dbOptions = {
     useNewUrlParser: true,
