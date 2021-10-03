@@ -21,7 +21,7 @@ const player = new Player(client);
 client.player = player;
 client.commands = new Collection();
 client.logger = logger;
-client.db = new Database(mongourl)
+// client.db = new Database(mongourl);
 
 // Register everything...
 commandsHelper.registerAllCommands(__dirname + "/commands", client);
@@ -29,6 +29,6 @@ commandsHelper.registerAllEvents(__dirname + "/events", client);
 playerEvents(client.player);
 
 // Connect to DATABASE
-connectDatabase(mongourl, client);
+// connectDatabase(mongourl, client);
 // ... and go!
 client.login(token);
