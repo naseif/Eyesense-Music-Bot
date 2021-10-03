@@ -1,6 +1,7 @@
 const { Client, Collection, Intents } = require("discord.js");
 const { logger } = require("./modules/logger.js");
 const { token, mongourl } = require("./config.json");
+const { Database } = require("quickmongo");
 const { connectDatabase } = require("./modules/DatabaseConnection");
 const { commandsHelper } = require("./modules/commandsHelper");
 
@@ -20,6 +21,7 @@ const player = new Player(client);
 client.player = player;
 client.commands = new Collection();
 client.logger = logger;
+client.db = new Database(mongourl)
 
 // Register everything...
 commandsHelper.registerAllCommands(__dirname + "/commands", client);
