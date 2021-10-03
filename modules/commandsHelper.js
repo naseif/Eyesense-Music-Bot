@@ -40,8 +40,10 @@ let commandsHelper = function () {
    */
   api.registerAllCommands = function (commandsFolder, client) {
     let commands = api.getAllCommands(commandsFolder);
+    client.logger(`Found ${commands.length} Commands, Loading...`);
 
     for (const command of commands) {
+      client.logger(`Loaded ${command.data.name}`);
       client.commands.set(command.data.name, command);
     }
   };
@@ -79,18 +81,18 @@ let commandsHelper = function () {
       if (event.run) {
         if (event.once) {
           client.once(event.name, (...args) => event.run(...args, client));
-          console.log(`Registered Run Once: ${event.name}`);
+          client.logger(`Registered Run Once: ${event.name}`);
         } else {
           client.on(event.name, (...args) => event.run(...args, client));
-          console.log(`Registered Run On: ${event.name}`);
+          client.logger(`Registered Run On: ${event.name}`);
         }
       } else {
         if (event.once) {
           client.once(event.name, (...args) => event.execute(...args, client));
-          console.log(`Registered Once: ${event.name}`);
+          client.logger(`Registered Once: ${event.name}`);
         } else {
           client.on(event.name, (...args) => event.execute(...args, client));
-          console.log(`Registered On: ${event.name}`);
+          client.logger(`Registered On: ${event.name}`);
         }
       }
     }
