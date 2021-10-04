@@ -89,23 +89,23 @@ module.exports = {
           fields: [
             {
               name: "Aliases",
-              value: "`" + `${command.aliases.join(", ")}` + "`",
+              value: "`" + `${command?.aliases.join(", ")}` + "`",
             },
             {
               name: "Requires arguments?",
-              value: `${command.args ? "Yes" : "No"}`,
+              value: `${command?.args ? "Yes" : "No"}`,
             },
             {
               name: "Category",
-              value: `${command?.category}`,
+              value: `${command.category}`,
             },
             {
               name: "Description",
-              value: `${command?.description}`,
+              value: `${command.description}`,
             },
             {
               name: "Usage",
-              value: "`" + `${prefix}${command.usage}` + "`",
+              value: "`" + `${prefix}${command?.usage}` + "`",
             },
           ],
           timestamp: new Date(),

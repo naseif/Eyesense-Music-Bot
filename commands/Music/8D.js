@@ -62,7 +62,7 @@ module.exports = {
   },
   data: new SlashCommandBuilder()
     .setName("8d")
-    .setDescription("8D Audio Filter")
+    .setDescription("Sets 8D audio filter to your music")
     .addStringOption((option) =>
       option
         .setName("mode")

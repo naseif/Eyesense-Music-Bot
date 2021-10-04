@@ -5,7 +5,7 @@ const playdl = require("play-dl");
 module.exports = {
   name: "247",
   args: true,
-  description: "Sets the bot to 24/7 mode",
+  description: "Sets 24/7 Mode for the bot",
   usage: "247 <on> || <off>",
   async run(message, args, client) {
     const queue = client.player.getQueue(message.guild);
@@ -94,7 +94,7 @@ module.exports = {
   },
   data: new SlashCommandBuilder()
     .setName("247")
-    .setDescription("24/7 Mode for the bot")
+    .setDescription("Sets 24/7 Mode for the bot")
     .addStringOption((option) =>
       option
         .setName("status")

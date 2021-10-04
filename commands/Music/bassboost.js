@@ -6,7 +6,7 @@ module.exports = {
   aliases: ["bass"],
   args: true,
   description: "Sets bassboost audio filter to your music",
-  usage: "bassboost <on> || <off>",
+  usage: "bass <low> || <medium> || high || off",
   async run(message, args, client) {
     const queue = client.player.getQueue(message.guild);
 
@@ -75,7 +75,7 @@ module.exports = {
   },
   data: new SlashCommandBuilder()
     .setName("bassboost")
-    .setDescription("bassboost Audio Filter")
+    .setDescription("Sets bassboost audio filter to your music")
     .addStringOption((option) =>
       option
         .setName("mode")
