@@ -2,6 +2,70 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
+  name: "reverse",
+  aliases: ["rv"],
+  args: true,
+  description: "Sets reverse audio filter to your music",
+  usage: "rv || reverse <on> || <off>",
+  async run(message, args, client) {
+    const queue = client.player.getQueue(message.guild);
+    const mode = args.join(" ");
+
+    if (!queue)
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `Your Queue is empty, Make sure to play a song first`
+          ),
+        ],
+      });
+
+    if (!mode)
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `Please provide whether you want to on/off the filter`
+          ),
+        ],
+      });
+
+    switch (mode) {
+      case "on":
+        try {
+          await queue.setFilters({
+            reverse: true,
+          });
+          await message.channel.send({
+            embeds: [
+              embedMessage("#9dcc37", `✅ Reverse Filter has been enabled`),
+            ],
+          });
+        } catch (error) {
+          client.logger(error.message, "error");
+          await message.channel.send({
+            embeds: [embedMessage("#9dcc37", `Could not set the Filter`)],
+          });
+        }
+        break;
+      case "off":
+        try {
+          await queue.setFilters({});
+          await message.channel.send({
+            embeds: [
+              embedMessage("#9dcc37", `✅ Reverse Filter has been disabled`),
+            ],
+          });
+        } catch (error) {
+          client.logger(error.message, "error");
+          await message.channel.send({
+            embeds: [embedMessage("#9dcc37", `Could not disable the filter`)],
+          });
+        }
+        break;
+    }
+  },
   data: new SlashCommandBuilder()
     .setName("reverse")
     .setDescription("Reverse Audio Filter")

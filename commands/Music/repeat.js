@@ -2,6 +2,63 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
+  name: "loop",
+  aliases: ["repeat"],
+  args: false,
+  description: "Repeats the current Song or Queue",
+  usage: "loop || repeat <queue> || <off> || <auto>",
+  async run(message, args, client, prefix) {
+    const queue = client.player.getQueue(message.guild);
+    const mode = args.join(" ");
+
+    if (!queue || !queue.playing) {
+      return await message.channel.send({
+        embeds: [embedMessage("#9dcc37", `❌ | No music is being played!`)],
+      });
+    }
+
+    switch (mode) {
+      case "off":
+        await queue.setRepeatMode(0);
+        await message.channel.send({
+          embeds: [
+            embedMessage("#9dcc37", `✅ | Repeat Mode has been disabled`),
+          ],
+        });
+        break;
+      case "queue":
+        await queue.setRepeatMode(2);
+        await message.channel.send({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `✅ | Repeat Mode has been enabled for the current queue!`
+            ),
+          ],
+        });
+        break;
+      case "auto":
+        await queue.setRepeatMode(3);
+        await message.channel.send({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `✅ | Autoplay Repeat Mode has been enabled!`
+            ),
+          ],
+        });
+      default:
+        await queue.setRepeatMode(1);
+        await message.channel.send({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `✅ | Repeat Mode has been enabled for **${queue.current}**`
+            ),
+          ],
+        });
+    }
+  },
   data: new SlashCommandBuilder()
     .setName("loop")
     .setDescription("repeats the current song")

@@ -2,6 +2,46 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
+  name: "back",
+  args: false,
+  description: "Plays previous track from the queue",
+  usage: "back",
+  async run(message, args, client) {
+    const queue = client.player.getQueue(message.guild);
+
+    if (!queue)
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            `#9dcc37`,
+            `❌ | No Queue has been created for this guild. <Queue is empty>`
+          ),
+        ],
+      });
+
+    if (!queue.playing)
+      return await message.channel.send({
+        embeds: [embedMessage(`#9dcc37`, `❌ | There is nothing playing!`)],
+      });
+
+    try {
+      await queue.back();
+      console.log(queue.previousTracks);
+      await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `Playing Previous Track **${queue.nowPlaying()}**, [${message.member.toString()}]`
+          ),
+        ],
+      });
+    } catch (error) {
+      client.logger(error.message, "error");
+      await message.channel.send({
+        embeds: [embedMessage("#9dcc37", "❌ Could not find previous track")],
+      });
+    }
+  },
   data: new SlashCommandBuilder()
     .setName("back")
     .setDescription("plays previous track from the queue"),
@@ -33,14 +73,14 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Playing Previous Track **${queue.previousTracks[0].title}**, [<@${interaction.user.id}>]`
+            `Playing Previous Track **${queue.nowPlaying()}**, [${interaction.member.toString()}]`
           ),
         ],
       });
     } catch (error) {
       client.logger(error.message, "error");
       await interaction.followUp({
-        embeds: [embedMessage("#9dcc37", "Could not play the previous track")],
+        embeds: [embedMessage("#9dcc37", "❌ Could not find previous track")],
       });
     }
   },
