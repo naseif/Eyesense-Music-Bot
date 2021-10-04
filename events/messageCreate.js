@@ -3,10 +3,17 @@ const { prefix } = require("../config.json");
 module.exports = {
   name: "messageCreate",
   async run(message, client) {
-    if (message.author.bot) return;
     if (!message.guild) return;
 
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    let defaultPrefix;
+    let mongoPrefix = await client.db.get(`guild_prefix_${message.guildId}`);
+
+    mongoPrefix ? (defaultPrefix = mongoPrefix) : (defaultPrefix = prefix);
+
+    if (!message.content.startsWith(defaultPrefix) || message.author.bot)
+      return;
+
+    const args = message.content.slice(defaultPrefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
 
     const command =
@@ -18,7 +25,7 @@ module.exports = {
     if (!command) return;
 
     try {
-      command.run(message, args, client, prefix);
+      command.run(message, args, client, defaultPrefix);
     } catch (error) {
       client.logger(error.message, "error");
     }
