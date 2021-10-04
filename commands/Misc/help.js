@@ -59,7 +59,6 @@ module.exports = {
         client.commands.find(
           (cmd) => cmd.aliases && cmd.aliases.includes(searchCommand)
         );
-      console.log(command);
 
       if (categories.includes("`" + searchCommand + "`")) {
         const commandsperCategory = printHelpByCollection(

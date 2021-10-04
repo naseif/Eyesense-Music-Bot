@@ -25,7 +25,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Please provide whether you want to on/off the filter, see ${prefix}h bass for more info about this command`
+            `Please provide whether you want to on/off the filter, see ${prefix}h 8d for more info about this command`
           ),
         ],
       });
