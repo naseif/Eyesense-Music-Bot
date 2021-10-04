@@ -30,10 +30,10 @@ module.exports = {
       return self.indexOf(value) === index;
     }
 
-    const cmd = args.join(" ");
+    const searchCommand = args.join(" ");
     const categories = listCategories(client.commands).filter(onlyUnique);
 
-    if (!cmd) {
+    if (!searchCommand) {
       const embed = {
         color: "#9dcc37",
         title: `${client.user.username}'s Categories!`,
@@ -53,20 +53,26 @@ module.exports = {
       return await message.channel.send({ embeds: [embed] });
     }
 
-    if (cmd) {
+    if (searchCommand) {
       const command =
-        client.commands.get(cmd) ||
-        client.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(cmd));
+        client.commands.get(searchCommand) ||
+        client.commands.find(
+          (cmd) => cmd.aliases && cmd.aliases.includes(searchCommand)
+        );
+      console.log(command);
 
-      if (categories.includes("`" + cmd + "`")) {
-        const commandsperCategory = printHelpByCollection(client.commands, cmd);
+      if (categories.includes("`" + searchCommand + "`")) {
+        const commandsperCategory = printHelpByCollection(
+          client.commands,
+          searchCommand
+        );
         if (!commandsperCategory)
           return await message.channel.send(
             `Category does not exist. Make sure to write the category name as it is`
           );
         const embed = {
           color: "#9dcc37",
-          title: `${client.user.username}'s ${cmd} Commands!`,
+          title: `${client.user.username}'s ${searchCommand} Commands!`,
           description: `${commandsperCategory.join("\n")}`,
           timestamp: new Date(),
           footer: {
@@ -77,34 +83,43 @@ module.exports = {
         return await message.channel.send({ embeds: [embed] });
       }
 
-      if (!command && !categories.includes("`" + cmd + "`")) {
+      if (!command && !categories.includes("`" + searchCommand + "`")) {
         return await message.channel.send(
           "What you provided is neither a command nor a category"
         );
       }
 
-      if (!categories.includes("`" + cmd + "`")) {
+      if (!categories.includes("`" + searchCommand + "`")) {
         const embed = {
           color: "#9dcc37",
           fields: [
+            {
+              name: "Command",
+              value: "`" + `${command.name}` + "`",
+              inline: true,
+            },
             {
               name: "Aliases",
               value:
                 "`" +
                 `${command.aliases ? command?.aliases.join(", ") : "None"}` +
                 "`",
+              inline: true,
             },
             {
               name: "Requires arguments?",
               value: `${command?.args ? "Yes" : "No"}`,
+              inline: true,
             },
             {
               name: "Category",
               value: `${command.category}`,
+              inline: true,
             },
             {
               name: "Description",
               value: `${command.description}`,
+              inline: true,
             },
             {
               name: "Usage",

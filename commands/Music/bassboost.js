@@ -6,19 +6,9 @@ module.exports = {
   aliases: ["bass"],
   args: true,
   description: "Sets bassboost audio filter to your music",
-  usage: "bass <low> || <medium> || high || off",
-  async run(message, args, client) {
+  usage: "bass <low> || <medium> || <high> || <off>, default <medium>",
+  async run(message, args, client, prefix) {
     const queue = client.player.getQueue(message.guild);
-
-    if (!args[0])
-      return await message.channel.send({
-        embeds: [
-          embedMessage(
-            "9dcc37",
-            `Please provide whether you want to on/off the filter`
-          ),
-        ],
-      });
 
     if (!queue) {
       return await message.channel.send({
@@ -68,6 +58,17 @@ module.exports = {
         await message.channel.send({
           embeds: [
             embedMessage("#9dcc37", `✅ Bassboost Filter has been disabled`),
+          ],
+        });
+        break;
+      default:
+        await queue.setFilters({ bassboost: true });
+        await message.channel.send({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `✅ Bassboost Medium Filter has been enabled, see ${prefix}h bass for more info about this command`
+            ),
           ],
         });
         break;

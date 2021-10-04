@@ -6,7 +6,7 @@ module.exports = {
   args: true,
   description: "Sets 8D audio filter to your music",
   usage: "8d <on> || <off>",
-  async run(message, args, client) {
+  async run(message, args, client, prefix) {
     const queue = client.player.getQueue(message.guild);
 
     if (!queue) {
@@ -25,7 +25,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Please provide whether you want to on/off the filter`
+            `Please provide whether you want to on/off the filter, see ${prefix}h bass for more info about this command`
           ),
         ],
       });
@@ -48,7 +48,7 @@ module.exports = {
         break;
       case "off":
         try {
-          await queue.setFilters({ "8D": false });
+          await queue.setFilters({});
           await message.channel.send({
             embeds: [embedMessage("#9dcc37", `✅ 8D Filter has been disabled`)],
           });
