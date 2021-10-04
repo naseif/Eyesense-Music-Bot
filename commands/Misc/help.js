@@ -42,7 +42,7 @@ module.exports = {
             ", "
           )}. To get more Information about each category, use ` +
           "`" +
-          `${prefix}help <category>` +
+          `${prefix}help <category> || <command>` +
           "`",
         timestamp: new Date(),
         footer: {
