@@ -2,6 +2,77 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
+  name: "bassboost",
+  aliases: ["bass"],
+  args: true,
+  description: "Sets bassboost audio filter to your music",
+  usage: "bassboost <on> || <off>",
+  async run(message, args, client) {
+    const queue = client.player.getQueue(message.guild);
+
+    if (!args[0])
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "9dcc37",
+            `Please provide whether you want to on/off the filter`
+          ),
+        ],
+      });
+
+    if (!queue) {
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `Your Queue is empty, Make sure to play a song first`
+          ),
+        ],
+      });
+    }
+
+    switch (args[0]) {
+      case "low":
+        await queue.setFilters({ bassboost_low: true });
+        await message.channel.send({
+          embeds: [
+            embedMessage("#9dcc37", `✅ Bassboost Low Filter has been enabled`),
+          ],
+        });
+        break;
+      case "medium":
+        await queue.setFilters({ bassboost: true });
+        await message.channel.send({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `✅ Bassboost Medium Filter has been enabled`
+            ),
+          ],
+        });
+        break;
+      case "high":
+        await queue.setFilters({ bassboost_high: true });
+        await message.channel.send({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `✅ Bassboost High Filter has been enabled`
+            ),
+          ],
+        });
+        break;
+      case "off":
+        await queue.setFilters({});
+        await queue.setFilters({ normalizer: true });
+        await message.channel.send({
+          embeds: [
+            embedMessage("#9dcc37", `✅ Bassboost Filter has been disabled`),
+          ],
+        });
+        break;
+    }
+  },
   data: new SlashCommandBuilder()
     .setName("bassboost")
     .setDescription("bassboost Audio Filter")

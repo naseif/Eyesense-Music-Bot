@@ -4,8 +4,8 @@ const { embedMessage } = require("../../modules/embedSimple");
 module.exports = {
   name: "8d",
   args: true,
-  description: "Sets 8D Filter to your music",
-  usage: "<prefix>8d on/off",
+  description: "Sets 8D audio filter to your music",
+  usage: "8d <on> || <off>",
   async run(message, args, client) {
     const queue = client.player.getQueue(message.guild);
 
