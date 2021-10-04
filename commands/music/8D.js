@@ -2,6 +2,64 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
+  name: "8d",
+  args: true,
+  description: "Sets 8D Filter to your music",
+  usage: "<prefix>8d on/off",
+  async run(message, args, client) {
+    const queue = client.player.getQueue(message.guild);
+
+    if (!queue) {
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `Your Queue is empty, Make sure to play a song first`
+          ),
+        ],
+      });
+    }
+
+    if (!args[0])
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `Please provide whether you want to on/off the filter`
+          ),
+        ],
+      });
+
+    switch (args[0]) {
+      case "on":
+        try {
+          await queue.setFilters({
+            "8D": true,
+          });
+          await message.channel.send({
+            embeds: [embedMessage("#9dcc37", `✅ 8D Filter has been enabled`)],
+          });
+        } catch (error) {
+          client.logger(error.message, "error");
+          await message.channel.send({
+            embeds: [embedMessage("#9dcc37", `Could not set the Filter`)],
+          });
+        }
+        break;
+      case "off":
+        try {
+          await queue.setFilters({ "8D": false });
+          await message.channel.send({
+            embeds: [embedMessage("#9dcc37", `✅ 8D Filter has been disabled`)],
+          });
+        } catch (error) {
+          client.logger(error.message, "error");
+          await message.channel.send({
+            embeds: [embedMessage("#9dcc37", `Could not disable the filter`)],
+          });
+        }
+    }
+  },
   data: new SlashCommandBuilder()
     .setName("8d")
     .setDescription("8D Audio Filter")
