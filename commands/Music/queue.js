@@ -30,7 +30,9 @@ module.exports = {
       },
       description: `${tracks.join("\n")}`,
       footer: {
-        text: `Playing Now: ${queue?.nowPlaying() || "Nothing"}`,
+        text: `Playing Now: ${
+          queue?.nowPlaying() ? queue?.nowPlaying() : "Nothing"
+        }`,
       },
     };
 

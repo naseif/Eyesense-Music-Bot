@@ -20,7 +20,7 @@ module.exports = {
 
     try {
       if (queue) {
-        await queue.destroy(true);
+        await queue.connection.disconnect();
         await message.channel.send({
           embeds: [
             embedMessage(
