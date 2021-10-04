@@ -41,22 +41,19 @@ module.exports = {
         embeds: [embedMessage("#9dcc37", `❌ | Song not found`)],
       });
 
-    let queue;
-    client.player.getQueue(message.guild)
-      ? (queue = client.player.getQueue(message.guild))
-      : (queue = client.player.createQueue(message.guildId, {
-          leaveOnEnd: false,
-          leaveOnStop: true,
-          initialVolume: 80,
-          leaveOnEmptyCooldown: 60 * 1000 * 3,
-          bufferingTimeout: 200,
-          leaveOnEmpty: true,
-          async onBeforeCreateStream(track, source, _queue) {
-            if (source === "youtube") {
-              return (await playdl.stream(track.url)).stream;
-            }
-          },
-        }));
+    let queue = await client.player.createQueue(message.guildId, {
+      leaveOnEnd: false,
+      leaveOnStop: true,
+      initialVolume: 80,
+      leaveOnEmptyCooldown: 60 * 1000 * 3,
+      bufferingTimeout: 200,
+      leaveOnEmpty: true,
+      async onBeforeCreateStream(track, source, _queue) {
+        if (source === "youtube") {
+          return (await playdl.stream(track.url)).stream;
+        }
+      },
+    });
 
     try {
       if (!queue.connection) await queue.connect(message.member.voice.channel);
@@ -168,10 +165,7 @@ module.exports = {
         embeds: [embedMessage("#9dcc37", `❌ | Song not found`)],
       });
 
-    let queue;
-    client.player.getQueue(interaction.guild)
-      ? (queue = client.player.getQueue(interaction.guild))
-      : (queue = client.player.createQueue(interaction.guildId, {
+    let queue = await client.player.createQueue(interaction.guildId, {
           leaveOnEnd: false,
           leaveOnStop: true,
           initialVolume: 80,
