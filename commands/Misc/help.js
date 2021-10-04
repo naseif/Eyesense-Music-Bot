@@ -88,6 +88,14 @@ module.exports = {
           color: "#9dcc37",
           fields: [
             {
+              name: "Aliases",
+              value: "`" + `${command.aliases.join(", ")}` + "`",
+            },
+            {
+              name: "Requires arguments?",
+              value: `${command.args ? "Yes" : "No"}`,
+            },
+            {
               name: "Category",
               value: `${command?.category}`,
             },
