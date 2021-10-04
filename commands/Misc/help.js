@@ -89,7 +89,10 @@ module.exports = {
           fields: [
             {
               name: "Aliases",
-              value: "`" + `${command?.aliases.join(", ")}` + "`",
+              value:
+                "`" +
+                `${command.aliases ? command?.aliases.join(", ") : "None"}` +
+                "`",
             },
             {
               name: "Requires arguments?",
