@@ -11,7 +11,7 @@ module.exports = {
   async run(message, args, client, prefix) {
     const songString = args.join(" ");
     if (!songString)
-      return message.channel.send("You have to provide a song name or URL");
+      return message.channel.send({embeds: [embedMessage("#9dcc37", `❌ | ${message.member.toString()}, You have to provide a song name or URL`)]});
     if (!message.member.voice.channelId)
       return message.channel.send({
         embeds: [
