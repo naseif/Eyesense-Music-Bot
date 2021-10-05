@@ -1,11 +1,76 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Permissions } = require("discord.js");
 const { embedMessage } = require("../../modules/embedSimple");
+const { getGuildUserFromMention } = require("../../modules/getUserFromMention");
 
 module.exports = {
+  name: "summon",
+  args: true,
+  aliases: ["sum"],
+  usage: "sum || summon <user>",
+  description: "Summons the user to your voice channel",
+  async run(message, args, client) {
+    if (!args[0])
+      return await message.channel.send({
+        embeds: [
+          embedMessage("#9dcc37", `You have to mention a user to summon!`),
+        ],
+      });
+
+    if (!message.member.permissions.has("MOVE_MEMBERS"))
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | You have no permission to summon users!`
+          ),
+        ],
+      });
+
+    const guildUser = getGuildUserFromMention(args[0], message);
+
+    if (!guildUser)
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `I could not resolve the user, please make sure to mention the user!`
+          ),
+        ],
+      });
+
+    if (!guildUser.voice.channelId)
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `${user.toString()} is not connected to any voice channel!`
+          ),
+        ],
+      });
+
+    try {
+      await guildUser.voice.setChannel(message.member.voice.channelId);
+      await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `User ${guildUser.toString()} has been moved to <#${
+              message.member.voice.channelId
+            }>`
+          ),
+        ],
+      });
+    } catch (err) {
+      client.logger(err.message, "error");
+      return await message.channel.send(
+        `Something went wrong, I could not summon this user!`
+      );
+    }
+  },
   data: new SlashCommandBuilder()
     .setName("summon")
-    .setDescription("ping the bot connection to the server")
+    .setDescription("Summons the user to your voice channel")
     .addUserOption((option) =>
       option
         .setName("user")
