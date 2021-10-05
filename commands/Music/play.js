@@ -10,8 +10,10 @@ module.exports = {
   usage: "p <YouTube URL | Song Name | Spotify URL | Soundcloud URL |>",
   async run(message, args, client, prefix) {
     const songString = args.join(" ");
+
     if (!songString)
-      return message.channel.send({embeds: [embedMessage("#9dcc37", `❌ | ${message.member.toString()}, You have to provide a song name or URL`)]});
+      return await message.channel.send({embeds: [embedMessage("#9dcc37", `❌ | ${message.member.toString()}, You have to provide a song name or URL`)]});
+    
     if (!message.member.voice.channelId)
       return message.channel.send({
         embeds: [
@@ -26,7 +28,7 @@ module.exports = {
       message.guild.me.voice.channelId &&
       message.member.voice.channelId !== message.guild.me.voice.channelId
     )
-      return message.channel.send({
+      return await message.channel.send({
         embeds: [
           embedMessage("#9dcc37", `❌ | You must be in my voice channel!`),
         ],

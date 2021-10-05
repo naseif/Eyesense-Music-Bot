@@ -18,6 +18,16 @@ module.exports = {
       });
     }
 
+    if (
+      message.guild.me.voice.channelId &&
+      message.member.voice.channelId !== message.guild.me.voice.channelId
+    )
+      return await message.channel.send({
+        embeds: [
+          embedMessage("#9dcc37", `❌ | You must be in my voice channel to disconnect me!`),
+        ],
+      });
+
     try {
       if (queue) {
         await queue.connection.disconnect();
@@ -57,6 +67,17 @@ module.exports = {
         ],
       });
     }
+
+    if (
+      interaction.guild.me.voice.channelId &&
+      interaction.member.voice.channelId !== interaction.guild.me.voice.channelId
+    )
+      return await interaction.followUp({
+        embeds: [
+          embedMessage("#9dcc37", `❌ | You must be in my voice channel to disconnect me!`),
+        ],
+      });
+
 
     try {
       if (queue) {
