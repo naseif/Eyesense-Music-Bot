@@ -18,6 +18,7 @@ function printHelpByCollection(collection, category) {
 module.exports = {
   name: "help",
   category: "Misc",
+  args: true,
   aliases: ["h"],
   description: "Return all commands, or one specific command",
   usage: "h <category> <command>, both are optional",

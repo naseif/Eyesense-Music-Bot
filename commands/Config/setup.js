@@ -7,7 +7,7 @@ module.exports = {
   aliases: ["setup"],
   description: "set custom prefix for your server",
   args: true,
-  usage: `${prefix}prefix set <new prefix>`,
+  usage: `prefix || setup <new prefix>`,
   async run(message, args, client, defaultPrefix) {
     if (!message.member.permissions.has("MANAGE_GUILD"))
       return await message.channel.send({
