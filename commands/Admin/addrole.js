@@ -6,7 +6,7 @@ const { getGuildUserFromMention } = require("../../modules/getUserFromMention");
 module.exports = {
   name: "addrole",
   args: true,
-  description: "Ddds a role for a user",
+  description: "Adds a role for a user",
   usage: "addrole <user> <role name>",
   async run(message, args, client) {
     const guildUser = getGuildUserFromMention(args[0], message);
