@@ -48,7 +48,7 @@ module.exports = {
         break;
       case "off":
         try {
-          await queue.setFilters({});
+          await queue.setFilters({normalizer: true});
           await message.channel.send({
             embeds: [embedMessage("#9dcc37", `✅ 8D Filter has been disabled`)],
           });
@@ -58,6 +58,7 @@ module.exports = {
             embeds: [embedMessage("#9dcc37", `Could not disable the filter`)],
           });
         }
+        break;
     }
   },
   data: new SlashCommandBuilder()
