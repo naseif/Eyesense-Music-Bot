@@ -23,7 +23,7 @@ module.exports = {
       await message.channel.send({ embeds: [highFiveEmbed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await message.channel.send(`Couldn't retrieve a hug gif, Sorry!`);
+      await message.channel.send(`❌ | Couldn't retrieve a hug gif, Sorry!`);
     }
   },
   data: new SlashCommandBuilder()
@@ -47,7 +47,7 @@ module.exports = {
       await interaction.followUp({ embeds: [highFiveEmbed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await interaction.followUp(`Couldn't retrieve a hug gif, Sorry!`);
+      await interaction.followUp(`❌ | Couldn't retrieve a hug gif, Sorry!`);
     }
   },
 };

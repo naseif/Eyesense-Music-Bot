@@ -3,6 +3,72 @@ const { Permissions } = require("discord.js");
 const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
+  name: "unban",
+  args: true,
+  description: "",
+  usage: "unban",
+  async run(message, args, client) {
+    const userID = args[0];
+
+    if (!userID)
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | Please provide the user id of the user you wish to unban`
+          ),
+        ],
+      });
+
+    const noargs0 = args.shift();
+    const unbanReason = args.join(" ");
+
+    const embed = {
+      author: {
+        name: `${message.member.user.username}`,
+        icon_url: `${message.member.user.avatarURL()}`,
+      },
+      color: "#9dcc37",
+      title: `User unbanned successfully ✅`,
+      fields: [
+        {
+          name: "User ID:",
+          value: `${userID}`,
+          inline: true,
+        },
+        {
+          name: "Reason",
+          value: `${unbanReason}`,
+        },
+      ],
+      timestamp: new Date(),
+    };
+
+    if (!message.member.permissions.has("ADMINISTRATOR"))
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | You do not have permission to unban members!`
+          ),
+        ],
+      });
+
+    try {
+      await message.guild.members.unban(userID, { unbanReason });
+      await message.channel.send({ embeds: [embed] });
+    } catch (error) {
+      client.logger(error.message, "error");
+      await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | Couldn't ban <@${userID}>, ${error.message}`
+          ),
+        ],
+      });
+    }
+  },
   data: new SlashCommandBuilder()
     .setName("unban")
     .setDescription("unbans a user with id")
@@ -64,7 +130,6 @@ module.exports = {
           ),
         ],
       });
-      console.log(error);
     }
   },
 };

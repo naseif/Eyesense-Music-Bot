@@ -11,7 +11,9 @@ module.exports = {
   async run(message, args, client) {
     if (!args[0])
       return await message.channel.send({
-        embeds: [embedMessage("#9dcc37", `You have to provide an image link!`)],
+        embeds: [
+          embedMessage("#9dcc37", `❌ | You have to provide an image link!`),
+        ],
       });
 
     try {
