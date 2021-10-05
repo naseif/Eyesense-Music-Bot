@@ -5,15 +5,22 @@ const playdl = require("play-dl");
 module.exports = {
   name: "play",
   aliases: ["p"],
-  description: "Plays music from Youtube",
+  description: "Plays music from Youtube, Spotify and Soundcloud!",
   args: true,
   usage: "p <YouTube URL | Song Name | Spotify URL | Soundcloud URL |>",
   async run(message, args, client, prefix) {
     const songString = args.join(" ");
 
     if (!songString)
-      return await message.channel.send({embeds: [embedMessage("#9dcc37", `❌ | ${message.member.toString()}, You have to provide a song name or URL`)]});
-    
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | ${message.member.toString()}, You have to provide a song name or URL`
+          ),
+        ],
+      });
+
     if (!message.member.voice.channelId)
       return message.channel.send({
         embeds: [
@@ -78,7 +85,7 @@ module.exports = {
         name: `${message.member.user.username}`,
         icon_url: `${message.member.user.avatarURL()}`,
       },
-      description: `Song: **${searchSong.tracks[0].title}**`,
+      description: `Song: **[${searchSong.tracks[0].title}](${searchSong.tracks[0].url})**`,
       thumbnail: {
         url: `${searchSong.tracks[0].thumbnail}`,
       },
