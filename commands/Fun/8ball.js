@@ -4,6 +4,7 @@ const { embedMessage } = require("../../modules/embedSimple");
 module.exports = {
   name: "8ball",
   args: true,
+  aliases: ["8"],
   usage: "8ball <question>",
   description: "Ask the magic ball a question!",
   async run(message, args) {

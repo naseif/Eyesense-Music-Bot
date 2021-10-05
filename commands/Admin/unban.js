@@ -5,8 +5,8 @@ const { embedMessage } = require("../../modules/embedSimple");
 module.exports = {
   name: "unban",
   args: true,
-  description: "",
-  usage: "unban",
+  description: "Unbans a user from the server",
+  usage: "unban <userid>",
   async run(message, args, client) {
     const userID = args[0];
 

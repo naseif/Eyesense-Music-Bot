@@ -6,7 +6,7 @@ module.exports = {
   aliases: ["q"],
   args: false,
   description: "Shows all queued songs",
-  usage: "pause",
+  usage: "q || queue",
   async run(message, args, client) {
     const queue = client.player.getQueue(message.guild);
 

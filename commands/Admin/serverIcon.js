@@ -4,6 +4,7 @@ const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
   name: "servericon",
+  args: true,
   aliases: ["si"],
   description: "Changes the server icon!",
   usage: "si || servericon <link must end with png or jpg>",

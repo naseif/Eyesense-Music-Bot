@@ -4,6 +4,7 @@ const { requestAPI } = require("../../modules/requestAPI");
 module.exports = {
   name: "highfive",
   aliases: ["hf"],
+  args: false,
   description: "Sends a highfive gif",
   usage: "hf || highfive",
   async run(message, args, client) {

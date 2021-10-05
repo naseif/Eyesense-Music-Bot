@@ -26,7 +26,6 @@
     "discord.js": "^13.1.0",
     "ffmpeg-static": "^4.4.0",
     "moment": "^2.29.1",
-    "mongodb": "^4.1.2",
     "mongoose": "^6.0.8",
     "node-fetch": "^2.6.1",
     "play-dl": "^1.0.3",
