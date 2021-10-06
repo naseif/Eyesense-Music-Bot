@@ -122,6 +122,7 @@ module.exports = {
             });
       } catch (err) {
         client.logger(err.message, "error");
+        console.log(err);
         await message.channel.send(
           "There was an error playing this song, please try again"
         );

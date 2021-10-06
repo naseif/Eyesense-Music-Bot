@@ -22,7 +22,7 @@
     "bufferutil": "^4.0.3",
     "chalk": "^4.1.2",
     "discord-api-types": "^0.22.0",
-    "discord-player": "^5.1.0-dev.1632960868.9336ca0",
+    "discord-player": "^5.1.0-dev.1633479141.44b30ad",
     "discord.js": "^13.2.0",
     "ffmpeg-static": "^4.4.0",
     "moment": "^2.29.1",
