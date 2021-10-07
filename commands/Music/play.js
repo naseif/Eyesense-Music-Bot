@@ -59,6 +59,16 @@ module.exports = {
       leaveOnEmpty: true,
       async onBeforeCreateStream(track, source, _queue) {
         if (source === "youtube") {
+          if (playdl.sp_validate(track.url)) {
+            if (playdl.is_expired()) {
+              await playdl.refreshToken();
+            }
+            let spotifyInfo = await playdl.spotify(track.url);
+            let youtube = await playdl.search(`${spotifyInfo.name}`, {
+              limit: 1,
+            });
+            return (await playdl.stream(youtube[0].url)).stream;
+          }
           return (await playdl.stream(track.url)).stream;
         }
       },
