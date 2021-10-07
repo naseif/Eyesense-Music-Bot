@@ -130,6 +130,7 @@ module.exports = {
           : await message.channel.send({
               embeds: [musicEmbed],
             });
+        return;
       } catch (err) {
         client.logger(err.message, "error");
         console.log(err);
@@ -143,6 +144,7 @@ module.exports = {
       searchSong.playlist
         ? await message.channel.send({ embeds: [playlistEmbed, musicEmbed] })
         : await message.channel.send({ embeds: [musicEmbed] });
+      return;
     }
   },
   data: new SlashCommandBuilder()
@@ -257,6 +259,7 @@ module.exports = {
           : await interaction.followUp({
               embeds: [musicEmbed],
             });
+        return;
       } catch (err) {
         client.logger(err.message, "error");
         await interaction.followUp(
@@ -269,6 +272,7 @@ module.exports = {
       searchSong.playlist
         ? await interaction.followUp({ embeds: [playlistEmbed, musicEmbed] })
         : await interaction.followUp({ embeds: [musicEmbed] });
+      return;
     }
   },
 };
