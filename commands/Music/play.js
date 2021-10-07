@@ -58,6 +58,15 @@ module.exports = {
       bufferingTimeout: 200,
       leaveOnEmpty: true,
       async onBeforeCreateStream(track, source, _queue) {
+        if (source === "soundcloud") {
+          if (await playdl.so_validate(track.url)) {
+            let soundCloudInfo = await playdl.soundcloud(track.url);
+            console.log(soundCloudInfo);
+            return (await playdl.stream_from_info(soundCloudInfo)).stream;
+          }
+          return;
+        }
+
         if (source === "youtube") {
           if (playdl.sp_validate(track.url)) {
             if (playdl.is_expired()) {
@@ -69,6 +78,7 @@ module.exports = {
             });
             return (await playdl.stream(youtube[0].url)).stream;
           }
+
           return (await playdl.stream(track.url)).stream;
         }
       },
@@ -195,6 +205,15 @@ module.exports = {
       bufferingTimeout: 200,
       leaveOnEmpty: true,
       async onBeforeCreateStream(track, source, _queue) {
+        if (source === "soundcloud") {
+          if (await playdl.so_validate(track.url)) {
+            let soundCloudInfo = await playdl.soundcloud(track.url);
+            console.log(soundCloudInfo);
+            return (await playdl.stream_from_info(soundCloudInfo)).stream;
+          }
+          return;
+        }
+
         if (source === "youtube") {
           if (playdl.sp_validate(track.url)) {
             if (playdl.is_expired()) {
@@ -206,6 +225,7 @@ module.exports = {
             });
             return (await playdl.stream(youtube[0].url)).stream;
           }
+
           return (await playdl.stream(track.url)).stream;
         }
       },
