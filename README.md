@@ -3,7 +3,7 @@
   <a href="https://discord.com/oauth2/authorize?client_id=881856452157898842&scope=applications.commands%20bot&permissions=536079414">Invite</a> |
   <a href="https://discord.gg/JCdpeeNP9N">Support</a> 
   <br><br>
-  <img src="https://cdn.discordapp.com/attachments/506267292993191947/896386593181560873/eyesense.png">
+  <img width="400" height="400" src="https://cdn.discordapp.com/attachments/506267292993191947/896386593181560873/eyesense.png">
 </p>
 
 <p align="center">
