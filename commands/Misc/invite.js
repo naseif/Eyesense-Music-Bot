@@ -27,10 +27,10 @@ module.exports = {
     const embed = new MessageEmbed()
       .setAuthor(
         "Eyesense",
-        "https://cdn.discordapp.com/attachments/547844388492148737/893093188926079036/c8e3bbbc07dc4680bea5b355f2c708c7.png"
+        "https://cdn.discordapp.com/attachments/506267292993191947/896386593181560873/eyesense.png"
       )
       .setThumbnail(
-        "https://cdn.discordapp.com/attachments/547844388492148737/893093188926079036/c8e3bbbc07dc4680bea5b355f2c708c7.png"
+        "https://cdn.discordapp.com/attachments/506267292993191947/896386593181560873/eyesense.png"
       )
       .setColor("#9dcc37")
       .addField(
@@ -66,10 +66,10 @@ module.exports = {
     const embed = new MessageEmbed()
       .setAuthor(
         "Eyesense",
-        "https://cdn.discordapp.com/attachments/547844388492148737/893093188926079036/c8e3bbbc07dc4680bea5b355f2c708c7.png"
+        "https://cdn.discordapp.com/attachments/506267292993191947/896386593181560873/eyesense.png"
       )
       .setThumbnail(
-        "https://cdn.discordapp.com/attachments/547844388492148737/893093188926079036/c8e3bbbc07dc4680bea5b355f2c708c7.png"
+        "https://cdn.discordapp.com/attachments/506267292993191947/896386593181560873/eyesense.png"
       )
       .setColor("#9dcc37")
       .addField(
