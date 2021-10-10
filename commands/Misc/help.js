@@ -144,11 +144,11 @@ module.exports = {
       option
         .setName("category")
         .setDescription("show help by category")
-        .addChoice("Admin", "admin")
-        .addChoice("Anime", "anime")
-        .addChoice("Fun", "fun")
-        .addChoice("Music", "music")
-        .addChoice("Misc", "misc")
+        .addChoice("Admin", "Admin")
+        .addChoice("Anime", "Anime")
+        .addChoice("Fun", "Fun")
+        .addChoice("Music", "Music")
+        .addChoice("Misc", "Misc")
     ),
   async execute(interaction, client) {
     await interaction.deferReply();
