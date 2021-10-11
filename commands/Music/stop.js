@@ -26,7 +26,7 @@ module.exports = {
           embeds: [
             embedMessage(
               "#9dcc37",
-              `✅ Stopped **${queue.current.title}** in [<#${message.member.voice.channel}>]`
+              `✅ Stopped **${queue.current.title}** in [${message.member.voice.channel}]`
             ),
           ],
         });
@@ -64,7 +64,7 @@ module.exports = {
           embeds: [
             embedMessage(
               "#9dcc37",
-              `✅ Stopped **${queue.current.title}** in [<#${interaction.member.voice.channelId}>]`
+              `✅ Stopped **${queue.current.title}** in [${interaction.member.voice.channel}]`
             ),
           ],
         });
