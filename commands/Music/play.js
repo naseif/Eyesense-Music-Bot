@@ -254,7 +254,7 @@ module.exports = {
         name: `${interaction.user.username}`,
         icon_url: `${interaction.user.avatarURL()}`,
       },
-      description: `Song: **${searchSong.tracks[0].title}**`,
+      description: `Song: **[${searchSong.tracks[0].title}](${searchSong.tracks[0].url})**`,
       thumbnail: {
         url: `${searchSong.tracks[0].thumbnail}`,
       },
