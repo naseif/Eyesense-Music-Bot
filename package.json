@@ -25,6 +25,7 @@
     "discord.js": "^13.2.0",
     "ffmpeg-static": "^4.4.0",
     "genius-lyrics-api": "^3.2.0",
+    "jikanjs": "^0.7.0",
     "moment": "^2.29.1",
     "mongoose": "^6.0.8",
     "node-fetch": "^2.6.1",
