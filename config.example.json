@@ -1,5 +1,6 @@
 {
   "token": "",
   "prefix": "",
-  "mongourl": "" 
+  "mongourl": "", 
+  "geniusApiKey": ""
 }

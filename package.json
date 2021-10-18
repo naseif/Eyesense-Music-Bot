@@ -15,7 +15,6 @@
   "author": "naseif",
   "license": "ISC",
   "dependencies": {
-    "@discord-player/extractor": "^3.0.2",
     "@discordjs/builders": "^0.6.0",
     "@discordjs/opus": "^0.6.0",
     "@discordjs/rest": "0.1.0-canary.0",
@@ -25,6 +24,7 @@
     "discord-player": "^5.1.0-dev.1633479141.44b30ad",
     "discord.js": "^13.2.0",
     "ffmpeg-static": "^4.4.0",
+    "genius-lyrics-api": "^3.2.0",
     "moment": "^2.29.1",
     "mongoose": "^6.0.8",
     "node-fetch": "^2.6.1",

@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
-const { Lyrics } = require("@discord-player/extractor");
-const lyricsClient = Lyrics.init();
+const { getLyrics, getSong } = require("genius-lyrics-api");
+const { geniusApiKey } = require("../../config.json");
 
 module.exports = {
   name: "lyrics",
@@ -10,6 +10,16 @@ module.exports = {
   description: "Gets the lyrics of the current song or a song you pass",
   usage: "ly || lyrics <optional song name>",
   async run(message, args, client) {
+    if (!geniusApiKey)
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            "You did not add your Genius API token in the config file!"
+          ),
+        ],
+      });
+
     const queue = client.player.getQueue(message.guild);
     const songString = args.join(" ");
     let songTitle;
@@ -22,7 +32,7 @@ module.exports = {
           embeds: [
             embedMessage(
               "#9dcc37",
-              "❌ There is no music playing to search for lyrics!"
+              "❌ There is no music playing to search for lyrics!, Give me the song name instead."
             ),
           ],
         });
@@ -38,7 +48,14 @@ module.exports = {
     }
 
     try {
-      const lyrics = await lyricsClient.search(songTitle);
+      const lyricsOptions = {
+        apiKey: geniusApiKey,
+        title: songTitle,
+        artist: " ",
+        optimizeQuery: true,
+      };
+
+      const lyrics = await getSong(lyricsOptions);
       if (!lyrics)
         return await message.channel.send({
           embeds: [
@@ -51,14 +68,14 @@ module.exports = {
 
       const lyricsEmbed = {
         color: "#9dcc37",
-        title: `${lyrics.artist.name} - ${lyrics.title}`,
+        title: `${lyrics.title}`,
         author: {
           name: `${message.member.user.username}`,
           icon_url: `${message.member.user.avatarURL()}`,
         },
         description: `${lyrics.lyrics}`,
         thumbnail: {
-          url: `${lyrics.thumbnail}`,
+          url: `${lyrics.albumArt}`,
         },
 
         timestamp: new Date(),
@@ -77,6 +94,7 @@ module.exports = {
         ],
       });
       client.logger(error.message, "error");
+      console.log(error);
     }
   },
   data: new SlashCommandBuilder()
