@@ -81,7 +81,75 @@ module.exports = {
     .setName("searchanime")
     .setDescription("Searches for an Anime")
     .addStringOption((option) =>
-      option.setName("name").setRequired(true).setDescription("anime to search")
+      option
+        .setName("anime")
+        .setRequired(true)
+        .setDescription("anime to search")
     ),
-  async execute() {},
+  async execute(interaction, client) {
+    await interaction.deferReply();
+    const animeName = interaction.options.getString("anime");
+
+    try {
+      const Anime = await getAnimeInfo(animeName);
+      const animeEmbed = {
+        color: "#9dcc37",
+        title: `${Anime.titlerom} AKA ${Anime.titleeng ?? `${Anime.titlerom}`}`,
+        url: `${`https://myanimelist.net/anime/${Anime.malid}`}`,
+        author: {
+          name: `${interaction.user.username}`,
+          icon_url: `${interaction.user.avatarURL()}`,
+        },
+        description: `${Anime.synopsis}`,
+        thumbnail: {
+          url: `${Anime.imageUrl}`,
+        },
+        fields: [
+          {
+            name: "Status",
+            value: `${Anime.status}`,
+          },
+          {
+            name: "Rating",
+            value: `${Anime.rating}`,
+            inline: true,
+          },
+          {
+            name: "Score/Rank",
+            value: `${Anime.score}/${Anime.rank}`,
+          },
+          {
+            name: "Premiered",
+            value: Anime.premiered,
+            inline: true,
+          },
+          {
+            name: "Episodes Number",
+            value: `${Anime.episodes ? Anime.episodes : "Unknown"}`,
+            inline: true,
+          },
+          {
+            name: "Aired",
+            value: `${Anime.aired ? Anime.aired : "Unknown"}`,
+            inline: true,
+          },
+          {
+            name: "Genres",
+            value: `${Anime.genres.join(" - ")}`,
+            inline: true,
+          },
+        ],
+
+        timestamp: new Date(),
+      };
+
+      await interaction.followUp({ embeds: [animeEmbed] });
+    } catch (err) {
+      await interaction.followUp({
+        embeds: [embedMessage("#9dcc37", `Could not find this Anime, Sry!`)],
+      });
+      logger(err.message, "error");
+      console.error(err);
+    }
+  },
 };
