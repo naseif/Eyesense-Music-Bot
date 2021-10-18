@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { requestAPI } = require("../../modules/requestAPI");
+const { getUserFromMention } = require("../../modules/getUserFromMention");
 
 module.exports = {
   name: "highfive",
@@ -9,6 +10,7 @@ module.exports = {
   usage: "hf || highfive",
   async run(message, args, client) {
     try {
+      const user = getUserFromMention(args[0], client);
       const highFive = await requestAPI("https://api.waifu.pics/sfw/highfive");
       const highFiveEmbed = {
         color: "#9dcc37",
@@ -21,7 +23,10 @@ module.exports = {
           icon_url: `${message.member.user.avatarURL()}`,
         },
       };
-      await message.channel.send({ embeds: [highFiveEmbed] });
+      await message.channel.send({
+        embeds: [highFiveEmbed],
+        content: `${user ? user : `${message.member.toString()}`}`,
+      });
     } catch (error) {
       client.logger(error.message, "error");
       await message.channel.send(`❌ | Couldn't retrieve a hug gif, Sorry!`);
@@ -45,7 +50,9 @@ module.exports = {
           icon_url: `${interaction.user.avatarURL()}`,
         },
       };
-      await interaction.followUp({ embeds: [highFiveEmbed] });
+      await interaction.followUp({
+        embeds: [highFiveEmbed],
+      });
     } catch (error) {
       client.logger(error.message, "error");
       await interaction.followUp(`❌ | Couldn't retrieve a hug gif, Sorry!`);
