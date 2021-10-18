@@ -22,6 +22,11 @@ module.exports.getMovieID = async (searchParam, year) => {
   }
 };
 
+/**
+ * Gets Info about Movies based on an ID
+ * @param {String} id
+ * @returns Returns an Object containing all Info about the Movie
+ */
 module.exports.getDetails = async (id) => {
   try {
     const apiCall = await fetch(
