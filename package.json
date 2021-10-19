@@ -21,25 +21,24 @@
   "author": "naseif",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/builders": "^0.7.0",
+    "@discordjs/builders": "^0.6.0",
     "@discordjs/opus": "^0.6.0",
     "@discordjs/rest": "0.1.0-canary.0",
-    "bufferutil": "^4.0.5",
+    "bufferutil": "^4.0.3",
     "chalk": "^4.1.2",
-    "discord-api-types": "^0.24.0",
+    "discord-api-types": "^0.22.0",
     "discord-player": "^5.1.0-dev.1633479141.44b30ad",
     "discord.js": "^13.2.0",
     "ffmpeg-static": "^4.4.0",
     "genius-lyrics-api": "^3.2.0",
     "jikanjs": "^0.7.0",
+    "libsodium-wrappers": "^0.7.9",
     "moment": "^2.29.1",
     "mongoose": "^6.0.8",
     "node-fetch": "^2.6.1",
     "play-dl": "^1.0.3",
     "quickmongo": "^3.0.2",
-    "sodium": "^3.0.2",
-    "utf-8-validate": "^5.0.7",
-    "zlib-sync": "^0.1.7"
+    "utf-8-validate": "^5.0.5"
   },
   "devDependencies": {
     "mdtable": "^0.3.1"
