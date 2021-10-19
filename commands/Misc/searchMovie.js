@@ -11,6 +11,11 @@ module.exports = {
   description: "Searches for Movies on TMDB",
   usage: "sm || searchmovie <movie name>",
   async run(message, args, client) {
+    if (!args[0])
+      return await message.channel.send({
+        embeds: [embedMessage("#9dcc37", `You did not provide a Movie name`)],
+      });
+
     if (!TMDb)
       return await message.channel.send({
         embeds: [
