@@ -2,5 +2,6 @@
   "token": "",
   "prefix": "",
   "mongourl": "", 
-  "geniusApiKey": ""
+  "geniusApiKey": "",
+  "TMDb": ""
 }
