@@ -10,7 +10,6 @@ module.exports = {
   usage: "p <YouTube URL | Song Name | Spotify URL | Soundcloud URL |>",
   async run(message, args, client, prefix) {
     const songString = args.join(" ");
-
     if (!songString)
       return await message.channel.send({
         embeds: [
@@ -47,7 +46,12 @@ module.exports = {
 
     if (!searchSong.tracks.length || !searchSong)
       return message.channel.send({
-        embeds: [embedMessage("#9dcc37", `❌ | Song not found`)],
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | Song not found, Maybe its age restricted or flagged as offensive by Youtube`
+          ),
+        ],
       });
 
     let queue = await client.player.createQueue(message.guildId, {
