@@ -71,7 +71,9 @@ module.exports = {
         title: `${lyrics.title}`,
         author: {
           name: `${message.member.user.username}`,
-          icon_url: `${message.member.user.avatarURL()}`,
+          icon_url: `${
+            message.member.user.avatarURL() || client.user.avatarURL()
+          }`,
         },
         description: `${lyrics.lyrics}`,
         thumbnail: {
@@ -150,7 +152,9 @@ module.exports = {
         title: `${lyrics.artist.name} - ${lyrics.title}`,
         author: {
           name: `${interaction.user.username}`,
-          icon_url: `${interaction.user.avatarURL()}`,
+          icon_url: `${
+            interaction.user.avatarURL() || client.user.avatarURL()
+          }`,
         },
         description: `${lyrics.lyrics}`,
         thumbnail: {

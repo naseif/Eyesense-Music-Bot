@@ -58,7 +58,9 @@ module.exports = {
         url: `${`https://www.themoviedb.org/movie/${movie.id}`}`,
         author: {
           name: `${message.member.user.username}`,
-          icon_url: `${message.member.user.avatarURL()}`,
+          icon_url: `${
+            message.member.user.avatarURL() || client.user.avatarURL()
+          }`,
         },
         description: `${movie.overview}`,
         thumbnail: {
@@ -148,7 +150,9 @@ module.exports = {
         url: `${`https://www.themoviedb.org/movie/${movie.id}`}`,
         author: {
           name: `${interaction.user.username}`,
-          icon_url: `${interaction.user.avatarURL()}`,
+          icon_url: `${
+            interaction.user.avatarURL() || client.user.avatarURL()
+          }`,
         },
         description: `${movie.overview}`,
         thumbnail: {

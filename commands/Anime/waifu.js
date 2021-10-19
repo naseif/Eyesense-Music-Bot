@@ -17,7 +17,9 @@ module.exports = {
         timestamp: new Date(),
         footer: {
           text: `Requested by ${message.member.user.username}`,
-          icon_url: `${message.member.user.avatarURL()}`,
+          icon_url: `${
+            message.member.user.avatarURL() || client.user.avatarURL()
+          }`,
         },
       };
       await message.channel.send({ embeds: [waifuEmbed] });
@@ -41,7 +43,9 @@ module.exports = {
         timestamp: new Date(),
         footer: {
           text: `Requested by ${interaction.user.username}`,
-          icon_url: `${interaction.user.avatarURL()}`,
+          icon_url: `${
+            interaction.user.avatarURL() || client.user.avatarURL()
+          }`,
         },
       };
       await interaction.followUp({ embeds: [waifuEmbed] });

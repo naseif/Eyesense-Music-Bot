@@ -32,7 +32,9 @@ module.exports = {
       title: `${question}`,
       author: {
         name: `${message.member.user.username}`,
-        icon_url: `${message.member.user.avatarURL()}`,
+        icon_url: `${
+          message.member.user.avatarURL() || client.user.avatarURL()
+        }`,
       },
       description: `${answers[Math.floor(Math.random() * answers.length)]}`,
     };

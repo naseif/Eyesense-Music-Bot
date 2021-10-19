@@ -26,7 +26,9 @@ module.exports = {
     const embed = {
       author: {
         name: `${message.member.user.username}`,
-        icon_url: `${message.member.user.avatarURL()}`,
+        icon_url: `${
+          message.member.user.avatarURL() || client.user.avatarURL()
+        }`,
       },
       color: "#9dcc37",
       title: `User unbanned successfully ✅`,
@@ -89,7 +91,7 @@ module.exports = {
     const embed = {
       author: {
         name: `${interaction.user.username}`,
-        icon_url: `${interaction.user.avatarURL()}`,
+        icon_url: `${interaction.user.avatarURL() || client.user.avatarURL()}`,
       },
       color: "#9dcc37",
       title: `User unbanned successfully`,
