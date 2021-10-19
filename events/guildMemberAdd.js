@@ -5,7 +5,11 @@ module.exports = {
       color: "#9dcc37",
       title: `New Member joined!`,
       thumbnail: {
-        url: `${guild.user.avatarURL()}`,
+        url: `${
+          guild.user.avatarURL() ||
+          guild.guild.iconURL() ||
+          guild.guild.client.user.avatarURL()
+        }`,
       },
       fields: [
         {
