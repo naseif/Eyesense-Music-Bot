@@ -1,0 +1,8 @@
+# Basic dependabot.yml file with
+
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
