@@ -21,7 +21,7 @@
 ## Features
 
 - Support for slash commands 💯
-- <p>Support for <img width="20" height="20" src="https://cdn.discordapp.com/attachments/547844388492148737/904662813757288468/Logo-SoundCloud-Sketch-SoundCloud-logo-512512-transprent-.png"> <img width="20" height="20" src="https://cdn.discordapp.com/attachments/547844388492148737/904660894347296798/file-spotify-logo-png-4.png"> <img width="20" height="20" src="https://cdn.discordapp.com/attachments/547844388492148737/904665487860973588/hd-youtube-logo-png-transparent-background-20.png"></p>
+- <p>Support for <img width="20" height="20" src="https://cdn.discordapp.com/attachments/547844388492148737/904716610034610207/soundcloud-logo-soundcloud-icon-transparent-png-1.png"> <img width="20" height="20" src="https://cdn.discordapp.com/attachments/547844388492148737/904660894347296798/file-spotify-logo-png-4.png"> <img width="20" height="20" src="https://cdn.discordapp.com/attachments/547844388492148737/904665487860973588/hd-youtube-logo-png-transparent-background-20.png"></p>
 - Can run on multiple servers at the same time 🚀
 - Moderation Commands 🔨
 - and more ⌛️ 
@@ -64,7 +64,7 @@ Once you are done, you can now start the bot by running the following:
 Since play-dl is being used as alternative for ytdl-core, a manual configuration for spotify is needed. You can find the instructions [here](https://github.com/play-dl/play-dl/discussions/64)
   
 
-### <p><img width="20" height="20" src="https://cdn.discordapp.com/attachments/547844388492148737/904662813757288468/Logo-SoundCloud-Sketch-SoundCloud-logo-512512-transprent-.png"> Soundcloud Configuration</p>
+### <p><img width="20" height="20" src="https://cdn.discordapp.com/attachments/547844388492148737/904716610034610207/soundcloud-logo-soundcloud-icon-transparent-png-1.png"> Soundcloud Configuration</p>
   
 As of this moment, there is no need to configure soundcloud manuely after play-dl latest update!
 ### Recommendation
