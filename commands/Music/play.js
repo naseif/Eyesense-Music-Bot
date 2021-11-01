@@ -63,22 +63,29 @@ module.exports = {
       leaveOnEmpty: true,
       async onBeforeCreateStream(track, source, _queue) {
         if (source === "soundcloud") {
+          const client_id = await playdl.getFreeClientID();
+          playdl.setToken({
+            soundcloud: {
+              client_id: client_id,
+            },
+          });
           if (await playdl.so_validate(track.url)) {
             let soundCloudInfo = await playdl.soundcloud(track.url);
-            console.log(soundCloudInfo);
             return (await playdl.stream_from_info(soundCloudInfo)).stream;
           }
           return;
         }
 
         if (source === "youtube") {
-          if (playdl.sp_validate(track.url)) {
+          const validateSP = playdl.sp_validate(track.url);
+          const spotifyList = ["track", "album", "playlist"];
+          if (spotifyList.includes(validateSP)) {
             if (playdl.is_expired()) {
               await playdl.refreshToken();
             }
             let spotifyInfo = await playdl.spotify(track.url);
             let youtube = await playdl.search(`${spotifyInfo.name}`, {
-              limit: 1,
+              limit: 2,
             });
             return (await playdl.stream(youtube[0].url)).stream;
           }
