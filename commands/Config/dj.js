@@ -6,7 +6,7 @@ module.exports = {
   name: "dj",
   description: "Set DJ Role",
   args: true,
-  usage: `dj set <role>`,
+  usage: `dj set || delete <role>`,
   async run(message, args, client, defaultPrefix) {
     if (!message.member.permissions.has("MANAGE_GUILD"))
       return await message.channel.send({
