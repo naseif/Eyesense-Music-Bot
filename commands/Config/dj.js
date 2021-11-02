@@ -84,7 +84,73 @@ module.exports = {
     .setName("dj")
     .setDescription("Set DJ Role")
     .addStringOption((option) =>
-      option.setName("role").setDescription("DJ Role").setRequired(true)
+      option
+        .setName("action")
+        .setDescription("add or delete dj role")
+        .addChoice("Add", "set")
+        .addChoice("Remove", "delete")
+        .setRequired(true)
+    )
+    .addRoleOption((option) =>
+      option.setName("dj").setDescription("DJ Role").setRequired(true)
     ),
-  async execute(interaction, client) {},
+  async execute(interaction, client) {
+    await interaction.deferReply();
+
+    const role = interaction.options.getRole("dj");
+    const action = interaction.options.getString("action");
+
+    if (!interaction.member.permissions.has("MANAGE_GUILD"))
+      return await followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ You do not have permission to grant the DJ Role!`
+          ),
+        ],
+      });
+
+    if (action === "set") {
+      await client.db.set(`djRole_${interaction.guildId}`, role.id);
+      await interaction.followUp({
+        embeds: [
+          embedMessage("#9dcc37", `✅ DJ Role has been set <@&${role.id}>`),
+        ],
+      });
+    }
+
+    if (action === "delete") {
+      const roleExist = await client.db.get(`djRole_${interaction.guildId}`);
+      if (!roleExist)
+        return await interaction.followUp({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `There is no registered DJ Role for this server`
+            ),
+          ],
+        });
+      if (role.id === roleExist) {
+        await client.db.delete(`djRole_${interaction.guildId}`, role.id);
+        return await interaction.followUp({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `✅ DJ Role has been deleted <@&${role.id}>`
+            ),
+          ],
+        });
+      }
+      if (role.id !== roleExist) {
+        return await interaction.followUp({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `The Role you wish to delete is not registered as DJ Role\nRegistered Role: <@&${roleExist}>`
+            ),
+          ],
+        });
+      }
+    }
+  },
 };
