@@ -19,6 +19,20 @@ module.exports = {
         ],
       });
 
+    const checkdj = await client.db.get(`djRole_${message.guildId}`);
+    const userRoles = await message.member.roles.cache.map((role) => role.id);
+
+    if (checkdj && !userRoles.includes(checkdj)) {
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
+          ),
+        ],
+      });
+    }
+
     if (!args[0])
       return await message.channel.send({
         embeds: [
@@ -66,6 +80,22 @@ module.exports = {
           ),
         ],
       });
+
+    const checkdj = await client.db.get(`djRole_${interaction.guildId}`);
+    const userRoles = await interaction.member.roles.cache.map(
+      (role) => role.id
+    );
+
+    if (checkdj && !userRoles.includes(checkdj)) {
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
+          ),
+        ],
+      });
+    }
 
     try {
       if (queue) {
