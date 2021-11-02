@@ -19,11 +19,15 @@ module.exports = {
       });
 
     if (!args[0]) {
+      const djrole = await client.db.get(`djRole_${message.guildId}`);
+
       return await message.channel.send({
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Please choose whether you want to set or delete an existing role`
+            `Please choose whether you want to set or delete an existing role\nCurrent DJ Role: ${
+              djrole ? `<@&${djrole}>` : "None"
+            }`
           ),
         ],
       });
