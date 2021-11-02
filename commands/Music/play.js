@@ -213,7 +213,7 @@ module.exports = {
         ],
       });
 
-    const checkdj = await client.db.get(`djRole_${message.guildId}`);
+    const checkdj = await client.db.get(`djRole_${interaction.guildId}`);
     const userRoles = await interaction.member.roles.cache.map(
       (role) => role.id
     );
