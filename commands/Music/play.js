@@ -213,6 +213,22 @@ module.exports = {
         ],
       });
 
+    const checkdj = await client.db.get(`djRole_${message.guildId}`);
+    const userRoles = await interaction.member.roles.cache.map(
+      (role) => role.id
+    );
+
+    if (checkdj && !userRoles.includes(checkdj)) {
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
+          ),
+        ],
+      });
+    }
+
     const songString = interaction.options.getString("song");
     const searchSong = await client.player.search(songString, {
       requestedBy: interaction.user,
@@ -232,22 +248,29 @@ module.exports = {
       leaveOnEmpty: true,
       async onBeforeCreateStream(track, source, _queue) {
         if (source === "soundcloud") {
+          const client_id = await playdl.getFreeClientID();
+          playdl.setToken({
+            soundcloud: {
+              client_id: client_id,
+            },
+          });
           if (await playdl.so_validate(track.url)) {
             let soundCloudInfo = await playdl.soundcloud(track.url);
-            console.log(soundCloudInfo);
             return (await playdl.stream_from_info(soundCloudInfo)).stream;
           }
           return;
         }
 
         if (source === "youtube") {
-          if (playdl.sp_validate(track.url)) {
+          const validateSP = playdl.sp_validate(track.url);
+          const spotifyList = ["track", "album", "playlist"];
+          if (spotifyList.includes(validateSP)) {
             if (playdl.is_expired()) {
               await playdl.refreshToken();
             }
             let spotifyInfo = await playdl.spotify(track.url);
             let youtube = await playdl.search(`${spotifyInfo.name}`, {
-              limit: 1,
+              limit: 2,
             });
             return (await playdl.stream(youtube[0].url)).stream;
           }
