@@ -19,7 +19,8 @@ module.exports = {
     }
 
     const tracks = queue?.tracks?.map(
-      (track) => `<@${track.requestedBy.id}>, ${track.title}`
+      (track, index) =>
+        `[${index + 1}] - ${track.title} - <@${track.requestedBy.id}>`
     );
     const queueEmbed = {
       color: "#9dcc37",
@@ -57,7 +58,8 @@ module.exports = {
     }
 
     const tracks = queue?.tracks?.map(
-      (track) => `<@${track.requestedBy.id}>, ${track.title}`
+      (track, index) =>
+        `[${index + 1}] - ${track.title} - <@${track.requestedBy.id}>`
     );
     const queueEmbed = {
       color: "#9dcc37",
