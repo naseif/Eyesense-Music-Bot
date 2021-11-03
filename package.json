@@ -1,6 +1,6 @@
 {
   "name": "eyesense-music-bot",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "description": "Bot to play Music from Youtube, Soundcloud or Spotify using the new slash commands and a lot more!",
   "main": "index.js",
   "scripts": {
