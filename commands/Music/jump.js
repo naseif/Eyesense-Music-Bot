@@ -41,7 +41,7 @@ module.exports = {
       });
     try {
       if (queue) {
-        await queue.jump(Number(args[0]));
+        await queue.jump(Number(args[0] - 1));
         return await message.channel.send({
           embeds: [
             embedMessage(
@@ -99,7 +99,7 @@ module.exports = {
 
     try {
       if (queue) {
-        await queue.jump(Number(position));
+        await queue.jump(Number(position - 1));
         return await interaction.followUp({
           embeds: [
             embedMessage(
