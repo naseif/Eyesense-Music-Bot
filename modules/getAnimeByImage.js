@@ -1,8 +1,8 @@
 const fetch = require("node-fetch");
 /**
- *
+ * Scans the given link
  * @param {string} imageLink
- * @returns
+ * @returns Array containing multiple results
  */
 
 module.exports.getAnimeByImage = async (imageLink) => {
