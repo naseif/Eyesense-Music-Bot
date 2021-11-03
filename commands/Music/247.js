@@ -15,7 +15,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Please specify whether you want to on/off the 24/7 Mode, see ${prefix}h 247 for more info about this command`
+            `❌ | Please specify whether you want to on/off the 24/7 Mode, see ${prefix}h 247 for more info about this command`
           ),
         ],
       });

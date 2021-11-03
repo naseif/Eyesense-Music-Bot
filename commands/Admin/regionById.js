@@ -43,7 +43,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `A voice channel with this id does not exist!`
+            `❌ A voice channel with this id does not exist!`
           ),
         ],
       });
@@ -57,7 +57,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `${interaction.member.toString()} You do not have permssion to edit the region of channels!`
+            `❌ ${interaction.member.toString()} You do not have permssion to edit the region of channels!`
           ),
         ],
       });
@@ -69,7 +69,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Region of ${voiceChannel.toString()} has been changed from ${currentRtc} to ${
+            `✅ Region of ${voiceChannel.toString()} has been changed from ${currentRtc} to ${
               voiceChannel.rtcRegion
             }`
           ),
@@ -81,7 +81,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Could not change the region of this channel!`
+            `❌ Could not change the region of this channel!`
           ),
         ],
       });

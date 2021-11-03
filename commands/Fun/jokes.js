@@ -42,7 +42,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await message.channel.send(
-        `Could not retrieve a Joke, I blame <@503264757785165851>`
+        `❌ Could not retrieve a Joke, I blame <@503264757785165851>`
       );
     }
   },
@@ -87,7 +87,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await interaction.followUp(
-        `Could not retrieve a Joke, I blame <@503264757785165851>`
+        `❌ Could not retrieve a Joke, I blame <@503264757785165851>`
       );
     }
   },

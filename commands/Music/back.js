@@ -31,7 +31,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Playing Previous Track **${queue.nowPlaying()}**, [${message.member.toString()}]`
+            `✅ Playing Previous Track **${queue.nowPlaying()}**, [${message.member.toString()}]`
           ),
         ],
       });
@@ -73,7 +73,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Playing Previous Track **${queue.nowPlaying()}**, [${interaction.member.toString()}]`
+            `✅ Playing Previous Track **${queue.nowPlaying()}**, [${interaction.member.toString()}]`
           ),
         ],
       });

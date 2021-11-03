@@ -12,7 +12,10 @@ module.exports = {
     if (!args[0])
       return await message.channel.send({
         embeds: [
-          embedMessage("#9dcc37", `Please mention your fav user to insult :)`),
+          embedMessage(
+            "#9dcc37",
+            `❌ Please mention your fav user to insult :)`
+          ),
         ],
       });
 
@@ -23,7 +26,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `You sure you mentioned the user ?, because I could not resolve the given user`
+            `❌ You sure you mentioned the user ?, because I could not resolve the given user`
           ),
         ],
       });
@@ -39,7 +42,7 @@ module.exports = {
     } catch (error) {
       client.logger(error.message, "error");
       await message.channel.send(
-        `Couldn't retrieve Insult, I blame <@503264757785165851>`
+        `❌ Couldn't retrieve Insult, I blame <@503264757785165851>`
       );
     }
   },
@@ -64,7 +67,7 @@ module.exports = {
     } catch (error) {
       client.logger(error.message, "error");
       await interaction.followUp(
-        `Couldn't retrieve Insult, I blame <@503264757785165851>`
+        `❌ Couldn't retrieve Insult, I blame <@503264757785165851>`
       );
     }
   },

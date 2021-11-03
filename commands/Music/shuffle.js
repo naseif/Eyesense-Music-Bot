@@ -29,7 +29,7 @@ module.exports = {
     } catch (error) {
       client.logger(error.message, "error");
       await message.channel.send({
-        embeds: [embedMessage("#9dcc37", "Could not shuffle the queue")],
+        embeds: [embedMessage("#9dcc37", "❌ Could not shuffle the queue")],
       });
     }
   },
@@ -61,7 +61,7 @@ module.exports = {
     } catch (error) {
       client.logger(error.message, "error");
       await interaction.followUp({
-        embeds: [embedMessage("#9dcc37", "Could not shuffle the queue")],
+        embeds: [embedMessage("#9dcc37", "❌ Could not shuffle the queue")],
       });
     }
   },

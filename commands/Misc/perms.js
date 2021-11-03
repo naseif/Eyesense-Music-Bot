@@ -24,7 +24,7 @@ module.exports = {
           embeds: [
             embedMessage(
               "#9dcc37",
-              `I was not able to resolve this user, please mention the user!`
+              `❌ I was not able to resolve this user, please mention the user!`
             ),
           ],
         });

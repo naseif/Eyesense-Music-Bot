@@ -14,7 +14,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Your Queue is empty, Make sure to play a song first`
+            `❌ | Your Queue is empty, Make sure to play a song first`
           ),
         ],
       });
@@ -25,7 +25,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Please provide whether you want to on/off the filter, see ${prefix}h 8d for more info about this command`
+            `❌ | Please provide whether you want to on/off the filter, see ${prefix}h 8d for more info about this command`
           ),
         ],
       });
@@ -42,20 +42,22 @@ module.exports = {
         } catch (error) {
           client.logger(error.message, "error");
           await message.channel.send({
-            embeds: [embedMessage("#9dcc37", `Could not set the Filter`)],
+            embeds: [embedMessage("#9dcc37", `❌ | Could not set the Filter`)],
           });
         }
         break;
       case "off":
         try {
-          await queue.setFilters({normalizer: true});
+          await queue.setFilters({ normalizer: true });
           await message.channel.send({
             embeds: [embedMessage("#9dcc37", `✅ 8D Filter has been disabled`)],
           });
         } catch (error) {
           client.logger(error.message, "error");
           await message.channel.send({
-            embeds: [embedMessage("#9dcc37", `Could not disable the filter`)],
+            embeds: [
+              embedMessage("#9dcc37", `❌ | Could not disable the filter`),
+            ],
           });
         }
         break;
@@ -83,7 +85,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Your Queue is empty, Make sure to play a song first`
+            `❌ | Your Queue is empty, Make sure to play a song first`
           ),
         ],
       });
@@ -100,7 +102,7 @@ module.exports = {
         } catch (error) {
           client.logger(error.message, "error");
           await interaction.followUp({
-            embeds: [embedMessage("#9dcc37", `Could not set the Filter`)],
+            embeds: [embedMessage("#9dcc37", `❌ | Could not set the Filter`)],
           });
         }
         break;
@@ -113,7 +115,9 @@ module.exports = {
         } catch (error) {
           client.logger(error.message, "error");
           await interaction.followUp({
-            embeds: [embedMessage("#9dcc37", `Could not disable the filter`)],
+            embeds: [
+              embedMessage("#9dcc37", `❌ | Could not disable the filter`),
+            ],
           });
         }
     }

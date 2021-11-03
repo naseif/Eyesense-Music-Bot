@@ -10,7 +10,7 @@ module.exports = {
     const user = getUserFromMention(args[0], client) || message.member.user;
 
     if (!user.avatarURL())
-      return await message.channel.send("This user has no avatar!");
+      return await message.channel.send("❌ This user has no avatar!");
 
     const embed = {
       color: "#9dcc37",
@@ -44,7 +44,7 @@ module.exports = {
     const user = interaction.options.getUser("user");
 
     if (!user.avatarURL())
-      return await interaction.followUp(`This user has no avatar!`);
+      return await interaction.followUp(`❌ This user has no avatar!`);
 
     const embed = {
       color: "#9dcc37",

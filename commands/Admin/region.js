@@ -37,7 +37,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `You have to be connected to the voice channel to use this commnad\n see /regionbyid instead!`
+            `❌ You have to be connected to the voice channel to use this commnad\n see /regionbyid instead!`
           ),
         ],
       });
@@ -51,7 +51,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `${interaction.member.toString()} You do not have permssion to edit the region of channels!`
+            `❌ ${interaction.member.toString()} You do not have permssion to edit the region of channels!`
           ),
         ],
       });
@@ -63,7 +63,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Region of ${voiceChannel.toString()} has been changed from ${currentRtc} to ${
+            `✅ Region of ${voiceChannel.toString()} has been changed from ${currentRtc} to ${
               voiceChannel.rtcRegion
             }`
           ),
@@ -75,7 +75,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Could not change the region of this channel!`
+            `❌ Could not change the region of this channel!`
           ),
         ],
       });

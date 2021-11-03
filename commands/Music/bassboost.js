@@ -15,7 +15,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Your Queue is empty, Make sure to play a song first`
+            `❌ Your Queue is empty, Make sure to play a song first`
           ),
         ],
       });
@@ -98,7 +98,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Your Queue is empty, Make sure to play a song first`
+            `❌ Your Queue is empty, Make sure to play a song first`
           ),
         ],
       });

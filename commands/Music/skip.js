@@ -48,7 +48,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await message.channel.send({
-        embeds: [embedMessage("#9dcc37", "Song could not be skipped")],
+        embeds: [embedMessage("#9dcc37", "❌ Song could not be skipped")],
       });
     }
   },
@@ -102,7 +102,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await interaction.followUp({
-        embeds: [embedMessage("#9dcc37", "Song could not be skipped")],
+        embeds: [embedMessage("#9dcc37", "❌ Song could not be skipped")],
       });
     }
   },

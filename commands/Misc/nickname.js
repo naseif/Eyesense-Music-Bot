@@ -14,7 +14,9 @@ module.exports = {
 
     if (!args[0])
       return await message.channel.send({
-        embeds: [embedMessage("#9dcc37", `You did not give me any nickname`)],
+        embeds: [
+          embedMessage("#9dcc37", `❌ You did not give me any nickname`),
+        ],
       });
 
     if (
@@ -41,7 +43,7 @@ module.exports = {
           embeds: [
             embedMessage(
               "#9dcc37",
-              `Could not change your nickname, maybe you are the owner?\n Error: ${error.message}`
+              `❌ Could not change your nickname, maybe you are the owner?\n Error: ${error.message}`
             ),
           ],
         });
@@ -58,7 +60,7 @@ module.exports = {
           embeds: [
             embedMessage(
               "#9dcc37",
-              `Could not find User, either he does not exist or you did not mention him`
+              `❌ Could not find User, either he does not exist or you did not mention him`
             ),
           ],
         });
@@ -146,7 +148,10 @@ module.exports = {
         await user.setNickname(newNickname);
         await interaction.followUp({
           embeds: [
-            embedMessage("#9dcc37", `Nickname has been successfully changed!`),
+            embedMessage(
+              "#9dcc37",
+              `✅ Nickname has been successfully changed!`
+            ),
           ],
         });
       } catch (err) {
@@ -168,7 +173,10 @@ module.exports = {
         await interaction.member.setNickname(newNickname);
         await interaction.followUp({
           embeds: [
-            embedMessage("#9dcc37", `Nickname has been successfully changed!`),
+            embedMessage(
+              "#9dcc37",
+              `✅ Nickname has been successfully changed!`
+            ),
           ],
         });
       } catch (err) {

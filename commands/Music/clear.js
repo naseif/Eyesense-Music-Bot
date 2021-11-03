@@ -53,7 +53,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            "Could not clear the queue, maybe there is no queue"
+            "❌ Could not clear the queue, maybe there is no queue"
           ),
         ],
       });
@@ -112,7 +112,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            "Could not clear the queue, maybe there is no queue"
+            "❌ Could not clear the queue, maybe there is no queue"
           ),
         ],
       });

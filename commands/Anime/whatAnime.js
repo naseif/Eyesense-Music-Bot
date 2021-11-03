@@ -52,7 +52,7 @@ module.exports = {
     } catch (error) {
       client.logger(error.message, "error");
       await message.channel.send(
-        `${interaction.user.toString()}, There was an error processing this image!`
+        `❌ ${interaction.user.toString()}, There was an error processing this image!`
       );
     }
   },
@@ -101,7 +101,7 @@ module.exports = {
     } catch (error) {
       client.logger(error.message, "error");
       await interaction.followUp(
-        `${interaction.user.toString()}, There was an error processing this image!`
+        `❌ ${interaction.user.toString()}, There was an error processing this image!`
       );
     }
   },

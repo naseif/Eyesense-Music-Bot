@@ -170,9 +170,14 @@ module.exports = {
       } catch (err) {
         client.logger(err.message, "error");
         console.log(err);
-        await message.channel.send(
-          "There was an error playing this song, please try again"
-        );
+        await message.channel.send({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `❌ | An error occurred while trying to play this song! \nError Message: ${err.message}`
+            ),
+          ],
+        });
       }
     }
 
@@ -341,9 +346,14 @@ module.exports = {
         return;
       } catch (err) {
         client.logger(err.message, "error");
-        await interaction.followUp(
-          "There was an error playing this song, please try again"
-        );
+        await interaction.followUp({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `❌ | An error occurred while trying to play this song! \nError Message: ${err.message}`
+            ),
+          ],
+        });
       }
     }
 

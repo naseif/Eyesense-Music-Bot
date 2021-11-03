@@ -16,7 +16,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Nothing is playing to skip and play! Please use ${prefix}play instead`
+            `❌ Nothing is playing to skip and play! Please use ${prefix}play instead`
           ),
         ],
       });
@@ -140,7 +140,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Nothing is playing to skip and play! Please use /play instead`
+            `❌ Nothing is playing to skip and play! Please use /play instead`
           ),
         ],
       });

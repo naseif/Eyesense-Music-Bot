@@ -48,7 +48,9 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await message.channel.send({
-        embeds: [embedMessage("#9dcc37", "I was not able to resume this song")],
+        embeds: [
+          embedMessage("#9dcc37", "❌ I was not able to resume this song"),
+        ],
       });
     }
   },
@@ -100,7 +102,9 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await interaction.followUp({
-        embeds: [embedMessage("#9dcc37", "I was not able to resume this song")],
+        embeds: [
+          embedMessage("#9dcc37", "❌ I was not able to resume this song"),
+        ],
       });
     }
   },

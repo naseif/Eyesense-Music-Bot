@@ -63,7 +63,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            "Could not disconnect the bot, Maybe you do not have permission ?"
+            "❌ Could not disconnect the bot, Maybe you do not have permission ?"
           ),
         ],
       });
@@ -133,7 +133,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            "Could not disconnect the bot, Maybe you do not have permission ?"
+            "❌ Could not disconnect the bot, Maybe you do not have permission ?"
           ),
         ],
       });

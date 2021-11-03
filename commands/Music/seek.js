@@ -40,7 +40,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await message.channel.send({
-        embeds: [embedMessage("#9dcc37", `Could not seek the song!`)],
+        embeds: [embedMessage("#9dcc37", `❌ Could not seek the song!`)],
       });
     }
   },

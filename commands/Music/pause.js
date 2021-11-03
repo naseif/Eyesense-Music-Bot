@@ -47,7 +47,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await message.channel.send({
-        embeds: [embedMessage("#9dcc37", "Could not pause the song")],
+        embeds: [embedMessage("#9dcc37", "❌ Could not pause the song")],
       });
     }
   },
@@ -97,7 +97,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await interaction.followUp({
-        embeds: [embedMessage("#9dcc37", "Could not pause the song")],
+        embeds: [embedMessage("#9dcc37", "❌ Could not pause the song")],
       });
     }
   },
