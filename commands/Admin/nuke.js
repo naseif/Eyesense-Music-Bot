@@ -4,7 +4,7 @@ const { embedMessage } = require("../../modules/embedSimple");
 module.exports = {
   name: "nuke",
   args: true,
-  usage: "nuke || nuke <channel id>",
+  usage: "nuke || nuke <channel id or channel name>",
   description: "Deletes a text channel and recreates it with same permissions",
   async run(message, args, client) {
     if (!message.member.permissions.has("ADMINISTRATOR"))
