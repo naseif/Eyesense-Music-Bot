@@ -20,7 +20,11 @@ module.exports = {
     const checkdj = await client.db.get(`djRole_${message.guildId}`);
     const userRoles = await message.member.roles.cache.map((role) => role.id);
 
-    if (checkdj && !userRoles.includes(checkdj)) {
+    if (
+      checkdj &&
+      !userRoles.includes(checkdj) &&
+      message.guild.ownerId !== message.author.id
+    ) {
       return await message.channel.send({
         embeds: [
           embedMessage(
@@ -74,7 +78,11 @@ module.exports = {
       (role) => role.id
     );
 
-    if (checkdj && !userRoles.includes(checkdj)) {
+    if (
+      checkdj &&
+      !userRoles.includes(checkdj) &&
+      interaction.guild.ownerId !== interaction.member.id
+    ) {
       return await interaction.followUp({
         embeds: [
           embedMessage(
