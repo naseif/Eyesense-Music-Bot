@@ -58,3 +58,20 @@ module.exports.getRoleFromMention = async (mention, message) => {
     return await message.guild.roles.fetch(mention);
   }
 };
+
+/**
+ * Parses the Text Channel ID
+ * @param {TextChannel} mention
+ * @param {Message} message
+ * @returns ID String
+ */
+module.exports.getTextChannelFromMention = async (mention) => {
+  if (!mention) return;
+
+  if (mention.startsWith("<#") && mention.endsWith(">")) {
+    mention = mention.slice(2, -1);
+
+    return mention;
+  }
+  return mention;
+};
