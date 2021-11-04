@@ -4,10 +4,10 @@ const { embedMessage } = require("../../modules/embedSimple");
 const { getGuildUserFromMention } = require("../../modules/getUserFromMention");
 
 module.exports = {
-  name: "removerole",
+  name: "delrole",
   args: true,
   description: "Removes a role from a user",
-  usage: "removerole <user> <role name>",
+  usage: "delrole <user> <role name>",
   async run(message, args, client) {
     const guildUser = getGuildUserFromMention(args[0], message);
     const roleName = args[1];
