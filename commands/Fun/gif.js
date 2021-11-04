@@ -49,44 +49,51 @@ module.exports = {
       return await message.channel.send({ embeds: [randomEmbed] });
     }
 
-    const request = await requestAPI(
-      `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${GiphyKey}&limit=25`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
+    try {
+      const request = await requestAPI(
+        `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${GiphyKey}&limit=25`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!request.data.length)
+        return await message.channel.send({
+          embeds: [
+            embedMessage(
+              "#9dcc37",
+              `❌ Could not find any gifs for your search query!`
+            ),
+          ],
+        });
+
+      const randomGif =
+        request.data[Math.floor(Math.random() * request.data.length)];
+
+      const gifEmbed = {
+        color: "#9dcc37",
+        image: {
+          url: `${randomGif?.images.original.url}`,
         },
-      }
-    );
+        timestamp: new Date(),
+        footer: {
+          text: `Requested by ${message.member.user.username}`,
+          icon_url: `${
+            message.member.user.avatarURL() || client.user.avatarURL()
+          }`,
+        },
+      };
 
-    if (!request.data)
-      return await message.channel.send({
-        embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ Could not find any Gif for your search query!`
-          ),
-        ],
+      return await message.channel.send({ embeds: [gifEmbed] });
+    } catch (error) {
+      client.logger(error.message, "error");
+      await message.channel.send({
+        embeds: [embedMessage("#9dcc37", `❌ Could not retrieve the gif!`)],
       });
-
-    const randomGif =
-      request.data[Math.floor(Math.random() * request.data.length)];
-
-    const gifEmbed = {
-      color: "#9dcc37",
-      image: {
-        url: `${randomGif.images.original.url}`,
-      },
-      timestamp: new Date(),
-      footer: {
-        text: `Requested by ${message.member.user.username}`,
-        icon_url: `${
-          message.member.user.avatarURL() || client.user.avatarURL()
-        }`,
-      },
-    };
-
-    return await message.channel.send({ embeds: [gifEmbed] });
+      console.error(error);
+    }
   },
   data: new SlashCommandBuilder()
     .setName("gif")

@@ -45,7 +45,7 @@ module.exports = {
       }
     }
     let textChannelID = await getTextChannelFromMention(args[0]);
-    console.log(textChannelID);
+
     try {
       const channel = message.guild.channels.cache.find(
         (channel) => channel.id === textChannelID
