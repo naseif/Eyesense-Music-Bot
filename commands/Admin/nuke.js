@@ -1,5 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
+const {
+  getTextChannelFromMention,
+} = require("../../modules/getUserFromMention");
 
 module.exports = {
   name: "nuke",
@@ -41,10 +44,11 @@ module.exports = {
         });
       }
     }
-
+    let textChannelID = await getTextChannelFromMention(args[0]);
+    console.log(textChannelID);
     try {
       const channel = message.guild.channels.cache.find(
-        (channel) => channel.id === args[0] || channel.name === args[0]
+        (channel) => channel.id === textChannelID
       );
 
       if (!channel) {
