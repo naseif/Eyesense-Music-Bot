@@ -77,6 +77,20 @@ module.exports = {
     await interaction.deferReply();
     const queue = client.player.getQueue(interaction.guild);
 
+    if (
+      interaction.guild.me.voice.channelId &&
+      interaction.member.voice.channelId !==
+        interaction.guild.me.voice.channelId
+    )
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | You must be in my voice channel to skip the current song!`
+          ),
+        ],
+      });
+
     if (!queue || !queue.playing)
       return await interaction.followUp({
         embeds: [

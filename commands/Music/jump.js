@@ -9,6 +9,19 @@ module.exports = {
   async run(message, args, client) {
     const queue = client.player.getQueue(message.guild);
 
+    if (
+      message.guild.me.voice.channelId &&
+      message.member.voice.channelId !== message.guild.me.voice.channelId
+    )
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | You must be in my voice channel to jump to a new song!`
+          ),
+        ],
+      });
+
     if (!queue || !queue.playing)
       return await message.channel.send({
         embeds: [
@@ -75,6 +88,21 @@ module.exports = {
     await interaction.deferReply();
     const queue = client.player.getQueue(interaction.guild);
     const position = interaction.options.getInteger("position");
+
+    if (
+      interaction.guild.me.voice.channelId &&
+      interaction.member.voice.channelId !==
+        interaction.guild.me.voice.channelId
+    )
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | You must be in my voice channel to jump to a new song!`
+          ),
+        ],
+      });
+
     if (!queue || !queue.playing)
       return await interaction.followUp({
         embeds: [

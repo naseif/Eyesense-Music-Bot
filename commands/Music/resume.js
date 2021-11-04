@@ -10,6 +10,19 @@ module.exports = {
   async run(message, args, client) {
     const queue = client.player.getQueue(message.guild);
 
+    if (
+      message.guild.me.voice.channelId &&
+      message.member.voice.channelId !== message.guild.me.voice.channelId
+    )
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | You must be in my voice channel to resume the current song!`
+          ),
+        ],
+      });
+
     if (!queue || !queue.playing)
       return await message.channel.send({
         embeds: [
@@ -65,6 +78,20 @@ module.exports = {
   async execute(interaction, client) {
     await interaction.deferReply();
     const queue = client.player.getQueue(interaction.guild);
+
+    if (
+      interaction.guild.me.voice.channelId &&
+      interaction.member.voice.channelId !==
+        interaction.guild.me.voice.channelId
+    )
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | You must be in my voice channel to resume the current song!`
+          ),
+        ],
+      });
 
     if (!queue || !queue.playing)
       return await interaction.followUp({
