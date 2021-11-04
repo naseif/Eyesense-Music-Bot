@@ -3,5 +3,6 @@
   "prefix": "",
   "mongourl": "", 
   "geniusApiKey": "",
-  "TMDb": ""
+  "TMDb": "",
+  "GiphyKey": ""
 }
