@@ -10,16 +10,6 @@ module.exports = {
   async run(message, args, client) {
     const queue = client.player.getQueue(message.guild);
 
-    if (!queue || !queue.playing)
-      return await message.channel.send({
-        embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | No music is being played! [${message.member.toString()}]`
-          ),
-        ],
-      });
-
     const checkdj = await client.db.get(`djRole_${message.guildId}`);
     const userRoles = await message.member.roles.cache.map((role) => role.id);
 
@@ -37,6 +27,29 @@ module.exports = {
         ],
       });
     }
+
+    if (
+      message.guild.me.voice.channelId &&
+      message.member.voice.channelId !== message.guild.me.voice.channelId
+    )
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | You must be in my voice channel to skip the current song!`
+          ),
+        ],
+      });
+
+    if (!queue || !queue.playing)
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ | No music is being played! [${message.member.toString()}]`
+          ),
+        ],
+      });
 
     try {
       const currnetSong = queue.current;
