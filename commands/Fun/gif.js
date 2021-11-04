@@ -11,6 +11,16 @@ module.exports = {
   async run(message, args, client) {
     const query = args.join(" ");
 
+    if (!GiphyKey)
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ Your Giphy API Key is not defined in config.json!`
+          ),
+        ],
+      });
+
     if (!query) {
       const random = await requestAPI(
         `https://api.giphy.com/v1/gifs/random?api_key=${GiphyKey}`,
@@ -91,6 +101,15 @@ module.exports = {
     await interaction.deferReply();
     const query = interaction.options.getString("search");
 
+    if (!GiphyKey)
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `❌ Your Giphy API Key is not defined in config.json!`
+          ),
+        ],
+      });
     if (!query) {
       const random = await requestAPI(
         `https://api.giphy.com/v1/gifs/random?api_key=${GiphyKey}`,
