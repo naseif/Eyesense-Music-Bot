@@ -7,7 +7,7 @@ module.exports = {
   args: true,
   description: "Sets 24/7 Mode for the bot",
   usage: "247 <on> || <off>",
-  async run(message, args, client) {
+  async run(message, args, client, prefix) {
     const queue = client.player.getQueue(message.guild);
 
     if (!args[0])
