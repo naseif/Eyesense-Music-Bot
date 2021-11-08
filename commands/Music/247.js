@@ -29,8 +29,38 @@ module.exports = {
             leaveOnEmpty: false,
             initialVolume: 80,
             bufferingTimeout: 200,
+            metadata: {
+              channel: message.channel,
+            },
             async onBeforeCreateStream(track, source, _queue) {
+              if (source === "soundcloud") {
+                const client_id = await playdl.getFreeClientID();
+                playdl.setToken({
+                  soundcloud: {
+                    client_id: client_id,
+                  },
+                });
+                if (await playdl.so_validate(track.url)) {
+                  let soundCloudInfo = await playdl.soundcloud(track.url);
+                  return (await playdl.stream_from_info(soundCloudInfo)).stream;
+                }
+                return;
+              }
+      
               if (source === "youtube") {
+                const validateSP = playdl.sp_validate(track.url);
+                const spotifyList = ["track", "album", "playlist"];
+                if (spotifyList.includes(validateSP)) {
+                  if (playdl.is_expired()) {
+                    await playdl.refreshToken();
+                  }
+                  let spotifyInfo = await playdl.spotify(track.url);
+                  let youtube = await playdl.search(`${spotifyInfo.name}`, {
+                    limit: 2,
+                  });
+                  return (await playdl.stream(youtube[0].url)).stream;
+                }
+      
                 return (await playdl.stream(track.url)).stream;
               }
             },
@@ -49,8 +79,38 @@ module.exports = {
             initialVolume: 80,
             bufferingTimeout: 200,
             leaveOnEmptyCooldown: 60 * 1000 * 3,
+            metadata: {
+              channel: message.channel,
+            },
             async onBeforeCreateStream(track, source, _queue) {
+              if (source === "soundcloud") {
+                const client_id = await playdl.getFreeClientID();
+                playdl.setToken({
+                  soundcloud: {
+                    client_id: client_id,
+                  },
+                });
+                if (await playdl.so_validate(track.url)) {
+                  let soundCloudInfo = await playdl.soundcloud(track.url);
+                  return (await playdl.stream_from_info(soundCloudInfo)).stream;
+                }
+                return;
+              }
+      
               if (source === "youtube") {
+                const validateSP = playdl.sp_validate(track.url);
+                const spotifyList = ["track", "album", "playlist"];
+                if (spotifyList.includes(validateSP)) {
+                  if (playdl.is_expired()) {
+                    await playdl.refreshToken();
+                  }
+                  let spotifyInfo = await playdl.spotify(track.url);
+                  let youtube = await playdl.search(`${spotifyInfo.name}`, {
+                    limit: 2,
+                  });
+                  return (await playdl.stream(youtube[0].url)).stream;
+                }
+      
                 return (await playdl.stream(track.url)).stream;
               }
             },
@@ -119,7 +179,34 @@ module.exports = {
             initialVolume: 80,
             bufferingTimeout: 200,
             async onBeforeCreateStream(track, source, _queue) {
+              if (source === "soundcloud") {
+                const client_id = await playdl.getFreeClientID();
+                playdl.setToken({
+                  soundcloud: {
+                    client_id: client_id,
+                  },
+                });
+                if (await playdl.so_validate(track.url)) {
+                  let soundCloudInfo = await playdl.soundcloud(track.url);
+                  return (await playdl.stream_from_info(soundCloudInfo)).stream;
+                }
+                return;
+              }
+      
               if (source === "youtube") {
+                const validateSP = playdl.sp_validate(track.url);
+                const spotifyList = ["track", "album", "playlist"];
+                if (spotifyList.includes(validateSP)) {
+                  if (playdl.is_expired()) {
+                    await playdl.refreshToken();
+                  }
+                  let spotifyInfo = await playdl.spotify(track.url);
+                  let youtube = await playdl.search(`${spotifyInfo.name}`, {
+                    limit: 2,
+                  });
+                  return (await playdl.stream(youtube[0].url)).stream;
+                }
+      
                 return (await playdl.stream(track.url)).stream;
               }
             },
@@ -139,7 +226,34 @@ module.exports = {
             bufferingTimeout: 200,
             leaveOnEmptyCooldown: 60 * 1000 * 3,
             async onBeforeCreateStream(track, source, _queue) {
+              if (source === "soundcloud") {
+                const client_id = await playdl.getFreeClientID();
+                playdl.setToken({
+                  soundcloud: {
+                    client_id: client_id,
+                  },
+                });
+                if (await playdl.so_validate(track.url)) {
+                  let soundCloudInfo = await playdl.soundcloud(track.url);
+                  return (await playdl.stream_from_info(soundCloudInfo)).stream;
+                }
+                return;
+              }
+      
               if (source === "youtube") {
+                const validateSP = playdl.sp_validate(track.url);
+                const spotifyList = ["track", "album", "playlist"];
+                if (spotifyList.includes(validateSP)) {
+                  if (playdl.is_expired()) {
+                    await playdl.refreshToken();
+                  }
+                  let spotifyInfo = await playdl.spotify(track.url);
+                  let youtube = await playdl.search(`${spotifyInfo.name}`, {
+                    limit: 2,
+                  });
+                  return (await playdl.stream(youtube[0].url)).stream;
+                }
+      
                 return (await playdl.stream(track.url)).stream;
               }
             },
