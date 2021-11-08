@@ -78,6 +78,9 @@ module.exports = {
       leaveOnEmptyCooldown: 60 * 1000 * 3,
       bufferingTimeout: 200,
       leaveOnEmpty: true,
+      metadata: {
+        channel: message.channel,
+      },
       async onBeforeCreateStream(track, source, _queue) {
         if (source === "soundcloud") {
           const client_id = await playdl.getFreeClientID();

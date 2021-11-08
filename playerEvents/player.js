@@ -1,3 +1,4 @@
+const { embedMessage } = require("../modules/embedSimple");
 const { logger } = require("../modules/logger");
 
 module.exports.playerEvents = (player) => {
@@ -7,10 +8,13 @@ module.exports.playerEvents = (player) => {
   player.on("botDisconnect", (queue) => {
     logger(`${queue.guild.name} Disconnected from Channel`);
   });
-  player.on("channelEmpty", (queue) => {
+  player.on("channelEmpty", async (queue) => {
     logger(
       `${queue.guild.name}: Voice channel is empty right now!, leaving the Channel`
     );
+    await queue.metadata.channel.send({
+      embeds: [embedMessage("9dcc37", `Leaving the channel since its empty!`)],
+    });
   });
   player.on("connectionCreate", (queue, connection) => {
     logger(
