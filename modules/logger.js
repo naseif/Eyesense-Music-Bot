@@ -14,7 +14,7 @@ module.exports.logger = (message, type = "log") => {
   switch (type) {
     case "log":
       return console.log(
-        `[${chalk.gray(date)}]: [${chalk.black.bgBlue(
+        `[${chalk.gray(date)}]: [${chalk.black.bgGreen(
           type.toUpperCase()
         )}] ${message}`
       );
@@ -25,8 +25,6 @@ module.exports.logger = (message, type = "log") => {
         )}] ${message}`
       );
     default:
-      throw new TypeError(
-        "Logger type must be either warn, debug, log, ready, cmd or error."
-      );
+      throw new TypeError("Logger type must be either log or error!");
   }
 };
