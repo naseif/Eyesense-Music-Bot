@@ -58,7 +58,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Skipped **${currnetSong.title}**, [${message.member.toString()}]`
+            `Skipped **${currnetSong.title}** [${message.member.toString()}]`
           ),
         ],
       });
