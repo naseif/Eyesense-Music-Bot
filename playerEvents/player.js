@@ -12,8 +12,13 @@ module.exports.playerEvents = (player) => {
     logger(
       `${queue.guild.name}: Voice channel is empty right now!, leaving the Channel`
     );
-    await queue.metadata.channel.send({
-      embeds: [embedMessage("9dcc37", `Leaving the channel since its empty!`)],
+    await queue.metadata.channel.channel.send({
+      embeds: [
+        embedMessage(
+          "9dcc37",
+          `Leaving ${queue.metadata.channel.guild.me.voice.channel.toString()} since its empty 🙄\n consider using the 247 command to prevent this behaviour 😎`
+        ),
+      ],
     });
   });
   player.on("connectionCreate", (queue, connection) => {
