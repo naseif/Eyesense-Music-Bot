@@ -53,7 +53,7 @@ module.exports = {
     if (!args[0])
       return await message.channel.send({
         embeds: [
-          embedMessage("#9dcc37", `Please provide the position to jump`),
+          embedMessage("#9dcc37", `Please provide the position to jump to!`),
         ],
       });
     try {

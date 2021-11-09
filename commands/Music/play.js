@@ -79,7 +79,7 @@ module.exports = {
       bufferingTimeout: 200,
       leaveOnEmpty: true,
       metadata: {
-        channel: message.channel,
+        channel: message,
       },
       async onBeforeCreateStream(track, source, _queue) {
         if (source === "soundcloud") {
