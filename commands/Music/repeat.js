@@ -37,7 +37,7 @@ module.exports = {
 
     switch (mode) {
       case "off":
-        await queue.setRepeatMode(0);
+        await queue.setRepeatMode(Number(0));
         await message.channel.send({
           embeds: [
             embedMessage("#9dcc37", `✅ | Repeat Mode has been disabled`),
@@ -45,7 +45,7 @@ module.exports = {
         });
         break;
       case "queue":
-        await queue.setRepeatMode(2);
+        await queue.setRepeatMode(Number(2));
         await message.channel.send({
           embeds: [
             embedMessage(
@@ -56,7 +56,7 @@ module.exports = {
         });
         break;
       case "auto":
-        await queue.setRepeatMode(3);
+        await queue.setRepeatMode(Number(3));
         await message.channel.send({
           embeds: [
             embedMessage(
@@ -65,6 +65,7 @@ module.exports = {
             ),
           ],
         });
+        break;
       default:
         await queue.setRepeatMode(1);
         await message.channel.send({
