@@ -10,6 +10,7 @@
 <img src="https://img.shields.io/github/license/naseif/Eyesense-Music-Bot?style=flat-square">
   <img src="https://img.shields.io/github/issues/naseif/Eyesense-Music-Bot?style=flat-square">
   <img src="https://img.shields.io/github/issues-pr/naseif/Eyesense-Music-Bot?style=flat-square">
+  <img src="https://www.codefactor.io/repository/github/naseif/eyesense-music-bot/badge">
 </p>
 
 <p align="center">
