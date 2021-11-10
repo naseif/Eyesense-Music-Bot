@@ -26,7 +26,6 @@ module.exports = {
 
     try {
       await queue.back();
-      console.log(queue.previousTracks);
       await message.channel.send({
         embeds: [
           embedMessage(

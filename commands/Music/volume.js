@@ -53,7 +53,6 @@ module.exports = {
     }
 
     const volume = Number(args[0]);
-    console.log(typeof volume);
 
     if (!args[0])
       return await message.channel.send({
