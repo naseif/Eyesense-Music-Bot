@@ -11,6 +11,19 @@ module.exports = {
     const queue = client.player.getQueue(message.guild);
     const mode = args.join(" ");
 
+    if (
+      message.guild.me.voice.channelId &&
+      message.member.voice.channelId !== message.guild.me.voice.channelId
+    )
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "RED",
+            `❌ | You must be in my voice channel to activate the loop mode!`
+          ),
+        ],
+      });
+
     if (!queue || !queue.playing) {
       return await message.channel.send({
         embeds: [embedMessage("RED", `❌ | No music is being played!`)],
@@ -34,19 +47,6 @@ module.exports = {
         ],
       });
     }
-
-    if (
-      message.guild.me.voice.channelId &&
-      message.member.voice.channelId !== message.guild.me.voice.channelId
-    )
-      return await message.channel.send({
-        embeds: [
-          embedMessage(
-            "RED",
-            `❌ | You must be in my voice channel to activate the loop mode!`
-          ),
-        ],
-      });
 
     switch (mode) {
       case "off":
