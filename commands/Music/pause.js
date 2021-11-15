@@ -16,7 +16,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to pause the current song!`
           ),
         ],
@@ -25,7 +25,7 @@ module.exports = {
     if (!queue || !queue.playing)
       return await message.channel.send({
         embeds: [
-          embedMessage("#9dcc37", `❌ | There is nothing playing to pause!`),
+          embedMessage("RED", `❌ | There is nothing playing to pause!`),
         ],
       });
 
@@ -64,7 +64,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await message.channel.send({
-        embeds: [embedMessage("#9dcc37", "❌ Could not pause the song")],
+        embeds: [embedMessage("RED", "❌ Could not pause the song")],
       });
     }
   },
@@ -84,7 +84,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to pause the current song!`
           ),
         ],
@@ -93,7 +93,7 @@ module.exports = {
     if (!queue || !queue.playing)
       return await interaction.followUp({
         embeds: [
-          embedMessage("#9dcc37", `❌ | There is nothing playing to pause!`),
+          embedMessage("RED", `❌ | There is nothing playing to pause!`),
         ],
       });
 
@@ -132,7 +132,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await interaction.followUp({
-        embeds: [embedMessage("#9dcc37", "❌ Could not pause the song")],
+        embeds: [embedMessage("RED", "❌ Could not pause the song")],
       });
     }
   },

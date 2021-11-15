@@ -23,7 +23,7 @@ module.exports = {
         return await message.channel.send({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ I was not able to resolve this user, please mention the user!`
             ),
           ],
@@ -61,7 +61,7 @@ module.exports = {
       await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Ups! Looks like I do not have permission to list the roles or something else went wrong!`
           ),
         ],
@@ -112,7 +112,7 @@ module.exports = {
       await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Ups! Looks like I do not have permission to list the roles or something else went wrong!`
           ),
         ],

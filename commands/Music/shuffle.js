@@ -11,7 +11,7 @@ module.exports = {
 
     if (!queue)
       return await message.channel.send({
-        embeds: [embedMessage("#9dcc37", `❌ | There is no queue to shuffle!`)],
+        embeds: [embedMessage("RED", `❌ | There is no queue to shuffle!`)],
       });
 
     try {
@@ -29,7 +29,7 @@ module.exports = {
     } catch (error) {
       client.logger(error.message, "error");
       await message.channel.send({
-        embeds: [embedMessage("#9dcc37", "❌ Could not shuffle the queue")],
+        embeds: [embedMessage("RED", "❌ Could not shuffle the queue")],
       });
     }
   },
@@ -43,7 +43,7 @@ module.exports = {
 
     if (!queue)
       return await interaction.followUp({
-        embeds: [embedMessage("#9dcc37", `❌ | There is no queue to shuffle!`)],
+        embeds: [embedMessage("RED", `❌ | There is no queue to shuffle!`)],
       });
 
     try {
@@ -61,7 +61,7 @@ module.exports = {
     } catch (error) {
       client.logger(error.message, "error");
       await interaction.followUp({
-        embeds: [embedMessage("#9dcc37", "❌ Could not shuffle the queue")],
+        embeds: [embedMessage("RED", "❌ Could not shuffle the queue")],
       });
     }
   },

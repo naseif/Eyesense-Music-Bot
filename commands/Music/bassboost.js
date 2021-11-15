@@ -14,7 +14,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ Your Queue is empty, Make sure to play a song first`
           ),
         ],
@@ -97,7 +97,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ Your Queue is empty, Make sure to play a song first`
           ),
         ],

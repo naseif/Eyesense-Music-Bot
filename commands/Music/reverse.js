@@ -15,7 +15,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ Your Queue is empty, Make sure to play a song first`
           ),
         ],
@@ -25,7 +25,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ Please provide whether you want to on/off the filter`
           ),
         ],
@@ -60,9 +60,7 @@ module.exports = {
         } catch (error) {
           client.logger(error.message, "error");
           await message.channel.send({
-            embeds: [
-              embedMessage("#9dcc37", `❌ Could not disable the filter`),
-            ],
+            embeds: [embedMessage("RED", `❌ Could not disable the filter`)],
           });
         }
         break;
@@ -89,7 +87,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ Your Queue is empty, Make sure to play a song first`
           ),
         ],
@@ -124,9 +122,7 @@ module.exports = {
         } catch (error) {
           client.logger(error.message, "error");
           await interaction.followUp({
-            embeds: [
-              embedMessage("#9dcc37", `❌ Could not disable the filter`),
-            ],
+            embeds: [embedMessage("RED", `❌ Could not disable the filter`)],
           });
         }
     }

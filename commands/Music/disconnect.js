@@ -13,7 +13,7 @@ module.exports = {
     if (!queue) {
       return await message.channel.send({
         embeds: [
-          embedMessage("#9dcc37", `❌ I am not connected to a voice channel!`),
+          embedMessage("RED", `❌ I am not connected to a voice channel!`),
         ],
       });
     }
@@ -25,7 +25,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to disconnect me!`
           ),
         ],
@@ -66,7 +66,7 @@ module.exports = {
       await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             "❌ Could not disconnect the bot, Maybe you do not have permission ?"
           ),
         ],
@@ -84,7 +84,7 @@ module.exports = {
     if (!queue) {
       return await interaction.followUp({
         embeds: [
-          embedMessage("#9dcc37", `❌ I am not connected to a voice channel!`),
+          embedMessage("RED", `❌ I am not connected to a voice channel!`),
         ],
       });
     }
@@ -97,7 +97,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to disconnect me!`
           ),
         ],
@@ -140,7 +140,7 @@ module.exports = {
       await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             "❌ Could not disconnect the bot, Maybe you do not have permission ?"
           ),
         ],

@@ -21,7 +21,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
           ),
         ],
@@ -35,7 +35,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to skip the current song!`
           ),
         ],
@@ -45,7 +45,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | No music is being played! [${message.member.toString()}]`
           ),
         ],
@@ -65,7 +65,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await message.channel.send({
-        embeds: [embedMessage("#9dcc37", "❌ Song could not be skipped")],
+        embeds: [embedMessage("RED", "❌ Song could not be skipped")],
       });
     }
   },
@@ -85,7 +85,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to skip the current song!`
           ),
         ],
@@ -95,7 +95,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | No music is being played! [${interaction.member.toString()}]`
           ),
         ],
@@ -114,7 +114,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
           ),
         ],
@@ -137,7 +137,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await interaction.followUp({
-        embeds: [embedMessage("#9dcc37", "❌ Song could not be skipped")],
+        embeds: [embedMessage("RED", "❌ Song could not be skipped")],
       });
     }
   },

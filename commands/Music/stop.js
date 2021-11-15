@@ -16,7 +16,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to stop the queue!`
           ),
         ],
@@ -26,7 +26,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | ${message.member.toString()}, Nothing is playing to stop!`
           ),
         ],
@@ -43,7 +43,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
           ),
         ],
@@ -64,7 +64,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await message.channel.send({
-        embeds: [embedMessage("#9dcc37", `❌ | Something went wrong :/`)],
+        embeds: [embedMessage("RED", `❌ | Something went wrong :/`)],
       });
     }
   },
@@ -84,7 +84,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to stop the queue!`
           ),
         ],
@@ -94,7 +94,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | ${interaction.member.toString()}, Nothing is playing to stop!`
           ),
         ],
@@ -114,7 +114,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
           ),
         ],
@@ -136,7 +136,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await interaction.followUp({
-        embeds: [embedMessage("#9dcc37", `❌ | Something went wrong :/`)],
+        embeds: [embedMessage("RED", `❌ | Something went wrong :/`)],
       });
     }
   },

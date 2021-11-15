@@ -17,7 +17,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to resume the current song!`
           ),
         ],
@@ -26,7 +26,7 @@ module.exports = {
     if (!queue || !queue.playing)
       return await message.channel.send({
         embeds: [
-          embedMessage("#9dcc37", `❌ | There is nothing playing to resume!`),
+          embedMessage("RED", `❌ | There is nothing playing to resume!`),
         ],
       });
 
@@ -41,7 +41,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
           ),
         ],
@@ -65,9 +65,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await message.channel.send({
-        embeds: [
-          embedMessage("#9dcc37", "❌ I was not able to resume this song"),
-        ],
+        embeds: [embedMessage("RED", "❌ I was not able to resume this song")],
       });
     }
   },
@@ -87,7 +85,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to resume the current song!`
           ),
         ],
@@ -96,7 +94,7 @@ module.exports = {
     if (!queue || !queue.playing)
       return await interaction.followUp({
         embeds: [
-          embedMessage("#9dcc37", `❌ | There is nothing playing to resume!`),
+          embedMessage("RED", `❌ | There is nothing playing to resume!`),
         ],
       });
 
@@ -113,7 +111,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
           ),
         ],
@@ -137,9 +135,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await interaction.followUp({
-        embeds: [
-          embedMessage("#9dcc37", "❌ I was not able to resume this song"),
-        ],
+        embeds: [embedMessage("RED", "❌ I was not able to resume this song")],
       });
     }
   },

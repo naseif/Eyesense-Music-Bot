@@ -13,7 +13,7 @@ module.exports = {
 
     if (!queue || !queue.playing) {
       return await message.channel.send({
-        embeds: [embedMessage("#9dcc37", `❌ | No music is being played!`)],
+        embeds: [embedMessage("RED", `❌ | No music is being played!`)],
       });
     }
 
@@ -28,7 +28,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
           ),
         ],
@@ -101,10 +101,7 @@ module.exports = {
     if (!queue || !queue.playing) {
       return await interaction.followUp({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `${usermention}, ❌ | No music is being played!`
-          ),
+          embedMessage("RED", `${usermention}, ❌ | No music is being played!`),
         ],
       });
     }
@@ -122,7 +119,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
           ),
         ],

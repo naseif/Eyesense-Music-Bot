@@ -14,7 +14,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Please specify whether you want to on/off the 24/7 Mode, see ${prefix}h 247 for more info about this command`
           ),
         ],
@@ -46,7 +46,7 @@ module.exports = {
                 }
                 return;
               }
-      
+
               if (source === "youtube") {
                 const validateSP = playdl.sp_validate(track.url);
                 const spotifyList = ["track", "album", "playlist"];
@@ -60,7 +60,7 @@ module.exports = {
                   });
                   return (await playdl.stream(youtube[0].url)).stream;
                 }
-      
+
                 return (await playdl.stream(track.url)).stream;
               }
             },
@@ -96,7 +96,7 @@ module.exports = {
                 }
                 return;
               }
-      
+
               if (source === "youtube") {
                 const validateSP = playdl.sp_validate(track.url);
                 const spotifyList = ["track", "album", "playlist"];
@@ -110,7 +110,7 @@ module.exports = {
                   });
                   return (await playdl.stream(youtube[0].url)).stream;
                 }
-      
+
                 return (await playdl.stream(track.url)).stream;
               }
             },
@@ -192,7 +192,7 @@ module.exports = {
                 }
                 return;
               }
-      
+
               if (source === "youtube") {
                 const validateSP = playdl.sp_validate(track.url);
                 const spotifyList = ["track", "album", "playlist"];
@@ -206,7 +206,7 @@ module.exports = {
                   });
                   return (await playdl.stream(youtube[0].url)).stream;
                 }
-      
+
                 return (await playdl.stream(track.url)).stream;
               }
             },
@@ -239,7 +239,7 @@ module.exports = {
                 }
                 return;
               }
-      
+
               if (source === "youtube") {
                 const validateSP = playdl.sp_validate(track.url);
                 const spotifyList = ["track", "album", "playlist"];
@@ -253,7 +253,7 @@ module.exports = {
                   });
                   return (await playdl.stream(youtube[0].url)).stream;
                 }
-      
+
                 return (await playdl.stream(track.url)).stream;
               }
             },

@@ -12,9 +12,7 @@ module.exports = {
 
     if (!queue) {
       return await message.channel.send({
-        embeds: [
-          embedMessage("#9dcc37", `❌ | Nothing to list, Queue is empty`),
-        ],
+        embeds: [embedMessage("RED", `❌ | Nothing to list, Queue is empty`)],
       });
     }
 
@@ -51,9 +49,7 @@ module.exports = {
 
     if (!queue) {
       return await interaction.followUp({
-        embeds: [
-          embedMessage("#9dcc37", `❌ | Nothing to list, Queue is empty`),
-        ],
+        embeds: [embedMessage("RED", `❌ | Nothing to list, Queue is empty`)],
       });
     }
 

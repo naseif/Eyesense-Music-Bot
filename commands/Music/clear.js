@@ -17,7 +17,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to clear the queue!`
           ),
         ],
@@ -26,10 +26,7 @@ module.exports = {
     if (!queue) {
       return await message.channel.send({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | No Queue has been created for this guild`
-          ),
+          embedMessage("RED", `❌ | No Queue has been created for this guild`),
         ],
       });
     }
@@ -69,7 +66,7 @@ module.exports = {
       await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             "❌ Could not clear the queue, maybe there is no queue"
           ),
         ],
@@ -92,7 +89,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to clear the queue!`
           ),
         ],
@@ -101,10 +98,7 @@ module.exports = {
     if (!queue) {
       return await interaction.followUp({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | No Queue has been created for this guild`
-          ),
+          embedMessage("RED", `❌ | No Queue has been created for this guild`),
         ],
       });
     }
@@ -146,7 +140,7 @@ module.exports = {
       await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             "❌ Could not clear the queue, maybe there is no queue"
           ),
         ],

@@ -14,7 +14,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | ${message.member.toString()}, You have to provide a song name or URL`
           ),
         ],
@@ -31,7 +31,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
           ),
         ],
@@ -41,7 +41,7 @@ module.exports = {
       return message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in a voice channel to play music!`
           ),
         ],
@@ -52,9 +52,7 @@ module.exports = {
       message.member.voice.channelId !== message.guild.me.voice.channelId
     )
       return await message.channel.send({
-        embeds: [
-          embedMessage("#9dcc37", `❌ | You must be in my voice channel!`),
-        ],
+        embeds: [embedMessage("RED", `❌ | You must be in my voice channel!`)],
       });
 
     const searchSong = await client.player.search(songString, {
@@ -65,7 +63,7 @@ module.exports = {
       return message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Song not found, Maybe its age restricted or flagged as offensive by Youtube`
           ),
         ],
@@ -180,7 +178,7 @@ module.exports = {
         await message.channel.send({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ | An error occurred while trying to play this song! \nError Message: ${err.message}`
             ),
           ],
@@ -208,7 +206,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in a voice channel to play music!`
           ),
         ],
@@ -220,9 +218,7 @@ module.exports = {
         interaction.guild.me.voice.channelId
     )
       return await interaction.followUp({
-        embeds: [
-          embedMessage("#9dcc37", `❌ | You must be in my voice channel!`),
-        ],
+        embeds: [embedMessage("RED", `❌ | You must be in my voice channel!`)],
       });
 
     const checkdj = await client.db.get(`djRole_${interaction.guildId}`);
@@ -238,7 +234,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
           ),
         ],
@@ -252,7 +248,7 @@ module.exports = {
 
     if (!searchSong.tracks.length || !searchSong)
       return interaction.followUp({
-        embeds: [embedMessage("#9dcc37", `❌ | Song not found`)],
+        embeds: [embedMessage("RED", `❌ | Song not found`)],
       });
 
     let queue = await client.player.createQueue(interaction.guildId, {
@@ -360,7 +356,7 @@ module.exports = {
         await interaction.followUp({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ | An error occurred while trying to play this song! \nError Message: ${err.message}`
             ),
           ],

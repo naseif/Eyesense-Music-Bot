@@ -13,7 +13,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            `#9dcc37`,
+            `RED`,
             `❌ | No Queue has been created for this guild. <Queue is empty>`
           ),
         ],
@@ -21,7 +21,7 @@ module.exports = {
 
     if (!queue.playing)
       return await message.channel.send({
-        embeds: [embedMessage(`#9dcc37`, `❌ | There is nothing playing!`)],
+        embeds: [embedMessage(`RED`, `❌ | There is nothing playing!`)],
       });
 
     try {
@@ -37,7 +37,7 @@ module.exports = {
     } catch (error) {
       client.logger(error.message, "error");
       await message.channel.send({
-        embeds: [embedMessage("#9dcc37", "❌ Could not find previous track")],
+        embeds: [embedMessage("RED", "❌ Could not find previous track")],
       });
     }
   },
@@ -53,7 +53,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            `#9dcc37`,
+            `RED`,
             `❌ | No Queue has been created for this guild. <Queue is empty>`
           ),
         ],
@@ -79,7 +79,7 @@ module.exports = {
     } catch (error) {
       client.logger(error.message, "error");
       await interaction.followUp({
-        embeds: [embedMessage("#9dcc37", "❌ Could not find previous track")],
+        embeds: [embedMessage("RED", "❌ Could not find previous track")],
       });
     }
   },

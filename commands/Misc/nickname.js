@@ -14,9 +14,7 @@ module.exports = {
 
     if (!args[0])
       return await message.channel.send({
-        embeds: [
-          embedMessage("#9dcc37", `❌ You did not give me any nickname`),
-        ],
+        embeds: [embedMessage("RED", `❌ You did not give me any nickname`)],
       });
 
     if (
@@ -42,7 +40,7 @@ module.exports = {
         return await message.channel.send({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ Could not change your nickname, maybe you are the owner?\n Error: ${error.message}`
             ),
           ],
@@ -59,7 +57,7 @@ module.exports = {
         return await message.channel.send({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ Could not find User, either he does not exist or you did not mention him`
             ),
           ],
@@ -83,7 +81,7 @@ module.exports = {
           return await message.channel.send({
             embeds: [
               embedMessage(
-                "#9dcc37",
+                "RED",
                 `❌ I do not have permission to change other member's nicknames who have the same role as me or higher!`
               ),
             ],
@@ -99,7 +97,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ You do not have permission to change ${user.toString()} nickname!`
           ),
         ],
@@ -133,7 +131,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ You do not have permission to change ${user.toString()} nickname!`
           ),
         ],
@@ -159,7 +157,7 @@ module.exports = {
           return await interaction.followUp({
             embeds: [
               embedMessage(
-                "#9dcc37",
+                "RED",
                 `❌ I do not have permission to change other member's nicknames who have the same role as me or higher!`
               ),
             ],
@@ -185,7 +183,7 @@ module.exports = {
           return await interaction.followUp({
             embeds: [
               embedMessage(
-                "#9dcc37",
+                "RED",
                 ` ❌ I do not have permission to change your nickname!\n maybe your role is higher than mine or perhaps you are the owner ?`
               ),
             ],

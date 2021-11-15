@@ -13,17 +13,14 @@ module.exports = {
     if (!args[0])
       return await message.channel.send({
         embeds: [
-          embedMessage("#9dcc37", `You have to mention a user to summon!`),
+          embedMessage("RED", `❌ | You have to mention a user to summon!`),
         ],
       });
 
     if (!message.member.permissions.has("MOVE_MEMBERS"))
       return await message.channel.send({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | You have no permission to summon users!`
-          ),
+          embedMessage("RED", `❌ | You have no permission to summon users!`),
         ],
       });
 
@@ -33,8 +30,8 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
-            `I could not resolve the user, please make sure to mention the user!`
+            "RED",
+            `❌ | I could not resolve the user, please make sure to mention the user!`
           ),
         ],
       });
@@ -43,8 +40,8 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
-            `${user.toString()} is not connected to any voice channel!`
+            "RED",
+            `❌ | ${user.toString()} is not connected to any voice channel!`
           ),
         ],
       });
@@ -64,7 +61,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       return await message.channel.send(
-        `Something went wrong, I could not summon this user!`
+        `❌ | Something went wrong, I could not summon this user!`
       );
     }
   },
@@ -83,10 +80,7 @@ module.exports = {
     if (!interaction.member.permissions.has([Permissions.FLAGS.MOVE_MEMBERS]))
       return await interaction.followUp({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | You have no permission to summon users!`
-          ),
+          embedMessage("RED", `❌ | You have no permission to summon users!`),
         ],
       });
 
@@ -94,8 +88,8 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
-            `${user.toString()} is not connected to any voice channel!`
+            "RED",
+            `❌ | ${user.toString()} is not connected to any voice channel!`
           ),
         ],
       });

@@ -17,7 +17,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to change the bot volume!`
           ),
         ],
@@ -27,7 +27,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | ${message.member.toString()}, There is no queue created for this server!`
           ),
         ],
@@ -45,7 +45,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
           ),
         ],
@@ -58,7 +58,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ Please provide the bot volume you wish to set!`
           ),
         ],
@@ -66,7 +66,7 @@ module.exports = {
 
     if (!volume)
       return await message.channel.send({
-        embeds: [embedMessage("#9dcc37", `❌ Volume must be a number!`)],
+        embeds: [embedMessage("RED", `❌ Volume must be a number!`)],
       });
 
     try {
@@ -81,7 +81,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `There was an error setting the bot volume!\nError: ${error.message}`
           ),
         ],
@@ -108,7 +108,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to change the volume!`
           ),
         ],
@@ -118,7 +118,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | ${interaction.member.toString()}, There is no queue created for this server!`
           ),
         ],
@@ -138,7 +138,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
           ),
         ],
@@ -147,7 +147,7 @@ module.exports = {
 
     if (typeof volume === "string")
       return await interaction.followUp({
-        embeds: [embedMessage("#9dcc37", `❌ Volume must be a number!`)],
+        embeds: [embedMessage("RED", `❌ Volume must be a number!`)],
       });
 
     try {
@@ -162,7 +162,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `There was an error setting the bot volume!\nError: ${error.message}`
           ),
         ],

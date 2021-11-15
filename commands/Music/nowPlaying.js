@@ -14,7 +14,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `${message.member.toString()}, ❌ | Nothing playing at the moment`
           ),
         ],
@@ -44,7 +44,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `<@${interaction.user.id}>, ❌ | Nothing playing at the moment`
           ),
         ],

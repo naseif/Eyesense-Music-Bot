@@ -31,7 +31,7 @@ module.exports = {
         return await message.channel.send({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               "❌ There is no music playing to search for lyrics!, Give me the song name instead."
             ),
           ],
@@ -60,7 +60,7 @@ module.exports = {
         return await message.channel.send({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ | I could not find any lyrics for this song!`
             ),
           ],
@@ -89,10 +89,7 @@ module.exports = {
     } catch (error) {
       await message.channel.send({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | I could not get the lyrics of this song!`
-          ),
+          embedMessage("RED", `❌ | I could not get the lyrics of this song!`),
         ],
       });
       client.logger(error.message, "error");
@@ -119,7 +116,7 @@ module.exports = {
         return await interaction.followUp({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               "❌ There is no music playing to search for lyrics!"
             ),
           ],
@@ -141,7 +138,7 @@ module.exports = {
         return await interaction.followUp({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ | I could not find any lyrics for this song!`
             ),
           ],
@@ -170,10 +167,7 @@ module.exports = {
     } catch (error) {
       await interaction.followUp({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | I could not get the lyrics of this song!`
-          ),
+          embedMessage("RED", `❌ | I could not get the lyrics of this song!`),
         ],
       });
       client.logger(error.message, "error");

@@ -16,7 +16,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to jump to a new song!`
           ),
         ],
@@ -25,10 +25,7 @@ module.exports = {
     if (!queue || !queue.playing)
       return await message.channel.send({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | There is nothing playing at the moment`
-          ),
+          embedMessage("RED", `❌ | There is nothing playing at the moment`),
         ],
       });
 
@@ -43,7 +40,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You are not allowed to use this command.\n This command is only available for users with the DJ Role: <@&${checkdj}>`
           ),
         ],
@@ -97,7 +94,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You must be in my voice channel to jump to a new song!`
           ),
         ],
@@ -106,10 +103,7 @@ module.exports = {
     if (!queue || !queue.playing)
       return await interaction.followUp({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | There is nothing playing at the moment`
-          ),
+          embedMessage("RED", `❌ | There is nothing playing at the moment`),
         ],
       });
 
@@ -150,7 +144,7 @@ module.exports = {
       await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             "Could not jump to this position because it does not exist!"
           ),
         ],

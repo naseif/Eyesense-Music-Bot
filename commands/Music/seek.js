@@ -11,16 +11,14 @@ module.exports = {
 
     if (!queue || !queue.playing)
       return await message.channel.send({
-        embeds: [
-          embedMessage("#9dcc37", `❌ | There is nothing playing to seek!`),
-        ],
+        embeds: [embedMessage("RED", `❌ | There is nothing playing to seek!`)],
       });
 
     if (!args[0])
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Please give how many seconds you wish to seek!`
           ),
         ],
@@ -40,7 +38,7 @@ module.exports = {
     } catch (err) {
       client.logger(err.message, "error");
       await message.channel.send({
-        embeds: [embedMessage("#9dcc37", `❌ Could not seek the song!`)],
+        embeds: [embedMessage("RED", `❌ Could not seek the song!`)],
       });
     }
   },
