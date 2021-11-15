@@ -48,7 +48,7 @@ module.exports = {
       });
 
     if (args[0] === "add" && args[1] && args[2]) {
-      await client.db.set(`${args[1]}`, args[2]);
+      await client.db.set(`${message.guildId}_${args[1]}`, args[2]);
       return await message.channel.send({
         embeds: [
           embedMessage(
@@ -62,7 +62,7 @@ module.exports = {
         ],
       });
     }
-    const customPlaylist = await client.db.get(`${args[0]}`);
+    const customPlaylist = await client.db.get(`${message.guildId}_${args[0]}`);
 
     if (!customPlaylist)
       return await message.channel.send({
