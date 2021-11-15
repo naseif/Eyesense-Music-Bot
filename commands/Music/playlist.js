@@ -27,6 +27,11 @@ module.exports = {
       });
     }
 
+    let checkPlaylists = await client.db.all();
+    const filterPlaylists = checkPlaylists
+      .filter((playlist) => playlist.ID.startsWith(message.guildId))
+      .map((playlist) => playlist.ID.slice(playlist.ID.indexOf("_") + 1));
+
     if (!args[0])
       return await message.channel.send({
         embeds: [
@@ -48,6 +53,13 @@ module.exports = {
       });
 
     if (args[0] === "add" && args[1] && args[2]) {
+      if (!args[2].startsWith("https"))
+        return await message.channel.send({
+          embeds: [
+            embedMessage("RED", ` ❌ This is not a valid playlist URL!`),
+          ],
+        });
+
       await client.db.set(`${message.guildId}_${args[1]}`, args[2]);
       return await message.channel.send({
         embeds: [
@@ -66,7 +78,14 @@ module.exports = {
 
     if (!customPlaylist)
       return await message.channel.send({
-        embeds: [embedMessage("RED", `❌ | No Playlist found with this name!`)],
+        embeds: [
+          embedMessage(
+            "RED",
+            `No Playlist found with this name!\n Available Playlists: \`${filterPlaylists.join(
+              ", "
+            )}\``
+          ),
+        ],
       });
 
     if (!message.member.voice.channelId)

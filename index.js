@@ -5,6 +5,8 @@ const { Database } = require("quickmongo");
 const { connectDatabase } = require("./modules/DatabaseConnection");
 const { commandsHelper } = require("./modules/commandsHelper");
 
+if (!token || !mongourl) return logger("Please add your mongourl and bot token to config.json to start the bot!", "error")
+
 const client = new Client({
   intents: [
     Intents.FLAGS.GUILD_MEMBERS,
