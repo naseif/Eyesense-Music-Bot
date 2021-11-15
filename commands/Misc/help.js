@@ -38,13 +38,9 @@ module.exports = {
       const embed = {
         color: "#9dcc37",
         title: `${client.user.username}'s Categories!`,
-        description:
-          `These are my command categories ${categories.join(
-            ", "
-          )}. To get more Information about each category, use ` +
-          "`" +
-          `${prefix}help <category> || <command>` +
-          "`",
+        description: `These are my command categories ${categories.join(
+          ", "
+        )}. To get more Information about each category, use \`${prefix}help <category> || <command>\``,
         timestamp: new Date(),
         footer: {
           text: `Requested by ${message.member.user.username}`,
@@ -87,19 +83,19 @@ module.exports = {
         return await message.channel.send({ embeds: [embed] });
       }
 
-      if (!command && !categories.includes("`" + searchCommand + "`")) {
+      if (!command && !categories.includes(`\`${searchCommand}\``)) {
         return await message.channel.send(
           "What you provided is neither a command nor a category"
         );
       }
 
-      if (!categories.includes("`" + searchCommand + "`")) {
+      if (!categories.includes(`\`${searchCommand}\``)) {
         const embed = {
           color: "#9dcc37",
           fields: [
             {
               name: "Command",
-              value: "`" + `${command.name}` + "`",
+              value: `\`${command.name}\``,
               inline: true,
             },
             {
