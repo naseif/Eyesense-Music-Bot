@@ -13,7 +13,7 @@ module.exports = {
 
     if (!args[0])
       return await message.channel.send({
-        embeds: [embedMessage("#9dcc37", `❌ | Please mention a user to ban`)],
+        embeds: [embedMessage("RED", `❌ | Please mention a user to ban`)],
       });
 
     const noargs0 = args.shift();
@@ -45,7 +45,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You do not have permission to ban members!`
           ),
         ],
@@ -55,7 +55,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Could not resolve the user, Please mention the user you want to ban!`
           ),
         ],
@@ -68,10 +68,7 @@ module.exports = {
       client.logger(error.message, "error");
       await message.channel.send({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | Couldn't ban ${user}, ${error.message}`
-          ),
+          embedMessage("RED", `❌ | Couldn't ban ${user}, ${error.message}`),
         ],
       });
       console.log(error);
@@ -116,7 +113,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You do not have permission to ban members!`
           ),
         ],
@@ -128,9 +125,7 @@ module.exports = {
     } catch (error) {
       client.logger(error.message, "error");
       await interaction.followUp({
-        embeds: [
-          embedMessage("#9dcc37", `Couldn't ban ${user}, ${error.message}`),
-        ],
+        embeds: [embedMessage("RED", `Couldn't ban ${user}, ${error.message}`)],
       });
       console.log(error);
     }

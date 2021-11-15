@@ -15,7 +15,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ Your Giphy API Key is not defined in config.json!`
           ),
         ],
@@ -63,7 +63,7 @@ module.exports = {
         return await message.channel.send({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ Could not find any gifs for your search query!`
             ),
           ],
@@ -90,7 +90,7 @@ module.exports = {
     } catch (error) {
       client.logger(error.message, "error");
       await message.channel.send({
-        embeds: [embedMessage("#9dcc37", `❌ Could not retrieve the gif!`)],
+        embeds: [embedMessage("RED", `❌ Could not retrieve the gif!`)],
       });
       console.error(error);
     }
@@ -112,7 +112,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ Your Giphy API Key is not defined in config.json!`
           ),
         ],
@@ -159,7 +159,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ Could not find any Gif for your search query!`
           ),
         ],

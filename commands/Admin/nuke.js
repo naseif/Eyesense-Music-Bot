@@ -14,7 +14,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ You do not have permission to nuke this channel.\nOnly Server Admins have the permission to perform this action`
           ),
         ],
@@ -37,7 +37,7 @@ module.exports = {
         return await message.channel.send({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ | Could not nuke the Channel!\nError: ${err.message}`
             ),
           ],
@@ -55,7 +55,7 @@ module.exports = {
         return await message.channel.send({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ A text channel with this ID was not found!`
             ),
           ],
@@ -75,11 +75,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Text Channel ` +
-              "`" +
-              `${channelClone.name}` +
-              "`" +
-              ` has been nuked!`
+            `Text Channel \`${channelClone.name}\` has been nuked!`
           ),
         ],
       });
@@ -88,7 +84,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Could not nuke the Channel!\nError: ${err.message}`
           ),
         ],
@@ -115,7 +111,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ You do not have permission to nuke this channel.\nOnly Server Admins have the permission to perform this action`
           ),
         ],
@@ -138,7 +134,7 @@ module.exports = {
         return await interaction.followUp({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ | Could not nuke the Channel!\nError: ${err.message}`
             ),
           ],
@@ -155,7 +151,7 @@ module.exports = {
         return await interaction.followUp({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ A text channel with this ID was not found!`
             ),
           ],
@@ -176,11 +172,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `Text Channel ` +
-              "`" +
-              `${channelClone.name}` +
-              "`" +
-              ` has been nuked!`
+            `Text Channel \`${channelClone.name}\` has been nuked!`
           ),
         ],
       });
@@ -189,7 +181,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Could not nuke the Channel!\nError: ${err.message}`
           ),
         ],

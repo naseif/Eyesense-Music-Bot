@@ -13,7 +13,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ You do not have permission to change the prefix!`
           ),
         ],
@@ -22,13 +22,13 @@ module.exports = {
     if (!args[0])
       return await message.channel.send({
         embeds: [
-          embedMessage("#9dcc37", `❌ You did not provide your new prefix!`),
+          embedMessage("RED", `❌ You did not provide your new prefix!`),
         ],
       });
 
     if (args[1])
       return await message.channel.send({
-        embeds: [embedMessage("#9dcc37", `❌ Prefix can't have 2 arguments`)],
+        embeds: [embedMessage("RED", `❌ Prefix can't have 2 arguments`)],
       });
 
     if (args.join(" ") === prefix) {
@@ -66,7 +66,7 @@ module.exports = {
       await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ There has been an error, Could not set the new Prefix`
           ),
         ],
@@ -91,7 +91,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `You do not have permission to change the prefix`
           ),
         ],
@@ -125,7 +125,7 @@ module.exports = {
       await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ There has been an error, Could not set the new Prefix`
           ),
         ],

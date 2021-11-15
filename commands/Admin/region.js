@@ -36,7 +36,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ You have to be connected to the voice channel to use this commnad\n see /regionbyid instead!`
           ),
         ],
@@ -50,7 +50,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ ${interaction.member.toString()} You do not have permssion to edit the region of channels!`
           ),
         ],
@@ -74,7 +74,7 @@ module.exports = {
       await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ Could not change the region of this channel!`
           ),
         ],

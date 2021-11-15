@@ -13,7 +13,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Please provide the number of messages you want to delete!`
           ),
         ],
@@ -23,7 +23,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You do not have permission to delete Messages!`
           ),
         ],
@@ -59,7 +59,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You do not have permission to delete Messages!`
           ),
         ],

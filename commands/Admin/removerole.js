@@ -18,10 +18,7 @@ module.exports = {
     if (!args[0])
       return await message.channel.send({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | Please mention a user to remove the role!`
-          ),
+          embedMessage("RED", `❌ | Please mention a user to remove the role!`),
         ],
       });
 
@@ -29,7 +26,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Please enter the role name you wish to remove`
           ),
         ],
@@ -39,7 +36,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | I did not find this role!\nplease make sure to enter a valid role name! (case sensitive)`
           ),
         ],
@@ -52,7 +49,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You do not have permission to remove roles!`
           ),
         ],
@@ -73,10 +70,7 @@ module.exports = {
       if (err.message === "Missing Access") {
         return await message.channel.send({
           embeds: [
-            embedMessage(
-              "#9dcc37",
-              `❌ I do not have adminstraitor permission!`
-            ),
+            embedMessage("RED", `❌ I do not have adminstraitor permission!`),
           ],
         });
       }
@@ -84,7 +78,7 @@ module.exports = {
         return await message.channel.send({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ I can not add this role to the user!\nEtiher its above me or I have no right to assign it to other users!`
             ),
           ],
@@ -114,7 +108,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Only server admins can remove roles from users!`
           ),
         ],
@@ -135,10 +129,7 @@ module.exports = {
       if (err.message === "Missing Access") {
         return await interaction.followUp({
           embeds: [
-            embedMessage(
-              "#9dcc37",
-              `❌ I do not have adminstraitor permission!`
-            ),
+            embedMessage("RED", `❌ I do not have adminstraitor permission!`),
           ],
         });
       }
@@ -146,7 +137,7 @@ module.exports = {
         return await interaction.followUp({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `❌ I can not remove this role from user since the role is above me!`
             ),
           ],

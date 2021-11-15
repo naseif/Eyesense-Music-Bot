@@ -13,9 +13,7 @@ module.exports = {
 
     if (!args[0])
       return await message.channel.send({
-        embeds: [
-          embedMessage("#9dcc37", `❌ | Please mention a user to kick!`),
-        ],
+        embeds: [embedMessage("RED", `❌ | Please mention a user to kick!`)],
       });
 
     const noargs0 = args.shift();
@@ -48,7 +46,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You do not have permission to kick members!`
           ),
         ],
@@ -58,7 +56,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Could not resolve the user, Please mention the user you want to kick!`
           ),
         ],
@@ -71,10 +69,7 @@ module.exports = {
       client.logger(error.message, "error");
       await message.channel.send({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ | Couldn't kick ${user}, ${error.message}`
-          ),
+          embedMessage("RED", `❌ | Couldn't kick ${user}, ${error.message}`),
         ],
       });
     }
@@ -118,7 +113,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You do not have permission to kick members!`
           ),
         ],
@@ -131,7 +126,7 @@ module.exports = {
       client.logger(error.message, "error");
       await interaction.followUp({
         embeds: [
-          embedMessage("#9dcc37", `Couldn't kick ${user}, ${error.message}`),
+          embedMessage("RED", `Couldn't kick ${user}, ${error.message}`),
         ],
       });
     }

@@ -12,10 +12,7 @@ module.exports = {
     if (!args[0])
       return await message.channel.send({
         embeds: [
-          embedMessage(
-            "#9dcc37",
-            `❌ Please mention your fav user to insult :)`
-          ),
+          embedMessage("RED", `❌ Please mention your fav user to insult :)`),
         ],
       });
 
@@ -25,7 +22,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ You sure you mentioned the user ?, because I could not resolve the given user`
           ),
         ],

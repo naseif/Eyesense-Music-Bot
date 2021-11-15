@@ -12,7 +12,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ You do not have permission to grant the DJ Role!`
           ),
         ],
@@ -24,7 +24,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `Please choose whether you want to set or delete an existing role\nCurrent DJ Role: ${
               djrole ? `<@&${djrole}>` : "None"
             }`
@@ -37,9 +37,7 @@ module.exports = {
       const newDjRole = await getRoleFromMention(args[1], message);
       if (!newDjRole)
         return await message.channel.send({
-          embeds: [
-            embedMessage("#9dcc37", `The Role you mentioned is not valid!`),
-          ],
+          embeds: [embedMessage("RED", `The Role you mentioned is not valid!`)],
         });
 
       await client.db.set(`djRole_${message.guildId}`, newDjRole.id);
@@ -57,9 +55,7 @@ module.exports = {
       const roleExist = await client.db.get(`djRole_${message.guildId}`);
       if (!roleToDelete)
         return await message.channel.send({
-          embeds: [
-            embedMessage("#9dcc37", `The Role you mentioned is not valid!`),
-          ],
+          embeds: [embedMessage("RED", `The Role you mentioned is not valid!`)],
         });
       if (roleToDelete.id === roleExist) {
         await client.db.delete(`djRole_${message.guildId}`, roleToDelete.id);
@@ -76,7 +72,7 @@ module.exports = {
         return await message.channel.send({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `The Role you wish to delete is not registered as DJ Role\nRegistered Role: <@&${roleExist}>`
             ),
           ],
@@ -108,7 +104,7 @@ module.exports = {
       return await followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ You do not have permission to grant the DJ Role!`
           ),
         ],
@@ -129,7 +125,7 @@ module.exports = {
         return await interaction.followUp({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `There is no registered DJ Role for this server`
             ),
           ],
@@ -149,7 +145,7 @@ module.exports = {
         return await interaction.followUp({
           embeds: [
             embedMessage(
-              "#9dcc37",
+              "RED",
               `The Role you wish to delete is not registered as DJ Role\nRegistered Role: <@&${roleExist}>`
             ),
           ],

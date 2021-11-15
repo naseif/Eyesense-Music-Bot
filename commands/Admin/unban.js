@@ -14,7 +14,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Please provide the user id of the user you wish to unban`
           ),
         ],
@@ -50,7 +50,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You do not have permission to unban members!`
           ),
         ],
@@ -64,7 +64,7 @@ module.exports = {
       await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Couldn't ban <@${userID}>, ${error.message}`
           ),
         ],
@@ -113,7 +113,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | You do not have permission to unban members!`
           ),
         ],
@@ -127,8 +127,8 @@ module.exports = {
       await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
-            `Couldn't ban <@${userID}>, ${error.message}`
+            "RED",
+            `❌ | Couldn't ban <@${userID}>, ${error.message}`
           ),
         ],
       });

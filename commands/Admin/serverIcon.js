@@ -12,7 +12,7 @@ module.exports = {
     if (!args[0])
       return await message.channel.send({
         embeds: [
-          embedMessage("#9dcc37", `❌ | Please provide a link to the new img!`),
+          embedMessage("RED", `❌ | Please provide a link to the new img!`),
         ],
       });
 
@@ -23,7 +23,7 @@ module.exports = {
       return await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | ${interaction.user.toString()}, You do not have permission to change the server icon!`
           ),
         ],
@@ -44,7 +44,7 @@ module.exports = {
       await message.channel.send({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ | Could not change the server icon!, ${error.message}`
           ),
         ],
@@ -71,8 +71,8 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
-            `${interaction.user.toString()}, You do not have permission to change the server icon!`
+            "RED",
+            `❌ | ${interaction.user.toString()}, You do not have permission to change the server icon!`
           ),
         ],
       });
@@ -81,7 +81,10 @@ module.exports = {
       await interaction.guild.setIcon(newIcon);
       await interaction.followUp({
         embeds: [
-          embedMessage("#9dcc37", `Server Icon has been successfully changed!`),
+          embedMessage(
+            "#9dcc37",
+            `✅ | Server Icon has been successfully changed!`
+          ),
         ],
       });
     } catch (error) {
@@ -89,8 +92,8 @@ module.exports = {
       await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
-            `Could not change the server icon!, ${error.message}`
+            "RED",
+            `❌ | Could not change the server icon!, ${error.message}`
           ),
         ],
       });

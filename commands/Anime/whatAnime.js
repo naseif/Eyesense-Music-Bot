@@ -12,29 +12,20 @@ module.exports = {
     if (!args[0])
       return await message.channel.send({
         embeds: [
-          embedMessage("#9dcc37", `❌ | You have to provide an image link!`),
+          embedMessage("RED", `❌ | You have to provide an image link!`),
         ],
       });
 
     try {
       const res = await getAnimeByImage(args[0]);
       const resultArray = res.result.slice(0, 3).map((info, index) => {
-        return (
-          `${index + 1}: ` +
-          "`" +
-          `${
-            info.anilist.title.english
-              ? info.anilist.title.english
-              : `Not Available`
-          }` +
-          "`" +
-          " **AKA** " +
-          "`" +
-          `${info.anilist.title.romaji}` +
-          "`" +
-          " **Similarity** " +
-          `${info.similarity.toFixed(2) * 100}%`
-        );
+        return `${index + 1}: \`${
+          info.anilist.title.english
+            ? info.anilist.title.english
+            : `Not Available`
+        }\` **AKA** \`${info.anilist.title.romaji}\` **Similarity** ${
+          info.similarity.toFixed(2) * 100
+        }%`;
       });
       const infoEmbed = {
         color: "#9dcc37",
@@ -69,20 +60,9 @@ module.exports = {
       const res = await getAnimeByImage(imageLink);
       const resultArray = res.result.slice(0, 3).map((info, index) => {
         return (
-          `${index + 1}: ` +
-          "`" +
-          `${
-            info.anilist.title.english
-              ? info.anilist.title.english
-              : `Not Available`
-          }` +
-          "`" +
-          " **AKA** " +
-          "`" +
-          `${info.anilist.title.romaji}` +
-          "`" +
-          " **Similarity** " +
-          `${info.similarity.toFixed(2) * 100}%`
+          `${index + 1}: \`${info.anilist.title.english
+            ? info.anilist.title.english
+            : `Not Available`}\` **AKA** \`${info.anilist.title.romaji}\` **Similarity** ${info.similarity.toFixed(2) * 100}%`
         );
       });
       const infoEmbed = {

@@ -13,9 +13,7 @@ module.exports = {
     const searchString = args.join(" ");
     if (!searchString)
       return await message.channel.send({
-        embeds: [
-          embedMessage("#9dcc37", "❌ You have to provide an anime name!"),
-        ],
+        embeds: [embedMessage("RED", "❌ You have to provide an anime name!")],
       });
     try {
       const Anime = await getAnimeInfo(searchString);
@@ -75,7 +73,7 @@ module.exports = {
       await message.channel.send({ embeds: [animeEmbed] });
     } catch (err) {
       await message.channel.send({
-        embeds: [embedMessage("#9dcc37", `❌ Could not find this Anime, Sry!`)],
+        embeds: [embedMessage("RED", `❌ Could not find this Anime, Sry!`)],
       });
       logger(err.message, "error");
       console.error(err);
@@ -152,7 +150,7 @@ module.exports = {
       await interaction.followUp({ embeds: [animeEmbed] });
     } catch (err) {
       await interaction.followUp({
-        embeds: [embedMessage("#9dcc37", `❌ Could not find this Anime, Sry!`)],
+        embeds: [embedMessage("RED", `❌ Could not find this Anime, Sry!`)],
       });
       logger(err.message, "error");
       console.error(err);

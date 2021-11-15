@@ -42,7 +42,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ A voice channel with this id does not exist!`
           ),
         ],
@@ -56,7 +56,7 @@ module.exports = {
       return await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ ${interaction.member.toString()} You do not have permssion to edit the region of channels!`
           ),
         ],
@@ -80,7 +80,7 @@ module.exports = {
       await interaction.followUp({
         embeds: [
           embedMessage(
-            "#9dcc37",
+            "RED",
             `❌ Could not change the region of this channel!`
           ),
         ],
