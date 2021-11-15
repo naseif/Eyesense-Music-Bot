@@ -81,9 +81,9 @@ module.exports = {
         embeds: [
           embedMessage(
             "RED",
-            `No Playlist found with this name!\n Available Playlists: \`${filterPlaylists.join(
-              ", "
-            )}\``
+            `No Playlist found with this name!\n Available Playlists: \`${
+              filterPlaylists ? filterPlaylists.join(" - ") : "None"
+            }\``
           ),
         ],
       });
