@@ -74,6 +74,45 @@ module.exports = {
         ],
       });
     }
+
+    if (args[0] === "remove" && !args[1])
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "RED",
+            `Please provide the name of the playlist you want to remove!\n Available Playlists: \`${
+              filterPlaylists ? filterPlaylists.join(" - ") : "None"
+            }\``
+          ),
+        ],
+      });
+
+    if (args[0] === "remove" && args[1]) {
+      const playlistToRemove = await client.db.get(
+        `${message.guildId}_${args[1]}`
+      );
+
+      if (!playlistToRemove)
+        return await message.channel.send({
+          embeds: [
+            embedMessage(
+              "RED",
+              `There is no playlist with this name in my Database!`
+            ),
+          ],
+        });
+
+      await client.db.delete(`${message.guildId}_${args[1]}`);
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `✅ | Playlist with alias \`${args[1]}\` has been removed`
+          ),
+        ],
+      });
+    }
+
     const customPlaylist = await client.db.get(`${message.guildId}_${args[0]}`);
 
     if (!customPlaylist)
