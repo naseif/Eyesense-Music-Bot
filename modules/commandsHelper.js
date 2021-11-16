@@ -14,7 +14,8 @@ let commandsHelper = function () {
    * @param {string} commandsFolder Path to folder that contains all commands
    * @returns array of commands
    */
-  api.getAllCommands = function (commandsFolder) {
+
+  api.getAllCommands = (commandsFolder) => {
     var result = [];
     const allCommandsFolders = fs.readdirSync(commandsFolder);
 
@@ -38,7 +39,8 @@ let commandsHelper = function () {
    * @param {string} commandsFolder Path to folder that contains all commands
    * @param {Client} client The discord client
    */
-  api.registerAllCommands = function (commandsFolder, client) {
+
+  api.registerAllCommands = (commandsFolder, client) => {
     let commands = api.getAllCommands(commandsFolder);
     client.logger(`Found ${commands.length} Commands, Loading...`);
 
@@ -54,7 +56,8 @@ let commandsHelper = function () {
    * @param {string} commandsFolder Path to folder that contains all commands
    * @returns an array of json definitions
    */
-  api.getAllCommandsAsJson = function (commandsFolder) {
+
+  api.getAllCommandsAsJson = (commandsFolder) => {
     let commands = api.getAllCommands(commandsFolder);
 
     let result = [];
@@ -71,7 +74,8 @@ let commandsHelper = function () {
    * @param {string} eventFolder Path to folder that contains all events
    * @param {Client} client The discord client
    */
-  api.registerAllEvents = function (eventFolder, client) {
+
+  api.registerAllEvents = (eventFolder, client) => {
     const eventFiles = fs
       .readdirSync(eventFolder)
       .filter((file) => file.endsWith(".js"));
