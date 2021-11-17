@@ -124,7 +124,10 @@ module.exports = {
     }
 
     try {
+
+      if (queue.repeatMode !== 0) queue.setRepeatMode(0);
       const currnetSong = queue.current;
+      
       await queue.skip();
       return await interaction.followUp({
         embeds: [
