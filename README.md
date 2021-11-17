@@ -15,7 +15,7 @@
 
 <p align="center">
 <b>Eyesense is a feature-rich discord bot that plays music from various platforms and more. <br>
-  The bot is still in the development phase. You can check the release page for the stable releases.</b>
+</b>
   
 </p>
 
