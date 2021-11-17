@@ -52,7 +52,7 @@ module.exports = {
         apiKey: geniusApiKey,
         title: songTitle,
         artist: " ",
-        optimizeQuery: true,
+        optimizeQuery: false,
       };
 
       const lyrics = await getSong(lyricsOptions);
@@ -83,7 +83,7 @@ module.exports = {
         timestamp: new Date(),
       };
 
-      await message.channel.send({
+      return await message.channel.send({
         embeds: [lyricsEmbed],
       });
     } catch (error) {
@@ -109,6 +109,16 @@ module.exports = {
     const queue = client.player.getQueue(interaction.guild);
     let songTitle;
 
+    if (!geniusApiKey)
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            "You did not add your Genius API token in the config file!"
+          ),
+        ],
+      });
+
     if (songString) {
       songTitle = songString;
     } else {
@@ -133,7 +143,15 @@ module.exports = {
     }
 
     try {
-      const lyrics = await lyricsClient.search(songTitle);
+      const lyricsOptions = {
+        apiKey: geniusApiKey,
+        title: songTitle,
+        artist: " ",
+        optimizeQuery: false,
+      };
+
+      const lyrics = await getSong(lyricsOptions);
+
       if (!lyrics)
         return await interaction.followUp({
           embeds: [
@@ -146,7 +164,7 @@ module.exports = {
 
       const lyricsEmbed = {
         color: "#9dcc37",
-        title: `${lyrics.artist.name} - ${lyrics.title}`,
+        title: `${lyrics.title}`,
         author: {
           name: `${interaction.user.username}`,
           icon_url: `${
@@ -155,13 +173,13 @@ module.exports = {
         },
         description: `${lyrics.lyrics}`,
         thumbnail: {
-          url: `${lyrics.thumbnail}`,
+          url: `${lyrics.albumArt}`,
         },
 
         timestamp: new Date(),
       };
 
-      await interaction.followUp({
+      return await interaction.followUp({
         embeds: [lyricsEmbed],
       });
     } catch (error) {
