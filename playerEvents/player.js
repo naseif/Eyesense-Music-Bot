@@ -16,7 +16,7 @@ module.exports.playerEvents = (player) => {
       embeds: [
         embedMessage(
           "9dcc37",
-          `Leaving ${queue.metadata.channel.guild.me.voice.channel.toString()} since its empty 🙄\n consider using the 247 command to prevent this behaviour 😎`
+          `Leaving ${queue.metadata.channel.guild.me.voice.channel.toString()} since its empty 🙄\nconsider using the 247 command to prevent this behaviour 😎`
         ),
       ],
     });
