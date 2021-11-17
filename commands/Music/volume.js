@@ -66,10 +66,15 @@ module.exports = {
 
     if (!volume)
       return await message.channel.send({
-        embeds: [embedMessage("RED", `❌ Volume must be a number!`)],
+        embeds: [embedMessage("RED", `❌ Volume must be a valid number!`)],
       });
 
     try {
+      if (volume < 0 || volume > 100)
+        return await message.channel.send({
+          embeds: [embedMessage("RED", `Volume must be between 1 and 100!`)],
+        });
+
       queue.setVolume(volume);
       return await message.channel.send({
         embeds: [
@@ -151,6 +156,11 @@ module.exports = {
       });
 
     try {
+      if (volume < 0 || volume > 100)
+        return await interaction.followUp({
+          embeds: [embedMessage("RED", `Volume must be between 1 and 100!`)],
+        });
+
       queue.setVolume(volume);
       return await interaction.followUp({
         embeds: [
