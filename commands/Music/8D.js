@@ -94,6 +94,7 @@ module.exports = {
         try {
           await queue.setFilters({
             "8D": true,
+            normalizer2: true,
           });
           await interaction.followUp({
             embeds: [embedMessage("#9dcc37", `✅ 8D Filter has been enabled`)],
@@ -107,7 +108,7 @@ module.exports = {
         break;
       case "0":
         try {
-          await queue.setFilters({ "8D": false });
+          await queue.setFilters({ "8D": false, normalizer2: true });
           await interaction.followUp({
             embeds: [embedMessage("#9dcc37", `✅ 8D Filter has been disabled`)],
           });
