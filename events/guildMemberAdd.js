@@ -1,6 +1,10 @@
 module.exports = {
   name: "guildMemberAdd",
   async execute(guild) {
+    const checkCustomChannel = await guild.client.db.get(
+      `welcome_${guild.guild.id}`
+    );
+
     const welcomeEmbed = {
       color: "#9dcc37",
       title: `New Member joined!`,
@@ -30,6 +34,18 @@ module.exports = {
         },
       ],
     };
+
+    if (checkCustomChannel) {
+      const customchannel = guild.guild.channels.cache.find(
+        (channel) => channel.id === checkCustomChannel
+      );
+      return customchannel.send({
+        content: `Hey ${guild.toString()}, Welcome to ${
+          guild.guild.name
+        }! :partying_face:`,
+        embeds: [welcomeEmbed],
+      });
+    }
 
     if (guild.guild.systemChannel) {
       guild.guild.systemChannel.send({

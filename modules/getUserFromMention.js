@@ -65,13 +65,14 @@ module.exports.getRoleFromMention = async (mention, message) => {
  * @param {Message} message
  * @returns ID String
  */
-module.exports.getTextChannelFromMention = async (mention) => {
+module.exports.getTextChannelFromMention = (mention) => {
   if (!mention) return;
 
   if (mention.startsWith("<#") && mention.endsWith(">")) {
     mention = mention.slice(2, -1);
 
     return mention;
+  } else {
+    return;
   }
-  return mention;
 };
