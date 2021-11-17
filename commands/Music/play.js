@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
 const playdl = require("play-dl");
+const { QueryType } = require("discord-player");
 
 module.exports = {
   name: "play",
@@ -57,6 +58,7 @@ module.exports = {
 
     const searchSong = await client.player.search(songString, {
       requestedBy: message.member.user,
+      searchEngine: QueryType.AUTO,
     });
 
     if (!searchSong.tracks.length || !searchSong)
@@ -244,6 +246,7 @@ module.exports = {
     const songString = interaction.options.getString("song");
     const searchSong = await client.player.search(songString, {
       requestedBy: interaction.user,
+      searchEngine: QueryType.AUTO,
     });
 
     if (!searchSong.tracks.length || !searchSong)
