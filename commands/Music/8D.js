@@ -35,6 +35,7 @@ module.exports = {
         try {
           await queue.setFilters({
             "8D": true,
+            normalizer2: true,
           });
           await message.channel.send({
             embeds: [embedMessage("#9dcc37", `✅ 8D Filter has been enabled`)],
@@ -48,7 +49,7 @@ module.exports = {
         break;
       case "off":
         try {
-          await queue.setFilters({ normalizer: true });
+          await queue.setFilters({ normalizer2: true, "8D": false });
           await message.channel.send({
             embeds: [embedMessage("#9dcc37", `✅ 8D Filter has been disabled`)],
           });
