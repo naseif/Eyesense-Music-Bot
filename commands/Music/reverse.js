@@ -36,6 +36,7 @@ module.exports = {
         try {
           await queue.setFilters({
             reverse: true,
+            normalizer2: true,
           });
           await message.channel.send({
             embeds: [
@@ -51,7 +52,9 @@ module.exports = {
         break;
       case "off":
         try {
-          await queue.setFilters({});
+          await queue.setFilters({
+            normalizer2: true,
+          });
           await message.channel.send({
             embeds: [
               embedMessage("#9dcc37", `✅ Reverse Filter has been disabled`),
@@ -98,6 +101,7 @@ module.exports = {
         try {
           await queue.setFilters({
             reverse: true,
+            normalizer2: true,
           });
           await interaction.followUp({
             embeds: [
@@ -113,7 +117,9 @@ module.exports = {
         break;
       case "0":
         try {
-          await queue.setFilters({ reverse: false });
+          await queue.setFilters({
+            normalizer2: true,
+          });
           await interaction.followUp({
             embeds: [
               embedMessage("#9dcc37", `✅ Reverse Filter has been disabled`),
