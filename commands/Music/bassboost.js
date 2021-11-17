@@ -23,7 +23,7 @@ module.exports = {
 
     switch (args[0]) {
       case "low":
-        await queue.setFilters({ bassboost_low: true });
+        await queue.setFilters({ bassboost_low: true, normalizer2: true });
         await message.channel.send({
           embeds: [
             embedMessage("#9dcc37", `✅ Bassboost Low Filter has been enabled`),
@@ -31,7 +31,7 @@ module.exports = {
         });
         break;
       case "medium":
-        await queue.setFilters({ bassboost: true });
+        await queue.setFilters({ bassboost: true, normalizer2: true });
         await message.channel.send({
           embeds: [
             embedMessage(
@@ -42,7 +42,7 @@ module.exports = {
         });
         break;
       case "high":
-        await queue.setFilters({ bassboost_high: true });
+        await queue.setFilters({ bassboost_high: true, normalizer2: true });
         await message.channel.send({
           embeds: [
             embedMessage(
@@ -53,8 +53,7 @@ module.exports = {
         });
         break;
       case "off":
-        await queue.setFilters({});
-        await queue.setFilters({ normalizer: true });
+        await queue.setFilters({ normalizer2: true });
         await message.channel.send({
           embeds: [
             embedMessage("#9dcc37", `✅ Bassboost Filter has been disabled`),
@@ -62,7 +61,7 @@ module.exports = {
         });
         break;
       default:
-        await queue.setFilters({ bassboost: true });
+        await queue.setFilters({ bassboost: true, normalizer2: true });
         await message.channel.send({
           embeds: [
             embedMessage(
@@ -104,7 +103,7 @@ module.exports = {
       });
     switch (mode) {
       case "1":
-        await queue.setFilters({ bassboost_low: true });
+        await queue.setFilters({ bassboost_low: true, normalizer2: true });
         await interaction.followUp({
           embeds: [
             embedMessage("#9dcc37", `✅ Bassboost Low Filter has been enabled`),
@@ -112,7 +111,7 @@ module.exports = {
         });
         break;
       case "2":
-        await queue.setFilters({ bassboost: true });
+        await queue.setFilters({ bassboost: true, normalizer2: true });
         await interaction.followUp({
           embeds: [
             embedMessage(
@@ -123,7 +122,7 @@ module.exports = {
         });
         break;
       case "3":
-        await queue.setFilters({ bassboost_high: true });
+        await queue.setFilters({ bassboost_high: true, normalizer2: true });
         await interaction.followUp({
           embeds: [
             embedMessage(
@@ -135,9 +134,7 @@ module.exports = {
         break;
       case "4":
         await queue.setFilters({
-          bassboost_low: false,
-          bassboost_high: false,
-          bassboost: false,
+          normalizer2: true,
         });
         await interaction.followUp({
           embeds: [
