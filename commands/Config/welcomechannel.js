@@ -97,15 +97,25 @@ module.exports = {
           });
           break;
         case "remove":
+          const savedChannel = await client.db.get(
+            `welcome_${message.guildId}`
+          );
+          if (!savedChannel)
+            return await message.channel.send({
+              embeds: [
+                embedMessage(
+                  "RED",
+                  `❌ There is no configured welcome channel for this server!`
+                ),
+              ],
+            });
+
           let providedChannel =
             getTextChannelFromMention(args[1]) ||
             message.guild.channels.cache.find(
               (channel) => channel.name === args[1] || channel.id === args[1]
             );
 
-          const savedChannel = await client.db.get(
-            `welcome_${message.guildId}`
-          );
           providedChannel.id
             ? (providedChannel = providedChannel.id)
             : (providedChannel = providedChannel);
@@ -115,13 +125,12 @@ module.exports = {
               embeds: [
                 embedMessage(
                   "RED",
-                  `This is not the channel I have in my database!`
+                  `❌ This is not the channel I have in my database!`
                 ),
               ],
             });
 
-          if (savedChannel)
-            await client.db.delete(`welcome_${message.guildId}`);
+          await client.db.delete(`welcome_${message.guildId}`);
           await message.channel.send({
             embeds: [
               embedMessage(
@@ -204,6 +213,38 @@ module.exports = {
           });
           break;
         case "remove":
+          const savedChannel = await client.db.get(
+            `welcome_${interaction.guildId}`
+          );
+          if (!savedChannel)
+            return await interaction.followUp({
+              embeds: [
+                embedMessage(
+                  "RED",
+                  `❌ There is no configured welcome channel for this server!`
+                ),
+              ],
+            });
+
+          let providedChannel =
+            getTextChannelFromMention(args[1]) ||
+            interaction.guild.channels.cache.find(
+              (channel) => channel.name === args[1] || channel.id === args[1]
+            );
+
+          providedChannel.id
+            ? (providedChannel = providedChannel.id)
+            : (providedChannel = providedChannel);
+
+          if (savedChannel !== providedChannel)
+            return await interaction.followUp({
+              embeds: [
+                embedMessage(
+                  "RED",
+                  `❌ This is not the channel I have in my database!`
+                ),
+              ],
+            });
           await client.db.delete(`welcome_${interaction.guildId}`);
           await interaction.followUp({
             embeds: [
