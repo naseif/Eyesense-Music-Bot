@@ -28,7 +28,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "RED",
-            `You did not provide enough arguments!\n See \`${defaultPrefix}h welcome\` for more info!`
+            `❌ You did not provide enough arguments!\n See \`${defaultPrefix}h welcome\` for more info!`
           ),
         ],
       });
@@ -39,7 +39,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "RED",
-            `This is not a valid operation.\n Please specify whether you want to \`add || remove\` a custom weclome channel!`
+            `❌ This is not a valid operation.\n Please specify whether you want to \`add || remove\` a custom weclome channel!`
           ),
         ],
       });
@@ -49,7 +49,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "RED",
-            `You netiher mentioned the text channel nor its name!`
+            `❌ You netiher mentioned the text channel nor its name!`
           ),
         ],
       });
@@ -59,7 +59,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "RED",
-            `This is not a valid operation. See \`${defaultPrefix}h welcome\` for more info \n Please specify whether you want to \`add || remove\` a custom weclome channel!`
+            `❌ This is not a valid operation. See \`${defaultPrefix}h welcome\` for more info \n Please specify whether you want to \`add || remove\` a custom weclome channel!`
           ),
         ],
       });
@@ -75,7 +75,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "RED",
-            `No text channel with this name or mention was found!`
+            `❌ No text channel with this name or mention was found!`
           ),
         ],
       });
@@ -91,7 +91,7 @@ module.exports = {
             embeds: [
               embedMessage(
                 "#9dcc37",
-                `A custom welcome message has been set successfully!`
+                `✅ A custom welcome message has been set successfully!`
               ),
             ],
           });
@@ -102,7 +102,7 @@ module.exports = {
             embeds: [
               embedMessage(
                 "#9dcc37",
-                `Welcome message channel has been resetted to default!`
+                `✅ Welcome message channel has been resetted to default!`
               ),
             ],
           });
@@ -124,8 +124,8 @@ module.exports = {
       option
         .setName("action")
         .setDescription("add or delete custom welcome channel")
-        .addChoice("Add", "set")
-        .addChoice("Remove", "delete")
+        .addChoice("Add", "add")
+        .addChoice("Remove", "remove")
         .setRequired(true)
     )
     .addChannelOption((option) =>
@@ -134,5 +134,68 @@ module.exports = {
         .setDescription("New text channel")
         .setRequired(true)
     ),
-  async execute(interaction, client) {},
+  async execute(interaction, client) {
+    await interaction.deferReply();
+    const action = interaction.options.getString("action");
+    const newwelcomeChannel = interaction.options.getChannel("channel");
+
+    if (
+      !interaction.member.permissions.has("MANAGE_GUILD") ||
+      !interaction.member.permissions.has("ADMINISTRATOR")
+    ) {
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "RED",
+            `❌ You do not have permission to set a custom welcome channel!`
+          ),
+        ],
+      });
+    }
+
+    if (newwelcomeChannel.type !== "GUILD_TEXT")
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "RED",
+            `❌ You can only set text channels as custom welcome message channel!`
+          ),
+        ],
+      });
+
+    try {
+      switch (action) {
+        case "add":
+          await client.db.set(
+            `welcome_${interaction.guildId}`,
+            `${newwelcomeChannel.id}`
+          );
+          await interaction.followUp({
+            embeds: [
+              embedMessage(
+                "#9dcc37",
+                `✅ A custom welcome message has been set successfully!`
+              ),
+            ],
+          });
+          break;
+        case "remove":
+          await client.db.delete(`welcome_${interaction.guildId}`);
+          await interaction.followUp({
+            embeds: [
+              embedMessage(
+                "#9dcc37",
+                `✅ Welcome message channel has been resetted to default!`
+              ),
+            ],
+          });
+          break;
+      }
+    } catch (err) {
+      client.logger.error(err.message, "error");
+      await interaction.followUp({
+        embeds: [embedMessage("RED", `❌ Could not perform this action`)],
+      });
+    }
+  },
 };
