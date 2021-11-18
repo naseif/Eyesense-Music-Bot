@@ -35,11 +35,8 @@ module.exports = {
       ],
     };
 
-    if (checkCustomChannel) {
-      const customchannel = guild.guild.channels.cache.find(
-        (channel) => channel.id === checkCustomChannel
-      );
-      return customchannel.send({
+    const sendWelcome = (channel) => {
+      return channel.send({
         content: `Hey ${guild.toString()}, Welcome to ${
           guild.guild.name
         }! :partying_face:`,
@@ -47,13 +44,15 @@ module.exports = {
       });
     }
 
+    if (checkCustomChannel) {
+      const customchannel = guild.guild.channels.cache.find(
+        (channel) => channel.id === checkCustomChannel
+      );
+        sendWelcome(customchannel)
+    }
+
     if (guild.guild.systemChannel) {
-      guild.guild.systemChannel.send({
-        content: `Hey ${guild.toString()}, Welcome to ${
-          guild.guild.name
-        }! :partying_face:`,
-        embeds: [welcomeEmbed],
-      });
+      sendWelcome(guild.guild.systemChannel)
     } else {
       return;
     }

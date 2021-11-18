@@ -19,9 +19,9 @@ module.exports.connectDatabase = (mongourl, client) => {
     client.logger("[DB] DATABASE CONNECTED");
   });
   mongoose.connection.on("err", (err) => {
-    console.log(`Mongoose connection error: \n ${err.stack}`, "error");
+    client.logger(`Mongoose connection error: \n ${err.stack}`, "error");
   });
   mongoose.connection.on("disconnected", () => {
-    console.log("Mongoose disconnected");
+    client.logger("Mongoose disconnected", "error");
   });
 };
