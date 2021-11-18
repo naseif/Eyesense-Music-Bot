@@ -124,8 +124,8 @@ module.exports = {
       option
         .setName("action")
         .setDescription("add or delete custom leave channel")
-        .addChoice("Add", "set")
-        .addChoice("Remove", "delete")
+        .addChoice("Add", "add")
+        .addChoice("Remove", "remove")
         .setRequired(true)
     )
     .addChannelOption((option) =>
