@@ -8,7 +8,7 @@ module.exports = {
   name: "welcome",
   description: "Sets a custom welcome channel instead of the default channel!",
   args: true,
-  usage: `welcome add <channel name || channel mention> || welcome remove <channel name || channel mention>`,
+  usage: `welcome add <channel name || channel mention || channel id> || welcome remove <channel name || channel mention || channel id>`,
   async run(message, args, client, defaultPrefix) {
     if (
       !message.member.permissions.has("MANAGE_GUILD") ||
@@ -66,7 +66,9 @@ module.exports = {
 
     const newCustomChannel =
       getTextChannelFromMention(args[1]) ||
-      message.guild.channels.cache.find((channel) => channel.name === args[1]);
+      message.guild.channels.cache.find(
+        (channel) => channel.name === args[1] || channel.id === args[1]
+      );
 
     if (!newCustomChannel)
       return await message.channel.send({
