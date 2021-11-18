@@ -42,17 +42,18 @@ module.exports = {
         }! :partying_face:`,
         embeds: [welcomeEmbed],
       });
-    }
+    };
 
     if (checkCustomChannel) {
       const customchannel = guild.guild.channels.cache.find(
         (channel) => channel.id === checkCustomChannel
       );
-        sendWelcome(customchannel)
+      if (!customchannel) return;
+      return sendWelcome(customchannel);
     }
 
     if (guild.guild.systemChannel) {
-      sendWelcome(guild.guild.systemChannel)
+      return sendWelcome(guild.guild.systemChannel);
     } else {
       return;
     }
