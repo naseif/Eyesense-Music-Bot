@@ -37,11 +37,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `✅ Bot Prefix Resetted to ` +
-              "`" +
-              `${prefix}` +
-              "`" +
-              ` for ${message.guild.name}`
+            `✅ Bot Prefix Resetted to \`${prefix}\` for ${message.guild.name}`
           ),
         ],
       });
@@ -53,11 +49,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `✅ Bot Prefix set to ` +
-              "`" +
-              `${args[0]}` +
-              "`" +
-              ` for ${message.guild.name}`
+            `✅ Bot Prefix set to \`${args[0]}\` for ${message.guild.name}`
           ),
         ],
       });
@@ -104,7 +96,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `✅ Bot Prefix Resetted to ` + "`" + `${prefix}` + "`"
+            `✅ Bot Prefix Resetted to \`${prefix}\``
           ),
         ],
       });
@@ -116,7 +108,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "#9dcc37",
-            `✅ Bot Prefix set to ` + "`" + `${newPrefix}` + "`"
+            `✅ Bot Prefix set to \`${newPrefix}\``
           ),
         ],
       });

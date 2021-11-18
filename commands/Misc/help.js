@@ -4,13 +4,9 @@ function printHelpByCollection(collection, category) {
   const commands = collection
     .filter((item) => item.category === category || category === null)
     .map((command) => {
-      return (
-        "`" +
-        `${command.data.name || command.name} :` +
-        "`" +
-        " " +
-        `${command.data.description || command.description}, `
-      );
+      return `\`${command.data.name || command.name} :\` ${
+        command.data.description || command.description
+      }, `;
     });
   return commands || null;
 }

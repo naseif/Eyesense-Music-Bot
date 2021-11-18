@@ -28,10 +28,7 @@ module.exports = {
           embeds: [
             embedMessage(
               "#9dcc37",
-              `✅ Nickname has been successfully changed to ` +
-                "`" +
-                `${args[0]}` +
-                "`"
+              `✅ Nickname has been successfully changed to \`${args[0]}\``
             ),
           ],
         });
@@ -68,10 +65,7 @@ module.exports = {
           embeds: [
             embedMessage(
               "#9dcc37",
-              `✅ Nickname has been successfully changed to ` +
-                "`" +
-                `${args[0]}` +
-                "`"
+              `✅ Nickname has been successfully changed to \`${args[0]}\``
             ),
           ],
         });
