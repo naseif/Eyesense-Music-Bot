@@ -97,7 +97,31 @@ module.exports = {
           });
           break;
         case "remove":
-          await client.db.delete(`welcome_${message.guildId}`);
+          let providedChannel =
+            getTextChannelFromMention(args[1]) ||
+            message.guild.channels.cache.find(
+              (channel) => channel.name === args[1] || channel.id === args[1]
+            );
+
+          const savedChannel = await client.db.get(
+            `welcome_${message.guildId}`
+          );
+          providedChannel.id
+            ? (providedChannel = providedChannel.id)
+            : (providedChannel = providedChannel);
+
+          if (savedChannel !== providedChannel)
+            return await message.channel.send({
+              embeds: [
+                embedMessage(
+                  "RED",
+                  `This is not the channel I have in my database!`
+                ),
+              ],
+            });
+
+          if (savedChannel)
+            await client.db.delete(`welcome_${message.guildId}`);
           await message.channel.send({
             embeds: [
               embedMessage(
