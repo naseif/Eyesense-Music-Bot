@@ -124,7 +124,7 @@ module.exports = {
               embeds: [
                 embedMessage(
                   "RED",
-                  `❌ This is not the channel I have in my database!`
+                  `❌ This is not the channel I have in my database!\nConfigured leave channel: <#${savedChannel}>`
                 ),
               ],
             });
@@ -240,7 +240,7 @@ module.exports = {
               embeds: [
                 embedMessage(
                   "RED",
-                  `❌ This is not the channel I have in my database!`
+                  `❌ This is not the channel I have in my database!\nConfigured leave channel: <#${savedChannel}>`
                 ),
               ],
             });
