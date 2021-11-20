@@ -7,7 +7,7 @@ module.exports = {
   aliases: ["8"],
   usage: "8ball <question>",
   description: "Ask the magic ball a question!",
-  async run(message, args) {
+  async run(message, args, client) {
     const question = args.join(" ");
 
     if (!question)
