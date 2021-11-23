@@ -51,15 +51,16 @@ module.exports = {
     }
     try {
       if (queue && queue.playing) {
-        await message.channel.send({
+        let title = queue.current.title;
+        await queue.stop();
+        return await message.channel.send({
           embeds: [
             embedMessage(
               "#9dcc37",
-              `✅ Stopped **${queue.current.title}** in [${message.member.voice.channel}]`
+              `✅ Stopped **${title}** in [${message.member.voice.channel}]`
             ),
           ],
         });
-        await queue.stop();
       }
     } catch (err) {
       client.logger(err.message, "error");
@@ -123,19 +124,21 @@ module.exports = {
 
     try {
       if (queue && queue.playing) {
-        await interaction.followUp({
+        let title = queue.current.title;
+        await queue.stop();
+
+        return await interaction.followUp({
           embeds: [
             embedMessage(
               "#9dcc37",
-              `✅ Stopped **${queue.current.title}** in [${interaction.member.voice.channel}]`
+              `✅ Stopped **${title}** in [${interaction.member.voice.channel}]`
             ),
           ],
         });
-        await queue.stop();
       }
     } catch (err) {
       client.logger(err.message, "error");
-      await interaction.followUp({
+      return await interaction.followUp({
         embeds: [embedMessage("RED", `❌ | Something went wrong :/`)],
       });
     }

@@ -37,7 +37,7 @@ module.exports = {
       },
     };
 
-    await message.channel.send({ embeds: [queueEmbed] });
+    return await message.channel.send({ embeds: [queueEmbed] });
   },
   data: new SlashCommandBuilder()
     .setName("queue")
@@ -70,6 +70,6 @@ module.exports = {
       },
     };
 
-    await interaction.followUp({ embeds: [queueEmbed] });
+    return await interaction.followUp({ embeds: [queueEmbed] });
   },
 };

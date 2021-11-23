@@ -19,7 +19,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "RED",
-            `❌ | Please give how many seconds you wish to seek!`
+            `❌ | Please provide how many seconds you wish to seek!`
           ),
         ],
       });
@@ -34,10 +34,10 @@ module.exports = {
           time / 1000
         } seconds! [${message.member.toString()}]`,
       };
-      await message.channel.send({ embeds: [embed] });
+      return await message.channel.send({ embeds: [embed] });
     } catch (err) {
       client.logger(err.message, "error");
-      await message.channel.send({
+      return await message.channel.send({
         embeds: [embedMessage("RED", `❌ Could not seek the song!`)],
       });
     }
@@ -49,9 +49,10 @@ module.exports = {
       option.setName("sec").setDescription("Enter time in seconds")
     ),
   async execute(interaction, client) {
+    await interaction.deferReply();
+
     const queue = client.player.getQueue(interaction.guild);
     const seekNumber = interaction.options.getInteger("sec") * 1000;
-    await interaction.deferReply();
 
     if (!queue || !queue.playing)
       return await interaction.followUp(
@@ -66,7 +67,7 @@ module.exports = {
           seekNumber / 1000
         } seconds! [${interaction.member.toString()}]`,
       };
-      await interaction.followUp({ embeds: [embed] });
+      return await interaction.followUp({ embeds: [embed] });
     } catch (error) {
       console.error(error);
     }

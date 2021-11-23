@@ -148,6 +148,7 @@ module.exports = {
           ],
         });
         break;
+
       case "1":
         await queue.setRepeatMode(Number(mode));
         await interaction.followUp({
@@ -160,6 +161,7 @@ module.exports = {
         });
 
         break;
+
       case "2":
         await queue.setRepeatMode(Number(mode));
         await interaction.followUp({
@@ -172,6 +174,7 @@ module.exports = {
         });
 
         break;
+
       case "3":
         await queue.setRepeatMode(Number(mode));
         await interaction.followUp({
@@ -179,6 +182,7 @@ module.exports = {
             embedMessage("#9dcc37", `✅ | Autoplay mode has been enabled `),
           ],
         });
+
         break;
     }
   },

@@ -49,22 +49,20 @@ module.exports = {
     }
 
     try {
-      if (queue) {
-        await queue.setPaused(false);
-        await message.channel.send({
-          embeds: [
-            embedMessage(
-              "#9dcc37",
-              `✅ **${
-                queue.current.title
-              }** resumed [${message.member.toString()}]`
-            ),
-          ],
-        });
-      }
+      await queue.setPaused(false);
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `✅ **${
+              queue.current.title
+            }** resumed [${message.member.toString()}]`
+          ),
+        ],
+      });
     } catch (err) {
       client.logger(err.message, "error");
-      await message.channel.send({
+      return await message.channel.send({
         embeds: [embedMessage("RED", "❌ I was not able to resume this song")],
       });
     }
@@ -119,22 +117,20 @@ module.exports = {
     }
 
     try {
-      if (queue) {
-        await queue.setPaused(false);
-        await interaction.followUp({
-          embeds: [
-            embedMessage(
-              "#9dcc37",
-              `✅ **${
-                queue.current.title
-              }** resumed [${interaction.member.toString()}]`
-            ),
-          ],
-        });
-      }
+      await queue.setPaused(false);
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `✅ **${
+              queue.current.title
+            }** resumed [${interaction.member.toString()}]`
+          ),
+        ],
+      });
     } catch (err) {
       client.logger(err.message, "error");
-      await interaction.followUp({
+      return await interaction.followUp({
         embeds: [embedMessage("RED", "❌ I was not able to resume this song")],
       });
     }

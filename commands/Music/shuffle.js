@@ -15,17 +15,15 @@ module.exports = {
       });
 
     try {
-      if (queue) {
-        await queue.shuffle();
-        await message.channel.send({
-          embeds: [
-            embedMessage(
-              "#9dcc37",
-              `✅ Queue has been shuffled [${message.member.toString()}]`
-            ),
-          ],
-        });
-      }
+      await queue.shuffle();
+      return await message.channel.send({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `✅ Queue has been shuffled [${message.member.toString()}]`
+          ),
+        ],
+      });
     } catch (error) {
       client.logger(error.message, "error");
       await message.channel.send({
@@ -47,20 +45,18 @@ module.exports = {
       });
 
     try {
-      if (queue) {
-        await queue.shuffle();
-        await interaction.followUp({
-          embeds: [
-            embedMessage(
-              "#9dcc37",
-              `✅ Queue has been shuffled [${interaction.member.toString()}]`
-            ),
-          ],
-        });
-      }
+      await queue.shuffle();
+      return await interaction.followUp({
+        embeds: [
+          embedMessage(
+            "#9dcc37",
+            `✅ Queue has been shuffled [${interaction.member.toString()}]`
+          ),
+        ],
+      });
     } catch (error) {
       client.logger(error.message, "error");
-      await interaction.followUp({
+      return await interaction.followUp({
         embeds: [embedMessage("RED", "❌ Could not shuffle the queue")],
       });
     }
