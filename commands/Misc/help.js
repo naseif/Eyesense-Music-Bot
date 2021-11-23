@@ -67,7 +67,9 @@ module.exports = {
         const embed = {
           color: "#9dcc37",
           title: `${client.user.username}'s ${searchCommand} Commands!`,
-          description: `${commandsperCategory.join("\n")}`,
+          description: `${commandsperCategory.join(
+            "\n"
+          )}\n\n Use \`${prefix}h command name\` to get more info about a command!\n`,
           timestamp: new Date(),
           footer: {
             text: `Requested by ${message.member.user.username}`,
