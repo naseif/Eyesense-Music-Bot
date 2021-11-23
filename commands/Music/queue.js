@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { chunkSubstr } = require("../../modules/chunkString");
 const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
@@ -20,6 +21,7 @@ module.exports = {
       (track, index) =>
         `[${index + 1}] - ${track.title} - <@${track.requestedBy.id}>`
     );
+
     const queueEmbed = {
       color: "#9dcc37",
       title: `Queue contains ${queue?.tracks.length} songs!`,
@@ -37,7 +39,15 @@ module.exports = {
       },
     };
 
-    return await message.channel.send({ embeds: [queueEmbed] });
+    if (tracks.join("\n").length > 4096) {
+      const chunked = chunkSubstr(tracks.join("\n"), 4096);
+      chunked.forEach(async (str) => {
+        queueEmbed.description = str;
+        return await message.channel.send({ embeds: [queueEmbed] });
+      });
+    } else {
+      return await message.channel.send({ embeds: [queueEmbed] });
+    }
   },
   data: new SlashCommandBuilder()
     .setName("queue")
@@ -70,6 +80,14 @@ module.exports = {
       },
     };
 
-    return await interaction.followUp({ embeds: [queueEmbed] });
+    if (tracks.join("\n").length > 4096) {
+      const chunked = chunkSubstr(tracks.join("\n"), 4096);
+      chunked.forEach(async (str) => {
+        queueEmbed.description = str;
+        return await interaction.followUp({ embeds: [queueEmbed] });
+      });
+    } else {
+      return await interaction.followUp({ embeds: [queueEmbed] });
+    }
   },
 };

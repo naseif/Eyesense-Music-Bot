@@ -1,7 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
-const { getLyrics, getSong } = require("genius-lyrics-api");
+const { getSong } = require("genius-lyrics-api");
 const { geniusApiKey } = require("../../config.json");
+const { chunkSubstr } = require("../../modules/chunkString");
 
 module.exports = {
   name: "lyrics",
@@ -83,9 +84,17 @@ module.exports = {
         timestamp: new Date(),
       };
 
-      return await message.channel.send({
-        embeds: [lyricsEmbed],
-      });
+      if (lyrics.lyrics.length > 4096) {
+        const chunkLyrics = chunkSubstr(lyrics.lyrics, 4096);
+        chunkLyrics.forEach(async (str) => {
+          lyricsEmbed.description = str;
+          return await message.channel.send({ embeds: [lyricsEmbed] });
+        });
+      } else {
+        return await message.channel.send({
+          embeds: [lyricsEmbed],
+        });
+      }
     } catch (error) {
       await message.channel.send({
         embeds: [
@@ -179,9 +188,17 @@ module.exports = {
         timestamp: new Date(),
       };
 
-      return await interaction.followUp({
-        embeds: [lyricsEmbed],
-      });
+      if (lyrics.lyrics.length > 4096) {
+        const chunkLyrics = chunkSubstr(lyrics.lyrics, 4096);
+        chunkLyrics.forEach(async (str) => {
+          lyricsEmbed.description = str;
+          return await interaction.followUp({ embeds: [lyricsEmbed] });
+        });
+      } else {
+        return await interaction.followUp({
+          embeds: [lyricsEmbed],
+        });
+      }
     } catch (error) {
       await interaction.followUp({
         embeds: [

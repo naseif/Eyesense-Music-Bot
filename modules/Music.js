@@ -4,6 +4,14 @@ const { QueryType } = require("discord-player");
 const { logger } = require("./logger.js");
 
 class Music {
+  /**
+   * plays music from youtube and various platforms!
+   * @param {String} query
+   * @param {Message} command
+   * @param {Client} client
+   * @param {User} user
+   * @returns
+   */
   async play(query, command, client, user = null) {
     if (!query) throw new Error("No search Query Provided!");
 
