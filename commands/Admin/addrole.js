@@ -103,7 +103,7 @@ module.exports = {
       (role) => role.name === `${roleName}`
     );
 
-    if (!roleToGive) return await interaction.followUp("No such role");
+    if (!roleToGive) return await interaction.followUp({embeds: [embedMessage("RED", `❌ | Role does not exist!`)]});
     if (!interaction.member.permissions.has([Permissions.FLAGS.ADMINISTRATOR]))
       return await interaction.followUp({
         embeds: [
