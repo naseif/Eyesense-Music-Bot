@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
+const { Music } = require("../../modules/Music.js");
 
 module.exports = {
   name: "playskip",
@@ -9,6 +10,7 @@ module.exports = {
   usage: "ps <YouTube URL | Song Name | Spotify URL | Soundcloud URL |>",
   async run(message, args, client, prefix) {
     const songString = args.join(" ");
+    const user = message.member.user;
     const queue = client.player.getQueue(message.guild);
 
     if (!queue || !queue.playing)
@@ -67,64 +69,12 @@ module.exports = {
         embeds: [embedMessage("RED", `❌ | You must be in my voice channel!`)],
       });
 
-    const searchSong = await client.player.search(songString, {
-      requestedBy: message.member.user,
-    });
-
-    if (!searchSong.tracks.length || !searchSong)
-      return message.channel.send({
-        embeds: [
-          embedMessage(
-            "RED",
-            `❌ | Song not found, Maybe its age restricted or flagged as offensive by Youtube`
-          ),
-        ],
-      });
-
-    const musicEmbed = {
-      color: "#9dcc37",
-      title: `🎵  Playing`,
-      author: {
-        name: `${message.member.user.username}`,
-        icon_url: `${
-          message.member.user.avatarURL() || client.user.avatarURL()
-        }`,
-      },
-      description: `Song: **[${searchSong.tracks[0].title}](${searchSong.tracks[0].url})**`,
-      thumbnail: {
-        url: `${searchSong.tracks[0].thumbnail}`,
-      },
-      fields: [
-        {
-          name: "Author",
-          value: `${searchSong.tracks[0].author}`,
-          inline: true,
-        },
-        {
-          name: "🕓 Duration",
-          value: `${searchSong.tracks[0].duration}`,
-          inline: true,
-        },
-      ],
-
-      timestamp: new Date(),
-    };
-
-    let playlistEmbed = {
-      color: "#9dcc37",
-      description: `✅ | Queued ${queue.tracks.length} Songs`,
-    };
-
-    if (queue.playing) {
+    try {
       await queue.clear();
       await queue.skip();
-      searchSong.playlist
-        ? queue.addTracks(searchSong.tracks)
-        : queue.addTrack(searchSong.tracks[0]);
-      searchSong.playlist
-        ? await message.channel.send({ embeds: [playlistEmbed, musicEmbed] })
-        : await message.channel.send({ embeds: [musicEmbed] });
-      return;
+      await new Music().play(songString, message, client, user);
+    } catch (error) {
+      client.logger(error.message, "error");
     }
   },
   data: new SlashCommandBuilder()
