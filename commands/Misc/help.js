@@ -6,7 +6,7 @@ function printHelpByCollection(collection, category) {
     .map((command) => {
       return `\`${command.data.name || command.name} :\` ${
         command.data.description || command.description
-      }, `;
+      } `;
     });
   return commands || null;
 }
