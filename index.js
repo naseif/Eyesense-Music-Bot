@@ -19,6 +19,7 @@ const client = new Client({
     Intents.FLAGS.GUILD_BANS,
   ],
   restRequestTimeout: 30000,
+  shards: "auto",
 });
 const { playerEvents } = require("./playerEvents/player");
 const { Player } = require("discord-player");
