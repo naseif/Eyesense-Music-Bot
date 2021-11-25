@@ -8,7 +8,7 @@ module.exports = {
   name: "welcomechannel",
   description: "Sets a custom welcome channel instead of the default channel!",
   args: true,
-  usage: `welcome add <channel name || channel mention || channel id> || welcome remove <channel name || channel mention || channel id>`,
+  usage: `welcomechannel add <channel name || channel mention || channel id> || welcome remove <channel name || channel mention || channel id>`,
   async run(message, args, client, defaultPrefix) {
     if (
       !message.member.permissions.has("MANAGE_GUILD") ||
@@ -28,7 +28,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "RED",
-            `❌ You did not provide enough arguments!\n See \`${defaultPrefix}h welcome\` for more info!`
+            `❌ You did not provide enough arguments!\n See \`${defaultPrefix}h welcomechannel\` for more info!`
           ),
         ],
       });
@@ -59,7 +59,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "RED",
-            `❌ This is not a valid operation. See \`${defaultPrefix}h welcome\` for more info \n Please specify whether you want to \`add || remove\` a custom weclome channel!`
+            `❌ This is not a valid operation. See \`${defaultPrefix}h welcomechannel\` for more info \n Please specify whether you want to \`add || remove\` a custom weclome channel!`
           ),
         ],
       });
@@ -91,7 +91,7 @@ module.exports = {
             embeds: [
               embedMessage(
                 "#9dcc37",
-                `✅ A custom welcome message has been set successfully!`
+                `✅ A custom welcome channel has been set successfully!`
               ),
             ],
           });
@@ -135,7 +135,7 @@ module.exports = {
             embeds: [
               embedMessage(
                 "#9dcc37",
-                `✅ Welcome message channel has been resetted to default!`
+                `✅ Welcome channel has been resetted to default!`
               ),
             ],
           });

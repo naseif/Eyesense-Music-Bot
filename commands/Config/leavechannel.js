@@ -8,7 +8,7 @@ module.exports = {
   name: "leavechannel",
   description: "Sets a custom leave channel instead of the default channel!",
   args: true,
-  usage: `leave add <channel name || channel mention || channel id> || leave remove <channel name || channel mention || channel id>`,
+  usage: `leavechannel add <channel name || channel mention || channel id> || leave remove <channel name || channel mention || channel id>`,
   async run(message, args, client, defaultPrefix) {
     if (
       !message.member.permissions.has("MANAGE_GUILD") ||
@@ -28,7 +28,7 @@ module.exports = {
         embeds: [
           embedMessage(
             "RED",
-            `❌ You did not provide enough arguments!\n See \`${defaultPrefix}h leave\` for more info!`
+            `❌ You did not provide enough arguments!\n See \`${defaultPrefix}h leavechannel\` for more info!`
           ),
         ],
       });
@@ -91,7 +91,7 @@ module.exports = {
             embeds: [
               embedMessage(
                 "#9dcc37",
-                `✅ A custom leave message has been set successfully!`
+                `✅ A custom leave channel has been set successfully!`
               ),
             ],
           });
@@ -134,7 +134,7 @@ module.exports = {
             embeds: [
               embedMessage(
                 "#9dcc37",
-                `✅ Leave message channel has been resetted to default!`
+                `✅ Leave channel has been resetted to default!`
               ),
             ],
           });
@@ -206,7 +206,7 @@ module.exports = {
             embeds: [
               embedMessage(
                 "#9dcc37",
-                `✅ A custom leave message has been set successfully!`
+                `✅ A custom leave channel has been set successfully!`
               ),
             ],
           });
@@ -250,7 +250,7 @@ module.exports = {
             embeds: [
               embedMessage(
                 "#9dcc37",
-                `✅ Leave message channel has been resetted to default!`
+                `✅ Leave channel has been resetted to default!`
               ),
             ],
           });
