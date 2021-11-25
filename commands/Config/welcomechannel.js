@@ -8,7 +8,7 @@ module.exports = {
   name: "welcomechannel",
   description: "Sets a custom welcome channel instead of the default channel!",
   args: true,
-  usage: `welcomechannel add <channel name || channel mention || channel id> || welcome remove <channel name || channel mention || channel id>`,
+  usage: `welcomechannel add <channel name || channel mention || channel id> || welcomechannel remove <channel name || channel mention || channel id>`,
   async run(message, args, client, defaultPrefix) {
     if (
       !message.member.permissions.has("MANAGE_GUILD") ||

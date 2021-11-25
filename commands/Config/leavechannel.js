@@ -8,7 +8,7 @@ module.exports = {
   name: "leavechannel",
   description: "Sets a custom leave channel instead of the default channel!",
   args: true,
-  usage: `leavechannel add <channel name || channel mention || channel id> || leave remove <channel name || channel mention || channel id>`,
+  usage: `leavechannel add <channel name || channel mention || channel id> || leavechannel remove <channel name || channel mention || channel id>`,
   async run(message, args, client, defaultPrefix) {
     if (
       !message.member.permissions.has("MANAGE_GUILD") ||
