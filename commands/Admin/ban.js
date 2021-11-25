@@ -16,8 +16,8 @@ module.exports = {
         embeds: [embedMessage("RED", `❌ | Please mention a user to ban`)],
       });
 
-    const noargs0 = args.shift();
-    const banReason = args.join(" ");
+    const banReason = args.slice(1).join(" ");
+
     const embed = {
       author: {
         name: `${message.member.user.username}`,
@@ -35,7 +35,7 @@ module.exports = {
         },
         {
           name: "Reason",
-          value: `${banReason}`,
+          value: `\`${banReason ? banReason : "No Reason provided!"}\``,
         },
       ],
       timestamp: new Date(),
@@ -62,11 +62,13 @@ module.exports = {
       });
 
     try {
-      await message.guild.members.ban(user, { banReason });
-      await message.channel.send({ embeds: [embed] });
+      await message.guild.members.ban(user, {
+        reason: banReason ? banReason : "No Reason",
+      });
+      return await message.channel.send({ embeds: [embed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await message.channel.send({
+      return await message.channel.send({
         embeds: [
           embedMessage("RED", `❌ | Couldn't ban ${user}, ${error.message}`),
         ],
@@ -121,10 +123,10 @@ module.exports = {
 
     try {
       await interaction.guild.members.ban(user, { reason });
-      await interaction.followUp({ embeds: [embed] });
+      return await interaction.followUp({ embeds: [embed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await interaction.followUp({
+      return await interaction.followUp({
         embeds: [embedMessage("RED", `Couldn't ban ${user}, ${error.message}`)],
       });
       console.log(error);
