@@ -3,7 +3,7 @@ const { Permissions } = require("discord.js");
 const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
-  name: "deletemsgs",
+  name: "deletemessages",
   aliases: ["dm"],
   args: true,
   description: "Deletes x number of messages in a text channel",
