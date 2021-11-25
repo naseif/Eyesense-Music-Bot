@@ -1,7 +1,10 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Permissions } = require("discord.js");
 const { embedMessage } = require("../../modules/embedSimple");
-const { getGuildUserFromMention } = require("../../modules/getUserFromMention");
+const {
+  getGuildUserFromMention,
+  getRoleFromMention,
+} = require("../../modules/getUserFromMention");
 
 module.exports = {
   name: "delrole",
@@ -11,9 +14,10 @@ module.exports = {
   async run(message, args, client) {
     const guildUser = getGuildUserFromMention(args[0], message);
     const roleName = args[1];
-    const roleToGive = message.guild.roles.cache.find(
-      (role) => role.name === `${roleName}`
-    );
+    const roleToGive =
+      message.guild.roles.cache.find(
+        (role) => role.name === roleName || role.id === roleName
+      ) || (await getRoleFromMention(args[1], message));
 
     if (!args[0])
       return await message.channel.send({
@@ -92,18 +96,17 @@ module.exports = {
     .addUserOption((option) =>
       option.setName("user").setDescription("Select a user").setRequired(true)
     )
-    .addStringOption((option) =>
-      option.setName("role").setDescription("role name").setRequired(true)
+    .addRoleOption((option) =>
+      option
+        .setName("role")
+        .setDescription("role you wish to remove from a user!")
+        .setRequired(true)
     ),
   async execute(interaction, client) {
     await interaction.deferReply();
     const user = interaction.options.getMember("user");
-    const roleName = interaction.options.getString("role");
-    const roleToGive = interaction.guild.roles.cache.find(
-      (role) => role.name === `${roleName}`
-    );
+    const roleToRemove = interaction.options.getRole("role");
 
-    if (!roleToGive) return await interaction.followUp("No such role");
     if (!interaction.member.permissions.has([Permissions.FLAGS.ADMINISTRATOR]))
       return await interaction.followUp({
         embeds: [
@@ -115,12 +118,12 @@ module.exports = {
       });
 
     try {
-      await user.roles.remove(roleToGive);
+      await user.roles.remove(roleToRemove);
       await interaction.followUp({
         embeds: [
           embedMessage(
             "#9dcc37",
-            `✅ | ${roleToGive} has been removed from ${user}`
+            `✅ | ${roleToRemove} has been removed from ${user}`
           ),
         ],
       });
