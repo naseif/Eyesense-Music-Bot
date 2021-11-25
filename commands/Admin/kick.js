@@ -16,8 +16,7 @@ module.exports = {
         embeds: [embedMessage("RED", `❌ | Please mention a user to kick!`)],
       });
 
-    const noargs0 = args.shift();
-    const kickReason = args.join(" ");
+    const kickReason = args.slice(1).join(" ");
 
     const embed = {
       author: {
@@ -36,7 +35,7 @@ module.exports = {
         },
         {
           name: "Reason",
-          value: `${kickReason}`,
+          value: `\`${kickReason ? kickReason : "No Reason provided!"}\``,
         },
       ],
       timestamp: new Date(),
@@ -63,11 +62,14 @@ module.exports = {
       });
 
     try {
-      await message.guild.members.kick(user, { kickReason });
-      await message.channel.send({ embeds: [embed] });
+      await message.guild.members.kick(user, {
+        reason: kickReason ? kickReason : "No Reason",
+      });
+
+      return await message.channel.send({ embeds: [embed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await message.channel.send({
+      return await message.channel.send({
         embeds: [
           embedMessage("RED", `❌ | Couldn't kick ${user}, ${error.message}`),
         ],
@@ -121,10 +123,10 @@ module.exports = {
 
     try {
       await interaction.guild.members.kick(user, { reason });
-      await interaction.followUp({ embeds: [embed] });
+      return await interaction.followUp({ embeds: [embed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await interaction.followUp({
+      return await interaction.followUp({
         embeds: [
           embedMessage("RED", `Couldn't kick ${user}, ${error.message}`),
         ],
