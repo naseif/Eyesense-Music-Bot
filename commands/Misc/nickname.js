@@ -61,7 +61,7 @@ module.exports = {
         });
       try {
         await guildUser.setNickname(args[0]);
-        await message.channel.send({
+        return await message.channel.send({
           embeds: [
             embedMessage(
               "#9dcc37",
