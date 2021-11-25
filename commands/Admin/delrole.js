@@ -87,7 +87,7 @@ module.exports = {
     }
   },
   data: new SlashCommandBuilder()
-    .setName("removerole")
+    .setName("delrole")
     .setDescription("removes a role for a user")
     .addUserOption((option) =>
       option.setName("user").setDescription("Select a user").setRequired(true)

@@ -69,7 +69,7 @@ module.exports = {
     }
   },
   data: new SlashCommandBuilder()
-    .setName("perms")
+    .setName("permissions")
     .setDescription("Shows the permission for another member or your own")
     .addUserOption((option) =>
       option.setName("user").setDescription("Select a user")

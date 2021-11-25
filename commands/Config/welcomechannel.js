@@ -5,7 +5,7 @@ const {
 } = require("../../modules/getUserFromMention");
 
 module.exports = {
-  name: "welcome",
+  name: "welcomechannel",
   description: "Sets a custom welcome channel instead of the default channel!",
   args: true,
   usage: `welcome add <channel name || channel mention || channel id> || welcome remove <channel name || channel mention || channel id>`,
@@ -149,7 +149,7 @@ module.exports = {
     }
   },
   data: new SlashCommandBuilder()
-    .setName("welcome")
+    .setName("welcomechannel")
     .setDescription(
       "Sets a custom welcome channel instead of the default channel!"
     )

@@ -45,8 +45,8 @@ let commandsHelper = function () {
     client.logger(`Found ${commands.length} Commands, Loading...`);
 
     for (const command of commands) {
-      client.logger(`Loaded ${command.data.name}`);
-      client.commands.set(command.data.name, command);
+      client.logger(`Loaded ${command.name}`);
+      client.commands.set(command.name, command);
     }
   };
 
