@@ -20,8 +20,7 @@ module.exports = {
         ],
       });
 
-    const noargs0 = args.shift();
-    const unbanReason = args.join(" ");
+    const unbanReason = args.slice(1).join(" ");
 
     const embed = {
       author: {
@@ -40,7 +39,7 @@ module.exports = {
         },
         {
           name: "Reason",
-          value: `${unbanReason}`,
+          value: `\`${unbanReason ? unbanReason : "No Reason Provided"}\``,
         },
       ],
       timestamp: new Date(),
@@ -57,11 +56,13 @@ module.exports = {
       });
 
     try {
-      await message.guild.members.unban(userID, { unbanReason });
-      await message.channel.send({ embeds: [embed] });
+      await message.guild.members.unban(userID, {
+        reason: unbanReason || "No Reason",
+      });
+      return await message.channel.send({ embeds: [embed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await message.channel.send({
+      return await message.channel.send({
         embeds: [
           embedMessage(
             "RED",
@@ -84,9 +85,9 @@ module.exports = {
       option.setName("reason").setDescription("ban reason").setRequired(true)
     ),
   async execute(interaction, client) {
+    await interaction.deferReply();
     const userID = interaction.options.getString("id");
     const reason = interaction.options.getString("reason");
-    await interaction.deferReply();
 
     const embed = {
       author: {
@@ -121,10 +122,10 @@ module.exports = {
 
     try {
       await interaction.guild.members.unban(userID, { reason });
-      await interaction.followUp({ embeds: [embed] });
+      return await interaction.followUp({ embeds: [embed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await interaction.followUp({
+      return await interaction.followUp({
         embeds: [
           embedMessage(
             "RED",
