@@ -20,16 +20,28 @@ module.exports = {
         ],
       });
     }
+    const trackProgress = queue.createProgressBar({
+      timecodes: true,
+      length: 8,
+    });
+
+    const embed = {
+      description: `🎵 | **${queue.nowPlaying()}**`,
+      thumbnail: {
+        url: `${queue.current.thumbnail}`,
+      },
+      fields: [
+        {
+          name: "\u200b",
+          value: trackProgress.replace(/ 0:00/g, " ◉ LIVE"),
+        },
+      ],
+      color: "#9dcc37",
+      timestamp: new Date(),
+    };
 
     return await message.channel.send({
-      embeds: [
-        embedMessage(
-          "#9dcc37",
-          `🎵 | **${queue.nowPlaying()}** in [<#${
-            message.member.voice.channelId
-          }>]`
-        ),
-      ],
+      embeds: [embed],
     });
   },
   data: new SlashCommandBuilder()
@@ -51,15 +63,28 @@ module.exports = {
       });
     }
 
-    await interaction.followUp({
-      embeds: [
-        embedMessage(
-          "#9dcc37",
-          `🎵 | **${queue.nowPlaying()}** in [<#${
-            interaction.member.voice.channelId
-          }>]`
-        ),
+    const trackProgress = queue.createProgressBar({
+      timecodes: true,
+      length: 8,
+    });
+
+    const embed = {
+      description: `🎵 | **${queue.nowPlaying()}**`,
+      thumbnail: {
+        url: `${queue.current.thumbnail}`,
+      },
+      fields: [
+        {
+          name: "\u200b",
+          value: trackProgress.replace(/ 0:00/g, " ◉ LIVE"),
+        },
       ],
+      color: "#9dcc37",
+      timestamp: new Date(),
+    };
+
+    return await interaction.followUp({
+      embeds: [embed],
     });
   },
 };
