@@ -13,7 +13,7 @@ module.exports = {
       color: "#9dcc37",
     };
 
-    await message.channel.send({ embeds: [embed] });
+    return await message.channel.send({ embeds: [embed] });
   },
   data: new SlashCommandBuilder()
     .setName("ping")
@@ -27,6 +27,6 @@ module.exports = {
       color: "#9dcc37",
     };
 
-    await interaction.followUp({ embeds: [embed] });
+    return await interaction.followUp({ embeds: [embed] });
   },
 };

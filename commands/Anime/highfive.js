@@ -25,13 +25,15 @@ module.exports = {
           }`,
         },
       };
-      await message.channel.send({
+      return await message.channel.send({
         embeds: [highFiveEmbed],
         content: `${user ? user : `${message.member.toString()}`}`,
       });
     } catch (error) {
       client.logger(error.message, "error");
-      await message.channel.send(`❌ | Couldn't retrieve a hug gif, Sorry!`);
+      return await message.channel.send(
+        `❌ | Couldn't retrieve a hug gif, Sorry!`
+      );
     }
   },
   data: new SlashCommandBuilder()
@@ -54,12 +56,14 @@ module.exports = {
           }`,
         },
       };
-      await interaction.followUp({
+      return await interaction.followUp({
         embeds: [highFiveEmbed],
       });
     } catch (error) {
       client.logger(error.message, "error");
-      await interaction.followUp(`❌ | Couldn't retrieve a hug gif, Sorry!`);
+      return await interaction.followUp(
+        `❌ | Couldn't retrieve a hug gif, Sorry!`
+      );
     }
   },
 };

@@ -10,7 +10,7 @@ module.exports = {
   usage: "up || uptime",
   args: false,
   async run(message, args, client) {
-    await message.channel.send({
+    return await message.channel.send({
       embeds: [
         embedMessage(
           "#9dcc37",
@@ -23,7 +23,7 @@ module.exports = {
     .setName("uptime")
     .setDescription("Since how long the bot is online"),
   async execute(interaction, client) {
-    await interaction.reply({
+    return await interaction.reply({
       embeds: [
         embedMessage(
           "#9dcc37",

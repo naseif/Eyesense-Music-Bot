@@ -48,7 +48,7 @@ module.exports = {
 
     try {
       await guildUser.voice.setChannel(message.member.voice.channelId);
-      await message.channel.send({
+      return await message.channel.send({
         embeds: [
           embedMessage(
             "#9dcc37",
@@ -96,7 +96,7 @@ module.exports = {
 
     try {
       await user.voice.setChannel(interaction.member.voice.channelId);
-      await interaction.followUp({
+      return await interaction.followUp({
         embeds: [
           embedMessage(
             "#9dcc37",

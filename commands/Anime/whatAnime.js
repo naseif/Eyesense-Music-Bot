@@ -39,10 +39,10 @@ module.exports = {
           }`,
         },
       };
-      await message.channel.send({ embeds: [infoEmbed] });
+      return await message.channel.send({ embeds: [infoEmbed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await message.channel.send(
+      return await message.channel.send(
         `❌ ${interaction.user.toString()}, There was an error processing this image!`
       );
     }
@@ -77,10 +77,10 @@ module.exports = {
           }`,
         },
       };
-      await interaction.followUp({ embeds: [infoEmbed] });
+      return await interaction.followUp({ embeds: [infoEmbed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await interaction.followUp(
+      return await interaction.followUp(
         `❌ ${interaction.user.toString()}, There was an error processing this image!`
       );
     }

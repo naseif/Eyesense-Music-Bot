@@ -38,7 +38,7 @@ module.exports = {
         `Eyesense is a feature-rich discord bot that provides over 100 commands!`,
         true
       );
-    await message.channel.send({ embeds: [embed], components: [row] });
+      return await message.channel.send({ embeds: [embed], components: [row] });
   },
   data: new SlashCommandBuilder()
     .setName("invite")
@@ -77,6 +77,6 @@ module.exports = {
         `Eyesense is a feature-rich discord bot that provides over 100 commands!`,
         true
       );
-    await interaction.followUp({ embeds: [embed], components: [row] });
+      return await interaction.followUp({ embeds: [embed], components: [row] });
   },
 };

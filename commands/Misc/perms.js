@@ -53,12 +53,12 @@ module.exports = {
     };
 
     try {
-      await message.channel.send({
+      return await message.channel.send({
         embeds: [permsEmbed],
       });
     } catch (err) {
       client.logger(err.message, "error");
-      await message.channel.send({
+      return await message.channel.send({
         embeds: [
           embedMessage(
             "RED",
@@ -104,12 +104,12 @@ module.exports = {
       },
     };
     try {
-      await interaction.followUp({
+      return await interaction.followUp({
         embeds: [permsEmbed],
       });
     } catch (err) {
       client.logger(err.message, "error");
-      await interaction.followUp({
+      return await interaction.followUp({
         embeds: [
           embedMessage(
             "RED",

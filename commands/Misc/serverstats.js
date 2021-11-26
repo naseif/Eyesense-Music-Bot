@@ -42,10 +42,10 @@ module.exports = {
       timestamp: new Date(),
     };
     try {
-      await message.channel.send({ embeds: [statssEmbed] });
+      return await message.channel.send({ embeds: [statssEmbed] });
     } catch (err) {
       client.logger(err.message, "error");
-      await message.channel.send(
+      return await message.channel.send(
         `I was not able to fetch the server info, do I have permission ?`
       );
       console.error(err);
@@ -89,10 +89,10 @@ module.exports = {
       timestamp: new Date(),
     };
     try {
-      await interaction.followUp({ embeds: [statssEmbed] });
+      return  await interaction.followUp({ embeds: [statssEmbed] });
     } catch (err) {
       client.logger(err.message, "error");
-      await interaction.followUp(
+      return  await interaction.followUp(
         `I was not able to fetch the server info, do I have permission ?`
       );
       console.error(err);

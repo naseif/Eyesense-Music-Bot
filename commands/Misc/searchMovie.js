@@ -119,7 +119,7 @@ module.exports = {
         timestamp: new Date(),
       };
 
-      await message.channel.send({ embeds: [movieEmbed] });
+      return await message.channel.send({ embeds: [movieEmbed] });
     } catch (error) {
       logger(error.message, "error");
       console.error(error);
@@ -211,7 +211,7 @@ module.exports = {
         timestamp: new Date(),
       };
 
-      await interaction.followUp({ embeds: [movieEmbed] });
+      return await interaction.followUp({ embeds: [movieEmbed] });
     } catch (error) {
       logger(error.message, "error");
       console.error(error);

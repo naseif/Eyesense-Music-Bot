@@ -70,9 +70,9 @@ module.exports = {
         timestamp: new Date(),
       };
 
-      await message.channel.send({ embeds: [animeEmbed] });
+      return await message.channel.send({ embeds: [animeEmbed] });
     } catch (err) {
-      await message.channel.send({
+      return await message.channel.send({
         embeds: [embedMessage("RED", `❌ Could not find this Anime, Sry!`)],
       });
       logger(err.message, "error");
@@ -147,7 +147,7 @@ module.exports = {
         timestamp: new Date(),
       };
 
-      await interaction.followUp({ embeds: [animeEmbed] });
+      return await interaction.followUp({ embeds: [animeEmbed] });
     } catch (err) {
       await interaction.followUp({
         embeds: [embedMessage("RED", `❌ Could not find this Anime, Sry!`)],

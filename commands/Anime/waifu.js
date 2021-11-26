@@ -22,10 +22,10 @@ module.exports = {
           }`,
         },
       };
-      await message.channel.send({ embeds: [waifuEmbed] });
+      return await message.channel.send({ embeds: [waifuEmbed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await message.channel.send(`❌ | Couldn't retrieve a waifu pic, Sorry!`);
+      return await message.channel.send(`❌ | Couldn't retrieve a waifu pic, Sorry!`);
     }
   },
   data: new SlashCommandBuilder()
@@ -48,10 +48,10 @@ module.exports = {
           }`,
         },
       };
-      await interaction.followUp({ embeds: [waifuEmbed] });
+      return await interaction.followUp({ embeds: [waifuEmbed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await interaction.followUp(`❌ | Couldn't retrieve a waifu pic, Sorry!`);
+      return await interaction.followUp(`❌ | Couldn't retrieve a waifu pic, Sorry!`);
     }
   },
 };

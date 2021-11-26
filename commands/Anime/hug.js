@@ -22,10 +22,12 @@ module.exports = {
           }`,
         },
       };
-      await message.channel.send({ embeds: [hugEmbed] });
+      return await message.channel.send({ embeds: [hugEmbed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await message.channel.send(`❌ | Couldn't retrieve a hug gif, Sorry!`);
+      return await message.channel.send(
+        `❌ | Couldn't retrieve a hug gif, Sorry!`
+      );
     }
   },
   data: new SlashCommandBuilder()
@@ -48,10 +50,12 @@ module.exports = {
           }`,
         },
       };
-      await interaction.followUp({ embeds: [hugEmbed] });
+      return await interaction.followUp({ embeds: [hugEmbed] });
     } catch (error) {
       client.logger(error.message, "error");
-      await interaction.followUp(`❌ | Couldn't retrieve a hug gif, Sorry!`);
+      return await interaction.followUp(
+        `❌ | Couldn't retrieve a hug gif, Sorry!`
+      );
     }
   },
 };

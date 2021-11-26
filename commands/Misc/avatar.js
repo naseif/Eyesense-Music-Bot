@@ -31,7 +31,7 @@ module.exports = {
       timestamp: new Date(),
     };
 
-    await message.channel.send({ embeds: [embed] });
+    return await message.channel.send({ embeds: [embed] });
   },
   data: new SlashCommandBuilder()
     .setName("avatar")
@@ -65,6 +65,6 @@ module.exports = {
       timestamp: new Date(),
     };
 
-    await interaction.followUp({ embeds: [embed] });
+    return  await interaction.followUp({ embeds: [embed] });
   },
 };
