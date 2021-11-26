@@ -96,9 +96,57 @@ class Music {
       ? queue.addTracks(searchSong.tracks)
       : queue.addTrack(searchSong.tracks[0]);
 
+    const username = command.member.user.username
+      ? command.member.user.username
+      : command.user.username;
+
+    const avatar = command.member.user.avatarURL()
+      ? command.member.user.avatarURL()
+      : command.user.avatarURL();
+
+    const musicEmbed = {
+      color: "#9dcc37",
+      title: `${queue.playing ? "✅ Added to Queue" : "🎵  Playing"}`,
+      author: {
+        name: `${username}`,
+        icon_url: `${avatar || client.user.avatarURL()}`,
+      },
+      description: `Song: **[${searchSong.tracks[0].title}](${searchSong.tracks[0].url})**`,
+      thumbnail: {
+        url: `${searchSong.tracks[0].thumbnail}`,
+      },
+      fields: [
+        {
+          name: "Author",
+          value: `${searchSong.tracks[0].author}`,
+          inline: true,
+        },
+        {
+          name: "🕓 Duration",
+          value: `${searchSong.tracks[0].duration}`,
+          inline: true,
+        },
+      ],
+
+      timestamp: new Date(),
+    };
+
+    let playlistEmbed = {
+      color: "#9dcc37",
+      description: `✅ | Queued ${queue.tracks.length} Songs`,
+    };
+
     if (!queue.playing) {
       try {
-        return await queue.play();
+        await queue.play();
+        searchSong.playlist
+          ? await command.reply({
+              embeds: [playlistEmbed, musicEmbed],
+            })
+          : await command.reply({
+              embeds: [musicEmbed],
+            });
+        return;
       } catch (err) {
         logger(err.message, "error");
         console.log(err);
@@ -111,6 +159,13 @@ class Music {
           ],
         });
       }
+    }
+
+    if (queue.playing) {
+      searchSong.playlist
+        ? await command.reply({ embeds: [playlistEmbed, musicEmbed] })
+        : await command.reply({ embeds: [musicEmbed] });
+      return;
     }
   }
 }
