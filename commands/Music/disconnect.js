@@ -52,7 +52,7 @@ module.exports = {
     try {
       if (queue) {
         await queue.connection.disconnect();
-        await message.channel.send({
+        return await message.channel.send({
           embeds: [
             embedMessage(
               "#9dcc37",
@@ -63,7 +63,7 @@ module.exports = {
       }
     } catch (err) {
       client.logger(err.message, "error");
-      await message.channel.send({
+      return await message.channel.send({
         embeds: [
           embedMessage(
             "RED",

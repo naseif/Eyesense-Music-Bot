@@ -1,5 +1,6 @@
 const { embedMessage } = require("../modules/embedSimple");
 const { logger } = require("../modules/logger");
+const { MessageActionRow, MessageButton } = require("discord.js");
 
 module.exports.playerEvents = (player) => {
   player.on("error", (queue, error) => {
@@ -12,7 +13,7 @@ module.exports.playerEvents = (player) => {
     logger(
       `${queue.guild.name}: Voice channel is empty right now!, leaving the Channel`
     );
-    await queue.metadata.channel.channel.send({
+    return await queue.metadata.channel.channel.send({
       embeds: [
         embedMessage(
           "9dcc37",
@@ -34,18 +35,55 @@ module.exports.playerEvents = (player) => {
   player.on("queueEnd", (queue) => {
     logger(`${queue.guild.name}: Queue has finished playing!`);
   });
-  player.on("trackAdd", (queue, track) => {
+  player.on("trackAdd", async (queue, track) => {
     logger(`${queue.guild.name}: ${track.title} has been added!`);
+
+    const musicEmbed = {
+      color: "#9dcc37",
+      title: `${queue.playing ? "✅ Added to Queue" : "🎵  Playing"}`,
+      description: `Song: **[${track.title}](${track.url})**`,
+      thumbnail: {
+        url: `${track.thumbnail}`,
+      },
+      fields: [
+        {
+          name: "Author",
+          value: `${track.author}`,
+          inline: true,
+        },
+        {
+          name: "🕓 Duration",
+          value: `${track.duration}`,
+          inline: true,
+        },
+      ],
+
+      timestamp: new Date(),
+    };
+
+    return await queue.metadata.channel.reply({ embeds: [musicEmbed] });
   });
   player.on("trackEnd", (queue, track) => {
     logger(`${queue.guild.name}: ${track.title} has finished playing!`);
   });
-  player.on("tracksAdd", (queue, tracks) => {
+  player.on("tracksAdd", async (queue, tracks) => {
     logger(
       `${queue.guild.name}: A playlist with ${tracks.length} songs has beed added!`
     );
+
+    let playlistEmbed = {
+      color: "#9dcc37",
+      description: `✅ | ${queue.playing ? "Queued" : "Added"} \`${
+        tracks.length
+      }\` Songs from [${tracks[0].playlist.title}](${tracks[0].playlist.url})`,
+    };
+
+    return await queue.metadata.channel.reply({
+      embeds: [playlistEmbed],
+    });
   });
-  player.on("trackStart", (queue, track) => {
+
+  player.on("trackStart", async (queue, track) => {
     logger(`${queue.guild.name}: ${track.title} has started playing`);
   });
 };
