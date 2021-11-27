@@ -100,16 +100,14 @@ class Music {
       ? command.member.user.username
       : command.user.username;
 
-    const avatar = command.member.user.avatarURL()
-      ? command.member.user.avatarURL()
-      : command.user.avatarURL();
+    const avatar = command.member.user.avatarURL() || client.user.avatarURL();
 
     const musicEmbed = {
       color: "#9dcc37",
       title: `${queue.playing ? "✅ Added to Queue" : "🎵  Playing"}`,
       author: {
         name: `${username}`,
-        icon_url: `${avatar || client.user.avatarURL()}`,
+        icon_url: `${avatar}`,
       },
       description: `Song: **[${searchSong.tracks[0].title}](${searchSong.tracks[0].url})**`,
       thumbnail: {
