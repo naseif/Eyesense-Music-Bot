@@ -14,7 +14,8 @@ module.exports = {
       }
     });
     console.log(`Ready! Logged in as ${client.user.tag}`);
-    client.user.setActivity(`Music in ${client.guilds.cache.size} Servers!`, {
+    const guilds = client.guilds.cache.map((guild) => guild.id);
+    client.user.setActivity(`Music in ${guilds.length} Servers!`, {
       type: "PLAYING",
     });
   },
