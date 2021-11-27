@@ -12,9 +12,11 @@ module.exports = {
       return;
     }
     await registerSlashCommands(guild.client.user.id, guild.id);
-    const guilds = client.guilds.cache.map((guild) => guild.id);
-    client.user.setActivity(`Music in ${guilds.length} Servers!`, {
-      type: "PLAYING",
-    });
+    guild.client.user.setActivity(
+      `Music in ${guild.client.guilds.cache.size} Servers!`,
+      {
+        type: "PLAYING",
+      }
+    );
   },
 };
