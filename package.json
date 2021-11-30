@@ -28,7 +28,7 @@
     "bufferutil": "^4.0.3",
     "chalk": "^4.1.2",
     "discord-api-types": "^0.22.0",
-    "discord-player": "^5.1.0-dev.1635725633.a0badb8",
+    "discord-player": "^5.2.0",
     "discord.js": "^13.3.1",
     "ffmpeg-static": "^4.4.0",
     "genius-lyrics-api": "^3.2.0",
