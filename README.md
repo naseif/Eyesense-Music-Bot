@@ -27,6 +27,9 @@
 - Moderation Commands 🔨
 - and more ⌛️ 
 
+
+## Commands 
+List of all commands can be found [here](Commands.md)
 ## Requirements
 
 - Node.js (v16.6 or higher)
