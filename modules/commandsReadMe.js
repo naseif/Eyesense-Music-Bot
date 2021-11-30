@@ -7,10 +7,10 @@ const { writeFileSync } = require("fs");
  * @returns New File containng the commands table
  */
 
-module.exports.commandsReadMe = (commands) => {
+module.exports.commandsReadMe = (commands, category) => {
   const tableData = {
-    header: ["Name", "Description"],
-    alignment: ["L", "C"],
+    header: ["Name", "Description", "Arguments"],
+    alignment: ["L", "C", "C"],
     rows: [],
   };
   const tableSettings = {
@@ -19,13 +19,17 @@ module.exports.commandsReadMe = (commands) => {
   };
 
   commands.map((command) => {
-    tableData.rows.push([
-      `**/${command.data.name}**`,
-      command.data.description,
-    ]);
+    if (command.name === undefined) return;
+    if (command.category === category) {
+      tableData.rows.push([
+        `**${command?.name}**`,
+        command?.description,
+        command?.args ? command.args : "false",
+      ]);
+    }
   });
 
   const commandsTable = mdtable(tableData, tableSettings);
 
-  writeFileSync("./Commands.md", commandsTable, "utf-8");
+  writeFileSync("./Commands1.md", commandsTable, "utf-8");
 };
