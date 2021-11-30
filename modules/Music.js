@@ -37,6 +37,7 @@ class Music {
       leaveOnEmptyCooldown: 60 * 1000 * 3,
       bufferingTimeout: 200,
       leaveOnEmpty: true,
+      spotifyBridge: true,
       ytdlOptions: {
         quality: "highestaudio",
         filter: "audioonly",
