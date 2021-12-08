@@ -1,9 +1,9 @@
 const { Client, Collection, Intents } = require("discord.js");
-const { logger } = require("./modules/logger.js");
 const { token, mongourl } = require("./config.json");
 const { Database } = require("quickmongo");
-const { connectDatabase } = require("./modules/DatabaseConnection");
 const { commandsHelper } = require("./modules/commandsHelper");
+const { Utils, APIs, StringUtils } = require("devtools-ts");
+const Utilities = new Utils();
 
 if (!token || !mongourl)
   return logger(
@@ -27,8 +27,10 @@ const { Player } = require("discord-player");
 const player = new Player(client);
 client.player = player;
 client.commands = new Collection();
-client.logger = logger;
+client.logger = Utilities.logger;
 client.db = new Database(mongourl);
+client.apis = new APIs();
+client.tools = new StringUtils();
 
 // Register everything...
 commandsHelper.registerAllCommands(__dirname + "/commands", client);
@@ -36,6 +38,6 @@ commandsHelper.registerAllEvents(__dirname + "/events", client);
 playerEvents(client.player);
 
 // Connect to DATABASE
-connectDatabase(mongourl, client);
+Utilities.connectToDataBase(mongourl, client);
 // ... and go!
 client.login(token);
