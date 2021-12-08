@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { requestAPI } = require("../../modules/requestAPI");
 
 module.exports = {
   name: "joke",
@@ -8,7 +7,7 @@ module.exports = {
   description: "Gets a random joke!",
   async run(message, args, client) {
     try {
-      const joke = await requestAPI(
+      const joke = await client.apis.request(
         "https://v2.jokeapi.dev/joke/Miscellaneous,Dark,Pun,Spooky,Christmas"
       );
 
@@ -53,7 +52,7 @@ module.exports = {
     await interaction.deferReply();
 
     try {
-      const joke = await requestAPI(
+      const joke = await client.apis.request(
         "https://v2.jokeapi.dev/joke/Miscellaneous,Dark,Pun,Spooky,Christmas"
       );
 

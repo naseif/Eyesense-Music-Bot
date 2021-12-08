@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
 const { getUserFromMention } = require("../../modules/getUserFromMention");
-const { requestAPI } = require("../../modules/requestAPI");
 
 module.exports = {
   name: "insult",
@@ -29,7 +28,7 @@ module.exports = {
       });
 
     try {
-      const insult = await requestAPI(
+      const insult = await client.apis.request(
         "https://evilinsult.com/generate_insult.php?lang=en&type=json"
       );
 
@@ -54,7 +53,7 @@ module.exports = {
     const user = interaction.options.getUser("user");
 
     try {
-      const insult = await requestAPI(
+      const insult = await client.apis.request(
         "https://evilinsult.com/generate_insult.php?lang=en&type=json"
       );
 

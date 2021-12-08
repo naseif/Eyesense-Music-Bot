@@ -1,8 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { TMDb } = require("../../config.json");
 const { embedMessage } = require("../../modules/embedSimple");
-const { getMovieID, getDetails } = require("../../modules/getMovieInfo");
-const { logger } = require("../../modules/logger");
 
 module.exports = {
   name: "searchmovie",
@@ -45,17 +43,17 @@ module.exports = {
         embeds: [embedMessage("#9dcc37", `You have to provide a Movie name!`)],
       });
     try {
-      let movie;
-      if (searchString[1]) {
-        const movieWithYear = await getMovieID(
-          searchString[0],
-          searchString[1]
-        );
-        movie = await getDetails(movieWithYear);
-      } else {
-        const withoutYear = await getMovieID(searchString[0]);
-        movie = await getDetails(withoutYear);
-      }
+      let movie = await client.api.getMovieDetails(searchString[0], TMDb);
+      // if (searchString[1]) {
+      //   const movieWithYear = await getMovieID(
+      //     searchString[0],
+      //     searchString[1]
+      //   );
+      //   movie = await getDetails(movieWithYear);
+      // } else {
+      //   const withoutYear = await getMovieID(searchString[0]);
+      //   movie = await getDetails(withoutYear);
+      // }
 
       const movieEmbed = {
         color: "#9dcc37",
@@ -121,7 +119,7 @@ module.exports = {
 
       return await message.channel.send({ embeds: [movieEmbed] });
     } catch (error) {
-      logger(error.message, "error");
+      client.logger(error.message, "error");
       console.error(error);
     }
   },
@@ -146,8 +144,7 @@ module.exports = {
       });
 
     try {
-      const movieID = await getMovieID(movieName);
-      const movie = await getDetails(movieID);
+      const movie = await client.apis.getMovieDetails(movieName, TMDb);
 
       const movieEmbed = {
         color: "#9dcc37",

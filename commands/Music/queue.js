@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { chunkSubstr } = require("../../modules/chunkString");
 const { embedMessage } = require("../../modules/embedSimple");
 
 module.exports = {
@@ -40,7 +39,7 @@ module.exports = {
     };
 
     if (tracks.join("\n").length > 4096) {
-      const chunked = chunkSubstr(tracks.join("\n"), 4096);
+      const chunked = client.tools.chunkSubstr(tracks.join("\n"), 4096);
       chunked.forEach(async (str) => {
         queueEmbed.description = str;
         return await message.channel.send({ embeds: [queueEmbed] });
@@ -81,7 +80,7 @@ module.exports = {
     };
 
     if (tracks.join("\n").length > 4096) {
-      const chunked = chunkSubstr(tracks.join("\n"), 4096);
+      const chunked = client.tools.chunkSubstr(tracks.join("\n"), 4096);
       chunked.forEach(async (str) => {
         queueEmbed.description = str;
         return await interaction.followUp({ embeds: [queueEmbed] });

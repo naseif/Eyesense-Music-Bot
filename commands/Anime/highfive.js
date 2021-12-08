@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { requestAPI } = require("../../modules/requestAPI");
 const { getUserFromMention } = require("../../modules/getUserFromMention");
 
 module.exports = {
@@ -11,7 +10,9 @@ module.exports = {
   async run(message, args, client) {
     try {
       const user = getUserFromMention(args[0], client);
-      const highFive = await requestAPI("https://api.waifu.pics/sfw/highfive");
+      const highFive = await client.apis.request(
+        "https://api.waifu.pics/sfw/highfive"
+      );
       const highFiveEmbed = {
         color: "#9dcc37",
         image: {
@@ -42,7 +43,9 @@ module.exports = {
   async execute(interaction, client) {
     await interaction.deferReply();
     try {
-      const highFive = await requestAPI("https://api.waifu.pics/sfw/highfive");
+      const highFive = await client.apis.request(
+        "https://api.waifu.pics/sfw/highfive"
+      );
       const highFiveEmbed = {
         color: "#9dcc37",
         image: {

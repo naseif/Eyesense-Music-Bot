@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { requestAPI } = require("../../modules/requestAPI");
 
 module.exports = {
   name: "waifu",
@@ -8,7 +7,9 @@ module.exports = {
   usage: "waifu",
   async run(message, args, client) {
     try {
-      const waifu = await requestAPI("https://api.waifu.pics/sfw/waifu");
+      const waifu = await client.apis.request(
+        "https://api.waifu.pics/sfw/waifu"
+      );
       const waifuEmbed = {
         color: "#9dcc37",
         image: {
@@ -25,7 +26,9 @@ module.exports = {
       return await message.channel.send({ embeds: [waifuEmbed] });
     } catch (error) {
       client.logger(error.message, "error");
-      return await message.channel.send(`❌ | Couldn't retrieve a waifu pic, Sorry!`);
+      return await message.channel.send(
+        `❌ | Couldn't retrieve a waifu pic, Sorry!`
+      );
     }
   },
   data: new SlashCommandBuilder()
@@ -34,7 +37,9 @@ module.exports = {
   async execute(interaction, client) {
     await interaction.deferReply();
     try {
-      const waifu = await requestAPI("https://api.waifu.pics/sfw/waifu");
+      const waifu = await client.apis.request(
+        "https://api.waifu.pics/sfw/waifu"
+      );
       const waifuEmbed = {
         color: "#9dcc37",
         image: {
@@ -51,7 +56,9 @@ module.exports = {
       return await interaction.followUp({ embeds: [waifuEmbed] });
     } catch (error) {
       client.logger(error.message, "error");
-      return await interaction.followUp(`❌ | Couldn't retrieve a waifu pic, Sorry!`);
+      return await interaction.followUp(
+        `❌ | Couldn't retrieve a waifu pic, Sorry!`
+      );
     }
   },
 };

@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
 const { getSong } = require("genius-lyrics-api");
 const { geniusApiKey } = require("../../config.json");
-const { chunkSubstr } = require("../../modules/chunkString");
 
 module.exports = {
   name: "lyrics",
@@ -85,7 +84,7 @@ module.exports = {
       };
 
       if (lyrics.lyrics.length > 4096) {
-        const chunkLyrics = chunkSubstr(lyrics.lyrics, 4096);
+        const chunkLyrics = client.tools.chunkSubstr(lyrics.lyrics, 4096);
         chunkLyrics.forEach(async (str) => {
           lyricsEmbed.description = str;
           return await message.channel.send({ embeds: [lyricsEmbed] });
@@ -189,7 +188,7 @@ module.exports = {
       };
 
       if (lyrics.lyrics.length > 4096) {
-        const chunkLyrics = chunkSubstr(lyrics.lyrics, 4096);
+        const chunkLyrics = client.tools.chunkSubstr(lyrics.lyrics, 4096);
         chunkLyrics.forEach(async (str) => {
           lyricsEmbed.description = str;
           return await interaction.followUp({ embeds: [lyricsEmbed] });

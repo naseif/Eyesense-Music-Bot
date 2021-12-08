@@ -1,8 +1,8 @@
-const { logger } = require(".././modules/logger");
+const { Utils } = require("devtools-ts");
 
 module.exports = {
   name: "error",
   async execute(error) {
-    logger(error, "error");
+    new Utils().logger(error, "error");
   },
 };

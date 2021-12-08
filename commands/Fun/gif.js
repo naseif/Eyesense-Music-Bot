@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { embedMessage } = require("../../modules/embedSimple");
-const { requestAPI } = require("../../modules/requestAPI");
 const { GiphyKey } = require("../../config.json");
 
 module.exports = {
@@ -22,7 +21,7 @@ module.exports = {
       });
 
     if (!query) {
-      const random = await requestAPI(
+      const random = await client.apis.request(
         `https://api.giphy.com/v1/gifs/random?api_key=${GiphyKey}`,
         {
           method: "GET",
@@ -118,7 +117,7 @@ module.exports = {
         ],
       });
     if (!query) {
-      const random = await requestAPI(
+      const random = await client.apis.request(
         `https://api.giphy.com/v1/gifs/random?api_key=${GiphyKey}`,
         {
           method: "GET",
@@ -145,7 +144,7 @@ module.exports = {
       return await interaction.followUp({ embeds: [randomEmbed] });
     }
 
-    const request = await requestAPI(
+    const request = await client.api.request(
       `https://api.giphy.com/v1/gifs/search?q=${query}&api_key=${GiphyKey}&limit=25`,
       {
         method: "GET",

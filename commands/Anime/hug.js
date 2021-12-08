@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { requestAPI } = require("../../modules/requestAPI");
 
 module.exports = {
   name: "hug",
@@ -7,8 +6,9 @@ module.exports = {
   description: "Sends a hug gif",
   usage: "hug",
   async run(message, args, client) {
+    console.log("hi");
     try {
-      const hug = await requestAPI("https://api.waifu.pics/sfw/hug");
+      const hug = await client.apis.request("https://api.waifu.pics/sfw/hug");
       const hugEmbed = {
         color: "#9dcc37",
         image: {
@@ -24,6 +24,7 @@ module.exports = {
       };
       return await message.channel.send({ embeds: [hugEmbed] });
     } catch (error) {
+      console.log(error);
       client.logger(error.message, "error");
       return await message.channel.send(
         `❌ | Couldn't retrieve a hug gif, Sorry!`
@@ -36,7 +37,7 @@ module.exports = {
   async execute(interaction, client) {
     await interaction.deferReply();
     try {
-      const hug = await requestAPI("https://api.waifu.pics/sfw/hug");
+      const hug = await client.apis.request("https://api.waifu.pics/sfw/hug");
       const hugEmbed = {
         color: "#9dcc37",
         image: {

@@ -1,7 +1,5 @@
 const { embedMessage } = require("../../modules/embedSimple");
-const { getAnimeInfo } = require("../../modules/get-anime-details");
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { logger } = require("../../modules/logger");
 
 module.exports = {
   name: "searchanime",
@@ -16,7 +14,7 @@ module.exports = {
         embeds: [embedMessage("RED", "❌ You have to provide an anime name!")],
       });
     try {
-      const Anime = await getAnimeInfo(searchString);
+      const Anime = await client.apis.getAnimeInfo(searchString);
       const animeEmbed = {
         color: "#9dcc37",
         title: `${Anime.titlerom} AKA ${Anime.titleeng ?? `${Anime.titlerom}`}`,
@@ -72,11 +70,11 @@ module.exports = {
 
       return await message.channel.send({ embeds: [animeEmbed] });
     } catch (err) {
+      client.logger(err.message, "error");
+      console.error(err);
       return await message.channel.send({
         embeds: [embedMessage("RED", `❌ Could not find this Anime, Sry!`)],
       });
-      logger(err.message, "error");
-      console.error(err);
     }
   },
   data: new SlashCommandBuilder()
@@ -93,7 +91,7 @@ module.exports = {
     const animeName = interaction.options.getString("anime");
 
     try {
-      const Anime = await getAnimeInfo(animeName);
+      const Anime = await client.apis.getAnimeInfo(animeName);
       const animeEmbed = {
         color: "#9dcc37",
         title: `${Anime.titlerom} AKA ${Anime.titleeng ?? `${Anime.titlerom}`}`,
@@ -152,7 +150,7 @@ module.exports = {
       await interaction.followUp({
         embeds: [embedMessage("RED", `❌ Could not find this Anime, Sry!`)],
       });
-      logger(err.message, "error");
+      client.logger(err.message, "error");
       console.error(err);
     }
   },

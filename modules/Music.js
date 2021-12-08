@@ -1,7 +1,6 @@
 const { embedMessage } = require("./embedSimple.js");
 const playdl = require("play-dl");
 const { QueryType } = require("discord-player");
-const { logger } = require("./logger.js");
 
 class Music {
   /**
@@ -147,7 +146,7 @@ class Music {
             });
         return;
       } catch (err) {
-        logger(err.message, "error");
+        client.logger(err.message, "error");
         console.log(err);
         await command.reply({
           embeds: [
