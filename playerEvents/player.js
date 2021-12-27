@@ -1,6 +1,7 @@
 const { embedMessage } = require("../modules/embedSimple");
 const { Utils } = require("devtools-ts");
 const utilites = new Utils();
+
 module.exports.playerEvents = (player) => {
   player.on("error", (queue, error) => {
     utilites.logger(
