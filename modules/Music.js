@@ -36,13 +36,7 @@ class Music {
       leaveOnEmptyCooldown: 60 * 1000 * 3,
       bufferingTimeout: 200,
       leaveOnEmpty: true,
-      spotifyBridge: true,
-      ytdlOptions: {
-        quality: "highestaudio",
-        filter: "audioonly",
-        highWaterMark: 1 << 25,
-        dlChunkSize: 20,
-      },
+      spotifyBridge: false,
       metadata: {
         channel: command ?? undefined,
       },
