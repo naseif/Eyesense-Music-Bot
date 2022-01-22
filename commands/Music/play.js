@@ -153,10 +153,20 @@ module.exports = {
             let youtube = await playdl.search(`${spotifyInfo.name}`, {
               limit: 2,
             });
-            return (await playdl.stream(youtube[0].url)).stream;
+            return (
+              await playdl.stream(youtube[0].url, {
+                discordPlayerCompatibility: true,
+                quality: 1,
+              })
+            ).stream;
           }
 
-          return (await playdl.stream(track.url)).stream;
+          return (
+            await playdl.stream(track.url, {
+              discordPlayerCompatibility: true,
+              quality: 1,
+            })
+          ).stream;
         }
       },
     });

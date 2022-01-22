@@ -39,7 +39,7 @@
     "mongoose": "^6.0.8",
     "node-fetch": "^2.6.1",
     "opusscript": "^0.0.8",
-    "play-dl": "^1.7.2",
+    "play-dl": "^1.8.1",
     "quickmongo": "^3.0.2",
     "utf-8-validate": "^5.0.5"
   },
