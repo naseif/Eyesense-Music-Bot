@@ -27,7 +27,7 @@
     "@discordjs/voice": "^0.8.0",
     "bufferutil": "^4.0.6",
     "chalk": "^4.1.2",
-    "devtools-ts": "^1.0.4",
+    "devtools-ts": "^1.1.0",
     "discord-api-types": "^0.27.3",
     "discord-player": "^5.2.2",
     "discord.js": "^13.6.0",
