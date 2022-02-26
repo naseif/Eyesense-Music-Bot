@@ -21,16 +21,16 @@
   "author": "naseif",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/builders": "^0.11.0",
+    "@discordjs/builders": "^0.12.0",
     "@discordjs/opus": "^0.7.0",
-    "@discordjs/rest": "^0.2.0-canary.0",
-    "@discordjs/voice": "^0.7.5",
-    "bufferutil": "^4.0.3",
+    "@discordjs/rest": "^0.3.0",
+    "@discordjs/voice": "^0.8.0",
+    "bufferutil": "^4.0.6",
     "chalk": "^4.1.2",
     "devtools-ts": "^1.0.4",
-    "discord-api-types": "^0.26.1",
-    "discord-player": "^5.1.0-dev.1635682042.a0badb8",
-    "discord.js": "^13.5.0",
+    "discord-api-types": "^0.27.3",
+    "discord-player": "^5.2.2",
+    "discord.js": "^13.6.0",
     "ffmpeg-static": "^4.4.0",
     "genius-lyrics-api": "^3.2.0",
     "jikanjs": "^0.7.0",
@@ -41,7 +41,7 @@
     "opusscript": "^0.0.8",
     "play-dl": "^1.8.1",
     "quickmongo": "^3.0.2",
-    "utf-8-validate": "^5.0.5"
+    "utf-8-validate": "^5.0.8"
   },
   "devDependencies": {
     "mdtable": "^0.3.1"
