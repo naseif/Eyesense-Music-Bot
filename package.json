@@ -2,10 +2,16 @@
   "name": "eyesense-music-bot",
   "version": "11.0.0",
   "description": "Bot to play Music from Youtube, Soundcloud or Spotify using the new slash commands and a lot more!",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node index.js"
+    "build": "tsc",
+    "watch": "tsc -w",
+    "start": "node dist/index.js",
+    "dev": "run-s build start",
+    "watch:start": "tsc-watch --onSuccess \"node ./dist/index.js\"",
+    "format": "prettier --write \"src/**/*.ts\""
   },
+  "prettier": "@sapphire/prettier-config",
   "keywords": [
     "music",
     "discord-music",
@@ -22,17 +28,31 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/builders": "^0.12.0",
+    "@discordjs/collection": "^0.6.0",
     "@discordjs/opus": "^0.7.0",
     "@discordjs/rest": "^0.3.0",
     "@discordjs/voice": "^0.8.0",
+    "@sapphire/decorators": "^4.3.4",
+    "@sapphire/discord-utilities": "^2.10.3",
+    "@sapphire/discord.js-utilities": "^4.9.7",
+    "@sapphire/fetch": "^2.3.1",
+    "@sapphire/framework": "^2.4.1",
+    "@sapphire/plugin-api": "^3.2.1",
+    "@sapphire/plugin-editable-commands": "^1.2.0",
+    "@sapphire/plugin-logger": "^2.2.1",
+    "@sapphire/plugin-subcommands": "^2.2.0",
+    "@sapphire/time-utilities": "^1.7.4",
+    "@sapphire/type": "^2.2.0",
+    "@sapphire/utilities": "^3.6.2",
     "bufferutil": "^4.0.6",
     "chalk": "^4.1.2",
     "devtools-ts": "^1.1.0",
     "discord-api-types": "^0.27.3",
     "discord-player": "^5.2.2",
     "discord.js": "^13.6.0",
-    "ffmpeg-static": "^4.4.0",
+    "ffmpeg-static": "^4.4.1",
     "genius-lyrics-api": "^3.2.0",
+    "jericho-player": "^1.1.28",
     "jikanjs": "^0.7.0",
     "libsodium-wrappers": "^0.7.9",
     "moment": "^2.29.1",
@@ -41,9 +61,19 @@
     "opusscript": "^0.0.8",
     "play-dl": "^1.8.1",
     "quickmongo": "^3.0.2",
+    "reflect-metadata": "^0.1.13",
+    "tweetnacl": "^1.0.3",
     "utf-8-validate": "^5.0.8"
   },
   "devDependencies": {
-    "mdtable": "^0.3.1"
+    "@sapphire/prettier-config": "^1.4.3",
+    "@sapphire/ts-config": "^3.3.4",
+    "@types/node": "^17.0.25",
+    "@types/ws": "^8.5.3",
+    "mdtable": "^0.3.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.6.2",
+    "tsc-watch": "^5.0.3",
+    "typescript": "^4.6.3"
   }
 }
