@@ -17,7 +17,7 @@ export class PlayCommand extends Command {
 
 		try {
 			searchQuery = await args.rest('string', { minimum: 1 });
-		} catch {}
+		} catch { }
 
 		if (!searchQuery) return await message.channel.send({ embeds: [embed('`You must provide a search query!`', { color: 'RED' })] });
 
@@ -35,7 +35,13 @@ export class PlayCommand extends Command {
 
 		let msg = await message.channel.send({ embeds: [embed(`Searching for ${searchQuery}`)] });
 
-		const searchSong = await queue.search(searchQuery, message.author);
+		const searchSong = await queue.search(searchQuery, message.author, {
+			extractor: 'play-dl',
+			metadata: '',
+			IgnoreError: false,
+			//@ts-expect-error
+			ExtractorStreamOptions: { Limit: 5 }
+		});
 
 		if (!searchSong || searchSong.tracks.length === 0) {
 			return await msg.edit({ embeds: [embed('No songs found for your search query!', { color: 'RED' })] });
@@ -43,10 +49,10 @@ export class PlayCommand extends Command {
 
 		if (queue.playing) {
 			if (searchSong.playlist) {
-				writeFileSync('test.json', JSON.stringify(searchSong.tracks), 'utf8');
 				await msg.edit({ embeds: [embed(`Found playlist!`)] });
 				let urls = searchSong.tracks.map((track) => track.url);
-				await queue.addTracks(urls, message.author);
+				// @ts-expect-error
+				await queue.playTracks(urls, message.member.voice.channel, message.author);
 				await msg.edit({ embeds: [embed(`${searchSong.tracks.length} Songs have been added to the Queue!`)] });
 				writeFileSync('queue.json', JSON.stringify(queue.tracks), 'utf8');
 				return;
@@ -66,7 +72,8 @@ export class PlayCommand extends Command {
 		if (searchSong.playlist) {
 			await msg.edit({ embeds: [embed(`Found playlist!`)] });
 			let urls = searchSong.tracks.map((track) => track.url);
-			await queue.addTracks(urls, message.author);
+			// @ts-expect-error
+			await queue.playTracks(urls, message.member.voice.channel, message.author);
 			await msg.edit({ embeds: [embed(`${searchSong.tracks.length} Songs have been added to the Queue!`)] });
 		}
 
