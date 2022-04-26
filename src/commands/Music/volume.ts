@@ -1,16 +1,16 @@
-import { Command, CommandOptions } from '@sapphire/framework';
+import { Args, Command, CommandOptions } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 import { ApplyOptions } from '@sapphire/decorators';
 import { client } from '../..';
 import { embed } from '../../Utils/BotUtils';
 
 @ApplyOptions<CommandOptions>({
-	description: 'Skips the current playing song',
-	aliases: ['s', 'sk'],
-	name: 'skip'
+	description: 'Change the bots volume',
+	aliases: ['v', 'vol'],
+	name: 'volume'
 })
-export class SkipCommand extends Command {
-	public async messageRun(message: Message) {
+export class VolumeCommand extends Command {
+	public async messageRun(message: Message, args: Args) {
 		if (!message?.guildId) return;
 
 		if (!message.guild || !message.guild.me || !message.member) return;
@@ -20,6 +20,17 @@ export class SkipCommand extends Command {
 
 		if (message.guild.me.voice.channelId && message.member.voice.channelId !== message.guild.me.voice.channelId)
 			return await message.channel.send({ embeds: [embed('You must be in my voice channel!', { color: 'RED' })] });
+
+		let newVol: number = 0;
+
+		try {
+			newVol = await args.pick('number');
+		} catch {}
+
+		if (!newVol)
+			return await message.channel.send({
+				embeds: [embed(`You should provide me with the new desired volume, this can be up to 200!`, { color: 'RED' })]
+			});
 
 		let player = client.music.players.get(message?.guildId);
 
@@ -32,10 +43,11 @@ export class SkipCommand extends Command {
 				]
 			});
 		}
-
+		console.log(player.queue);
 		if (player.playing || player.paused) {
-			await message.channel.send({ embeds: [embed(`Skipped: **${player.trackData?.title}**`)] });
-			return await player?.stop();
+			await player.setVolume(newVol);
+			await message.channel.send({ embeds: [embed(`Set Bot Volume to **${newVol}**`)] });
+			return;
 		} else {
 			return await message.channel.send({ embeds: [embed(`Nothing is playing to skip!`)] });
 		}

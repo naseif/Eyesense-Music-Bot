@@ -12,7 +12,7 @@ export class ReadyListener extends Listener {
 	}
 
 	public run(client: Client) {
-		player.music.connect(client.user?.id)
+		player.music.connect(client.user?.id);
 		const { username, id } = client.user!;
 		this.container.logger.info(`Successfully logged in as ${username} (${id})`);
 	}
