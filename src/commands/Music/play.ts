@@ -1,7 +1,6 @@
 import { Args, Command, CommandOptions } from '@sapphire/framework';
 import type { Message } from 'discord.js';
 import { ApplyOptions } from '@sapphire/decorators';
-import { player } from '../..';
 import { embed } from '../../Utils/BotUtils';
 
 @ApplyOptions<CommandOptions>({
@@ -16,7 +15,7 @@ export class PlayCommand extends Command {
 
 		try {
 			searchQuery = await args.rest('string', { minimum: 1 });
-		} catch {}
+		} catch { }
 
 		if (!searchQuery) return await message.channel.send({ embeds: [embed('`You must provide a search query!`', { color: 'RED' })] });
 
@@ -27,9 +26,6 @@ export class PlayCommand extends Command {
 
 		if (message.guild.me.voice.channelId && message.member.voice.channelId !== message.guild.me.voice.channelId)
 			return await message.channel.send({ embeds: [embed('You must be in my voice channel!', { color: 'RED' })] });
-
-		//@ts-expect-error
-		player.play(message.member?.voice?.channel, searchQuery, { member: message.member, message, textChannel: message.channel });
 
 		return;
 	}
