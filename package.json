@@ -53,7 +53,6 @@
     "discord-api-types": "^0.27.3",
     "discord-player": "^5.2.2",
     "discord.js": "^13.6.0",
-    "distube": "^3.3.4",
     "ffmpeg-static": "^4.4.1",
     "genius-lyrics-api": "^3.2.0",
     "jikanjs": "^0.7.0",
@@ -65,7 +64,6 @@
     "play-dl": "^1.8.1",
     "quickmongo": "^3.0.2",
     "reflect-metadata": "^0.1.13",
-    "tweetnacl": "^1.0.3",
     "utf-8-validate": "^5.0.8"
   },
   "devDependencies": {
