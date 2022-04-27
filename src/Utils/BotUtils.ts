@@ -21,3 +21,18 @@ export const StreamersRegexList = {
 	SOUNDCLOUD: /^(?:(https?):\/\/)?(?:(?:www|m)\.)?(api\.soundcloud\.com|soundcloud\.com|snd\.sc)\/(.*)$/,
 	YTPLAYLIST: /^.*(youtu.be\/|list=)([^#\&\?]*).*/
 };
+
+
+export function convertMStoHMS(durationMS: number) {
+	if (!durationMS) return;
+
+	const date = new Date(Date.UTC(0, 0, 0, 0, 0, 0, durationMS)),
+		parts = [
+			date.getUTCHours(),
+			date.getUTCMinutes(),
+			date.getUTCSeconds(),
+		],
+		formatted = parts.map((s) => String(s).padStart(2, "0")).join(":");
+
+	return formatted
+}
