@@ -21,7 +21,7 @@ export class SkipCommand extends Command {
 		if (message.guild.me.voice.channelId && message.member.voice.channelId !== message.guild.me.voice.channelId)
 			return await message.channel.send({ embeds: [embed('You must be in my voice channel!', { color: 'RED' })] });
 
-		let player = client.music.players.get(message?.guildId);
+		const player = client.music.players.get(message?.guildId);
 
 		if (!player?.connected) {
 			return message.reply({
@@ -36,12 +36,14 @@ export class SkipCommand extends Command {
 		let queue = client.getQueue(player);
 
 		if (player.playing || player.paused) {
-			let skippedSong = await queue.skip()
+			let skippedSong = await queue.skip();
 			await message.channel.send({ embeds: [embed(`Skipped: **${skippedSong?.title}** [${message.member.toString()}]`)] });
+			if (queue.tracks.length) {
+				await queue.start();
+			}
 			return;
 		} else {
 			return await message.channel.send({ embeds: [embed(`Nothing is playing to skip!`)] });
 		}
-
 	}
 }

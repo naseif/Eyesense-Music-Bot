@@ -32,7 +32,7 @@ export class VolumeCommand extends Command {
 				embeds: [embed(`You should provide me with the new desired volume, this can be up to 200!`, { color: 'RED' })]
 			});
 
-		let player = client.music.players.get(message?.guildId);
+		const player = client.music.players.get(message?.guildId);
 
 		if (!player?.connected) {
 			return message.reply({
@@ -43,7 +43,7 @@ export class VolumeCommand extends Command {
 				]
 			});
 		}
-		console.log(player.queue);
+
 		if (player.playing || player.paused) {
 			await player.setVolume(newVol);
 			await message.channel.send({ embeds: [embed(`Set Bot Volume to **${newVol}**`)] });

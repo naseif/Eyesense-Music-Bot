@@ -44,9 +44,9 @@ export class Bot extends SapphireClient {
 	}
 
 	getQueue(player: Player) {
-		if (this.queue instanceof Queue) return this.queue as Queue
+		if (this.queue instanceof Queue) return this.queue as Queue;
 		this.queue = new Queue(player);
 
-		return this.queue as Queue
+		return this.queue as Queue;
 	}
 }

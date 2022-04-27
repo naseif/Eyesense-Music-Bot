@@ -17,7 +17,7 @@ export class PlayCommand extends Command {
 
 		try {
 			searchQuery = await args.rest('string', { minimum: 1 });
-		} catch { }
+		} catch {}
 
 		if (!searchQuery) return await message.channel.send({ embeds: [embed('`You must provide a search query!`', { color: 'RED' })] });
 
@@ -29,11 +29,11 @@ export class PlayCommand extends Command {
 		if (message.guild.me.voice.channelId && message.member.voice.channelId !== message.guild.me.voice.channelId)
 			return await message.channel.send({ embeds: [embed('You must be in my voice channel!', { color: 'RED' })] });
 
-		let player =
+		const player =
 			client.music.players.get(message.guild.id)?.connect(message.member.voice.channel) ??
 			client.music.createPlayer(message.guild).connect(message.member.voice.channel);
 
-		let queue = client.getQueue(player)
+		let queue = client.getQueue(player);
 		const results = await client.music.rest.loadTracks(/^https?:\/\//.test(searchQuery) ? searchQuery : `ytsearch:${searchQuery}`);
 
 		let tracks: ITrack[] = [];
