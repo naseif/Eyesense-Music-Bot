@@ -42,7 +42,8 @@ export class QueueCommand extends Command {
             });
         }
 
-        let tracks = queue?.tracks?.map((track, index) => `[${index + 1}] • [${track.title}](${track.uri}) • <@${track.requester}>`);
+        let tracks = queue.tracks.map((track, index) => `[${index + 1}] • [${track?.title}](${track?.uri}) • <@${track?.requester}>`);
+        tracks = tracks.filter((str) => !str.includes("undefined"));
 
         let chunked = _.chunk(tracks, 30);
         const pages = chunked.map((s) => s.join('\n'));
