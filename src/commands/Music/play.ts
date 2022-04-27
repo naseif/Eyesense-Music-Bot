@@ -1,10 +1,9 @@
 import { Args, Command, CommandOptions } from '@sapphire/framework';
 import type { Message, MessageEmbedOptions } from 'discord.js';
 import { ApplyOptions } from '@sapphire/decorators';
-import { embed } from '../../Utils/BotUtils';
+import { convertMStoHMS, embed } from '../../Utils/BotUtils';
 import { client } from '../..';
 import type { ITrack } from '../../types/Track';
-import { Queue } from '@lavaclient/queue';
 
 @ApplyOptions<CommandOptions>({
 	description: 'Plays music from Youtube, Spotify and Soundcloud!',
@@ -18,7 +17,7 @@ export class PlayCommand extends Command {
 
 		try {
 			searchQuery = await args.rest('string', { minimum: 1 });
-		} catch {}
+		} catch { }
 
 		if (!searchQuery) return await message.channel.send({ embeds: [embed('`You must provide a search query!`', { color: 'RED' })] });
 
@@ -34,9 +33,8 @@ export class PlayCommand extends Command {
 			client.music.players.get(message.guild.id)?.connect(message.member.voice.channel) ??
 			client.music.createPlayer(message.guild).connect(message.member.voice.channel);
 
+		let queue = client.getQueue(player)
 		const results = await client.music.rest.loadTracks(/^https?:\/\//.test(searchQuery) ? searchQuery : `ytsearch:${searchQuery}`);
-
-		const queue = new Queue(player);
 
 		let tracks: ITrack[] = [];
 
@@ -56,7 +54,7 @@ export class PlayCommand extends Command {
 				},
 				{
 					name: '🕓 Duration',
-					value: `${results.tracks[0].info.length}`,
+					value: `${convertMStoHMS(results.tracks[0].info.length)}`,
 					inline: true
 				}
 			],
