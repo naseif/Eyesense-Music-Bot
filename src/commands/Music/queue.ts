@@ -34,7 +34,7 @@ export class QueueCommand extends Command {
 			});
 		}
 
-		let queue = client.getQueue(player);
+		let queue = client.queue ?? client.getQueue(player);
 
 		if (!queue || !queue.tracks.length) {
 			return await message.channel.send({
@@ -55,7 +55,7 @@ export class QueueCommand extends Command {
 		});
 
 		for (let page of pages) {
-			paginatedMessage.addPageEmbed((embed) => embed.setDescription(page).setTitle(`${message.guild?.name}'s Queue`));
+			paginatedMessage.addPageEmbed((embed) => embed.setDescription(page).setTitle(`${message.guild?.name}'s Music Queue`));
 		}
 		return await paginatedMessage.run(message, message.author);
 	}

@@ -32,7 +32,7 @@ export class ShuffleCommand extends Command {
 			});
 		}
 
-		const queue = client.getQueue(player);
+		let queue = client.queue ?? client.getQueue(player);
 
 		if (!queue || !queue.tracks.length)
 			return await message.channel.send({ embeds: [embed(`❌ | There is no queue to shuffle!`, { color: 'RED' })] });

@@ -33,17 +33,17 @@ export class SkipCommand extends Command {
 			});
 		}
 
-		let queue = client.getQueue(player);
+		let queue = client.queue ?? client.getQueue(player);
 
 		if (player.playing || player.paused) {
 			let skippedSong = await queue.skip();
 			await message.channel.send({ embeds: [embed(`✅ Skipped: **${skippedSong?.title}** [${message.member.toString()}]`)] });
-			if (queue.tracks.length) {
+			if (await queue.next()) {
 				await queue.start();
 			}
 			return;
 		} else {
-			return await message.channel.send({ embeds: [embed(`Nothing is playing to skip!`)] });
+			return await message.channel.send({ embeds: [embed(`❌ Nothing is playing to skip!`)] });
 		}
 	}
 }

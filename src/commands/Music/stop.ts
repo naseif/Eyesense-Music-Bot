@@ -33,7 +33,7 @@ export class StopCommand extends Command {
 			});
 		}
 
-		const queue = client.getQueue(player);
+		let queue = client.queue ?? client.getQueue(player);
 
 		if (player.playing || player.paused) {
 			await player.stop();
