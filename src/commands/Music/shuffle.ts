@@ -15,17 +15,17 @@ export class ShuffleCommand extends Command {
 		if (!message.guild || !message.guild.me || !message.member) return;
 
 		if (!message.member.voice.channel)
-			return await message.channel.send({ embeds: [embed('You must be in a voice channel to use my commands!', { color: 'RED' })] });
+			return await message.channel.send({ embeds: [embed('❌ You must be in a voice channel to use my commands!', { color: 'RED' })] });
 
 		if (message.guild.me.voice.channelId && message.member.voice.channelId !== message.guild.me.voice.channelId)
-			return await message.channel.send({ embeds: [embed('You must be in my voice channel!', { color: 'RED' })] });
+			return await message.channel.send({ embeds: [embed('❌ You must be in my voice channel!', { color: 'RED' })] });
 
 		const player = client.music.players.get(message?.guildId);
 
 		if (!player?.connected) {
 			return message.reply({
 				embeds: [
-					embed(`I could not find an active player for this guild, please make sure to play a song first before using this command!`, {
+					embed(`❌ I could not find an active player for this guild, please make sure to play a song first before using this command!`, {
 						color: 'RED'
 					})
 				]

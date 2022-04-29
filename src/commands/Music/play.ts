@@ -19,15 +19,15 @@ export class PlayCommand extends Command {
 			searchQuery = await args.rest('string', { minimum: 1 });
 		} catch {}
 
-		if (!searchQuery) return await message.channel.send({ embeds: [embed('`You must provide a search query!`', { color: 'RED' })] });
+		if (!searchQuery) return await message.channel.send({ embeds: [embed(`❌ You must provide a search query!`, { color: 'RED' })] });
 
 		if (!message.guild || !message.guild.me || !message.member) return;
 
 		if (!message.member.voice.channel)
-			return await message.channel.send({ embeds: [embed('You must be in a voice channel to play music!', { color: 'RED' })] });
+			return await message.channel.send({ embeds: [embed('❌ You must be in a voice channel to play music!', { color: 'RED' })] });
 
 		if (message.guild.me.voice.channelId && message.member.voice.channelId !== message.guild.me.voice.channelId)
-			return await message.channel.send({ embeds: [embed('You must be in my voice channel!', { color: 'RED' })] });
+			return await message.channel.send({ embeds: [embed('❌ You must be in my voice channel!', { color: 'RED' })] });
 
 		const player =
 			client.music.players.get(message.guild.id)?.connect(message.member.voice.channel) ??
@@ -66,7 +66,7 @@ export class PlayCommand extends Command {
 
 		if (player.playing) {
 			if (results.loadType === 'LOAD_FAILED' || results.loadType === 'NO_MATCHES') {
-				return await message.channel.send({ embeds: [embed(`Could not fetch the requested song, Sorry :(`, { color: 'RED' })] });
+				return await message.channel.send({ embeds: [embed(`❌ Could not fetch the requested song, Sorry :(`, { color: 'RED' })] });
 			}
 
 			if (results.loadType === 'PLAYLIST_LOADED') {
