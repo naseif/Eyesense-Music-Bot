@@ -36,8 +36,8 @@ export class StopCommand extends Command {
 		let queue = client.queue ?? client.getQueue(player);
 
 		if (player.playing || player.paused) {
-			await player.stop();
 			queue.clear();
+			await player.destroy();
 			return player.disconnect();
 		} else {
 			return await message.channel.send({ embeds: [embed(`❌ Nothing is playing to stop!`)] });
