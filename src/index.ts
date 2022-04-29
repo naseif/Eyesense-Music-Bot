@@ -8,7 +8,7 @@ load({
 		id: spotify_clientid,
 		secret: spotify_client_secret
 	},
-	autoResolveYoutubeTracks: false
+	autoResolveYoutubeTracks: true
 });
 
 export const client = new Bot();

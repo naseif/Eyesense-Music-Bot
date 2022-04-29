@@ -1,6 +1,6 @@
 import { LogLevel, SapphireClient } from '@sapphire/framework';
 import { Node, Player } from 'lavaclient';
-import { lavalink_port, lavalink_host, lavalink_password, prefix } from './../config.json';
+// import { lavalink_port, lavalink_host, lavalink_password, prefix } from './../config.json';
 import '@lavaclient/queue';
 import { Queue } from '@lavaclient/queue';
 
@@ -10,7 +10,7 @@ export class Bot extends SapphireClient {
 
 	constructor() {
 		super({
-			defaultPrefix: prefix,
+			defaultPrefix: '!',
 			regexPrefix: /^(hey +)?bot[,! ]/i,
 			caseInsensitiveCommands: true,
 			logger: {
@@ -33,9 +33,9 @@ export class Bot extends SapphireClient {
 		this.music = new Node({
 			sendGatewayPayload: (id, payload) => this.guilds.cache.get(id)?.shard?.send(payload),
 			connection: {
-				host: lavalink_host,
-				password: lavalink_password,
-				port: Number(lavalink_port)
+				host: 'node1-fi.cloud-host.online',
+				port: 19151,
+				password: 'HilarioGaming'
 			}
 		});
 		this.queue = null;
