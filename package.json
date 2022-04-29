@@ -33,6 +33,7 @@
     "@discordjs/rest": "^0.3.0",
     "@discordjs/voice": "^0.8.0",
     "@lavaclient/queue": "^2.0.6",
+    "@lavaclient/spotify": "^3.0.0",
     "@sapphire/decorators": "^4.3.4",
     "@sapphire/discord-utilities": "^2.10.3",
     "@sapphire/discord.js-utilities": "^4.9.7",

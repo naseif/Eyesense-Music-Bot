@@ -1,11 +1,9 @@
 {
-    "token": "",
-    "prefix": "",
-    "mongourl": "",
-    "geniusApiKey": "",
-    "TMDb": "",
-    "GiphyKey": "",
-    "lavalink_host": "",
-    "lavalink_port": "",
-    "lavalink_password": ""
+	"token": "",
+	"prefix": "",
+	"lavalink_host": "",
+	"lavalink_port": "",
+	"lavalink_password": "",
+	"spotify_clientid": "",
+	"spotify_client_secret": ""
 }
