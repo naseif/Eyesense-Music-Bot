@@ -36,7 +36,7 @@
     "jikanjs": "^0.7.0",
     "libsodium-wrappers": "^0.7.9",
     "moment": "^2.29.1",
-    "mongoose": "^6.0.8",
+    "mongoose": "^6.4.6",
     "node-fetch": "^2.6.1",
     "opusscript": "^0.0.8",
     "play-dl": "^1.8.1",
