@@ -40,7 +40,7 @@
     "node-fetch": "^2.6.1",
     "opusscript": "^0.0.8",
     "play-dl": "^1.8.1",
-    "quickmongo": "^3.0.2",
+    "quickmongo": "^5.2.0",
     "utf-8-validate": "^5.0.8"
   },
   "devDependencies": {
